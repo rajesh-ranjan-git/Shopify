@@ -89,7 +89,7 @@ To get started with Shopify locally, follow these steps:
 
    ```bash
    PORT=5000
-   DATABASE_URL=<your-mongodb-uri>
+   MONGODB_URI=<your-mongodb-uri>
    JWT_SECRET=<your-jwt-secret>
    STRIPE_API_KEY=<your-stripe-api-key>
    ```
