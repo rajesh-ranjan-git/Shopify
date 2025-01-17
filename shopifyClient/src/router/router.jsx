@@ -13,6 +13,7 @@ import ShoppingHome from "../pages/shopping/home";
 import ShoppingListing from "../pages/shopping/listing";
 import ShoppingCheckout from "../pages/shopping/checkout";
 import ShoppingAccount from "../pages/shopping/account";
+import CheckAuth from "../components/common/checkAuth";
 
 const appRouter = createBrowserRouter([
   {
@@ -21,7 +22,11 @@ const appRouter = createBrowserRouter([
     children: [
       {
         path: "/auth",
-        element: <AuthLayout />,
+        element: (
+          <CheckAuth>
+            <AuthLayout />
+          </CheckAuth>
+        ),
         children: [
           {
             path: "login",
@@ -35,7 +40,11 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/admin",
-        element: <AdminLayout />,
+        element: (
+          <CheckAuth>
+            <AdminLayout />
+          </CheckAuth>
+        ),
         children: [
           {
             path: "dashboard",
@@ -53,7 +62,11 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/shop",
-        element: <ShoppingLayout />,
+        element: (
+          <CheckAuth>
+            <ShoppingLayout />
+          </CheckAuth>
+        ),
         children: [
           {
             path: "home",
