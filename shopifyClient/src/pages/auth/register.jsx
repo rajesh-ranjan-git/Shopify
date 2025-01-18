@@ -1,19 +1,35 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import CommonForm from "@/components/common/form";
 import { registerFormControls } from "@/config/config";
+import { registerUserService } from "@/services/auth/registerUserService";
 
 const initialState = {
   name: "",
   email: "",
   password: "",
-  confirmPassword: "",
+  password_confirmation: "",
 };
-
-const onSubmit = () => {};
 
 const Register = () => {
   const [formData, setFormData] = useState(initialState);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    console.log("formData from register : ", formData);
+    registerUserService(formData);
+    // dispatch(registerUserService(formData)).then((data) => {
+    //   console.log("data : ", data);
+    //   if (data?.payload?.success) {
+    //     navigate("/auth/login");
+    //   }
+    // });
+  };
+
   return (
     <div className="space-y-6 mx-auto w-full max-w-md">
       <div className="text-center">

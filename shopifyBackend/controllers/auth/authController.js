@@ -22,7 +22,11 @@ export const register = async (req, res) => {
     });
 
     if (findUser) {
-      return res.status(400).json({ message: "Email already exists!" });
+      return res.status(400).json({
+        status: 400,
+        success: false,
+        message: "Email already exists!",
+      });
     }
 
     // Encrypt password
@@ -46,6 +50,8 @@ export const register = async (req, res) => {
       });
 
       return res.status(200).json({
+        status: 200,
+        success: true,
         message: "User created successfully!",
         access_token: `Bearer ${token}`,
       });
@@ -53,15 +59,22 @@ export const register = async (req, res) => {
 
     return res.status(400).json({
       errors: {
+        status: 400,
+        success: false,
         message: "Something went wrong while creating user!",
       },
     });
   } catch (error) {
     if (error instanceof errors.E_VALIDATION_ERROR) {
-      return res.status(400).json({ errors: error.messages });
+      return res.status(400).json({
+        status: 400,
+        success: false,
+        errors: error.messages,
+      });
     } else {
       return res.status(500).json({
         status: 500,
+        success: false,
         message: "Something went wrong!",
       });
     }
@@ -82,11 +95,19 @@ export const login = async (req, res) => {
     });
 
     if (!user) {
-      return res.status(400).json({ message: "User does not exist!" });
+      return res.status(400).json({
+        status: 400,
+        success: false,
+        message: "User does not exist!",
+      });
     } else {
       // Decrypt password
       if (!bcrypt.compareSync(payload.password, user.password)) {
-        return res.status(400).json({ message: "Invalid credentials!" });
+        return res.status(400).json({
+          status: 400,
+          success: false,
+          message: "Invalid credentials!",
+        });
       }
       const payloadData = {
         id: user.id,
@@ -100,16 +121,23 @@ export const login = async (req, res) => {
       });
 
       return res.status(200).json({
+        status: 200,
+        success: true,
         message: "Logged in successfully!",
         access_token: `Bearer ${token}`,
       });
     }
   } catch (error) {
     if (error instanceof errors.E_VALIDATION_ERROR) {
-      return res.status(400).json({ errors: error.messages });
+      return res.status(400).json({
+        status: 400,
+        success: false,
+        errors: error.messages,
+      });
     } else {
       return res.status(500).json({
         status: 500,
+        success: false,
         message: "Something went wrong!",
       });
     }

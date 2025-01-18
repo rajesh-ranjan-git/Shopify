@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 5000;
 // CORS - Cross Origin Resource Sharing
 server.use(
   cors({
-    origin: "http://localhost:5173/",
+    origin: "http://localhost:5173",
     methods: ["GET", "POST", "DELETE", "PUT"],
     allowedHeaders: [
       "Content-Type",
@@ -35,13 +35,13 @@ server.use(cookieParser());
 server.use(express.json());
 server.use(express.urlencoded({ extended: false }));
 
+// Routes
+server.use("/api", router);
+
 // Server response
 server.get("/", (req, res) => {
   return res.json({ message: `Server is running at http://localhost:${PORT}` });
 });
-
-// Routes
-server.use("/api", router);
 
 // Listen to server
 server.listen(PORT, (error) => {

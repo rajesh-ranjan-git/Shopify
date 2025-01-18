@@ -21,7 +21,7 @@ export const registerFormControls = [
     type: "password",
   },
   {
-    name: "confirmPassword",
+    name: "password_confirmation",
     label: "Confirm Password",
     placeholder: "Enter your password again...",
     componentType: "password",

@@ -1,19 +1,22 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
-import AuthLayout from "../components/auth/layout";
-import Login from "../pages/auth/login";
-import Register from "../pages/auth/register";
-import AdminLayout from "../components/admin/layout";
-import AdminDashboard from "../pages/admin/dashboard";
-import AdminProducts from "../pages/admin/products";
-import AdminOrders from "../pages/admin/orders";
-import ShoppingLayout from "../components/shopping/layout";
-import Error from "../pages/error/error";
-import ShoppingHome from "../pages/shopping/home";
-import ShoppingListing from "../pages/shopping/listing";
-import ShoppingCheckout from "../pages/shopping/checkout";
-import ShoppingAccount from "../pages/shopping/account";
-import CheckAuth from "../components/common/checkAuth";
+import AuthLayout from "@/components/auth/layout";
+import Login from "@/pages/auth/login";
+import Register from "@/pages/auth/register";
+import AdminLayout from "@/components/admin/layout";
+import AdminDashboard from "@/pages/admin/dashboard";
+import AdminProducts from "@/pages/admin/products";
+import AdminOrders from "@/pages/admin/orders";
+import ShoppingLayout from "@/components/shopping/layout";
+import Error from "@/pages/error/error";
+import ShoppingHome from "@/pages/shopping/home";
+import ShoppingListing from "@/pages/shopping/listing";
+import ShoppingCheckout from "@/pages/shopping/checkout";
+import ShoppingAccount from "@/pages/shopping/account";
+import CheckAuth from "@/components/common/checkAuth";
+
+const isAuthenticated = false;
+const user = null;
 
 const appRouter = createBrowserRouter([
   {
@@ -23,9 +26,9 @@ const appRouter = createBrowserRouter([
       {
         path: "/auth",
         element: (
-          // <CheckAuth>
-          <AuthLayout />
-          // </CheckAuth>
+          <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+            <AuthLayout />
+          </CheckAuth>
         ),
         children: [
           {
@@ -41,7 +44,7 @@ const appRouter = createBrowserRouter([
       {
         path: "/admin",
         element: (
-          <CheckAuth>
+          <CheckAuth isAuthenticated={isAuthenticated} user={user}>
             <AdminLayout />
           </CheckAuth>
         ),
@@ -63,7 +66,7 @@ const appRouter = createBrowserRouter([
       {
         path: "/shop",
         element: (
-          <CheckAuth>
+          <CheckAuth isAuthenticated={isAuthenticated} user={user}>
             <ShoppingLayout />
           </CheckAuth>
         ),
