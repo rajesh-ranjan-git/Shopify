@@ -2,6 +2,7 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import router from "./router/router.js";
 
 // Create server
 const server = express();
@@ -38,6 +39,9 @@ server.use(express.urlencoded({ extended: false }));
 server.get("/", (req, res) => {
   return res.json({ message: `Server is running at http://localhost:${PORT}` });
 });
+
+// Routes
+server.use("/api", router);
 
 // Listen to server
 server.listen(PORT, (error) => {
