@@ -1,7 +1,8 @@
 import axios from "axios";
 import { checkAuthApi } from "../apiUrls";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const checkAuthService = async () => {
+const checkAuthService = createAsyncThunk("/auth/checkAuth", async () => {
   try {
     const checkAuthResponse = await axios.get(checkAuthApi, {
       withCredentials: true,
@@ -16,4 +17,6 @@ export const checkAuthService = async () => {
   } catch (error) {
     return error.response.data;
   }
-};
+});
+
+export default checkAuthService;

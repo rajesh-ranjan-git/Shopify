@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useToast } from "@/hooks/use-toast";
 import CommonForm from "@/components/common/form";
 import { registerFormControls } from "@/config/config";
-import { registerUserAsyncThunk } from "@/store/auth/authSlice";
+import registerUserService from "@/services/auth/registerUserService";
 
 const initialState = {
   name: "",
@@ -21,7 +21,7 @@ const Register = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(registerUserAsyncThunk(formData)).then((data) => {
+    dispatch(registerUserService(formData)).then((data) => {
       if (data?.payload?.success) {
         toast({
           title: data?.payload?.message,

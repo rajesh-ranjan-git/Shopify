@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useToast } from "@/hooks/use-toast";
 import CommonForm from "@/components/common/form";
 import { loginFormControls } from "@/config/config";
-import { loginUserAsyncThunk } from "@/store/auth/authSlice";
+import loginUserService from "@/services/auth/loginUserService";
 
 const initialState = {
   email: "",
@@ -19,7 +19,7 @@ const Login = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(loginUserAsyncThunk(formData)).then((data) => {
+    dispatch(loginUserService(formData)).then((data) => {
       if (data?.payload?.success) {
         toast({
           title: data?.payload?.message,

@@ -1,34 +1,13 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { loginUserService } from "@/services/auth/loginUserService";
-import { registerUserService } from "@/services/auth/registerUserService";
-import { checkAuthService } from "@/services/auth/checkAuthService";
+import { createSlice } from "@reduxjs/toolkit";
+import checkAuthService from "@/services/auth/checkAuthService";
+import registerUserService from "@/services/auth/registerUserService";
+import loginUserService from "@/services/auth/loginUserService";
 
 const initialState = {
   isAuthenticated: false,
   isLoading: true,
   user: null,
 };
-
-export const registerUserAsyncThunk = createAsyncThunk(
-  "/auth/register",
-  async (formData) => {
-    return await registerUserService(formData);
-  }
-);
-
-export const loginUserAsyncThunk = createAsyncThunk(
-  "/auth/login",
-  async (formData) => {
-    return await loginUserService(formData);
-  }
-);
-
-export const checkAuthAsyncThunk = createAsyncThunk(
-  "/auth/checkAuth",
-  async () => {
-    return await checkAuthService();
-  }
-);
 
 const authSlice = createSlice({
   name: "authSlice",
@@ -38,41 +17,41 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(registerUserAsyncThunk.pending, (state) => {
+      .addCase(checkAuthService.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(registerUserAsyncThunk.fulfilled, (state, action) => {
+      .addCase(checkAuthService.fulfilled, (state, action) => {
         state.user = action.payload.success ? action.payload.user : null;
         state.isAuthenticated = action.payload.success;
         state.isLoading = false;
       })
-      .addCase(registerUserAsyncThunk.rejected, (state) => {
+      .addCase(checkAuthService.rejected, (state) => {
         state.user = null;
         state.isAuthenticated = false;
         state.isLoading = false;
       })
-      .addCase(loginUserAsyncThunk.pending, (state) => {
+      .addCase(registerUserService.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(loginUserAsyncThunk.fulfilled, (state, action) => {
+      .addCase(registerUserService.fulfilled, (state, action) => {
         state.user = action.payload.success ? action.payload.user : null;
         state.isAuthenticated = action.payload.success;
         state.isLoading = false;
       })
-      .addCase(loginUserAsyncThunk.rejected, (state) => {
+      .addCase(registerUserService.rejected, (state) => {
         state.user = null;
         state.isAuthenticated = false;
         state.isLoading = false;
       })
-      .addCase(checkAuthAsyncThunk.pending, (state) => {
+      .addCase(loginUserService.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(checkAuthAsyncThunk.fulfilled, (state, action) => {
+      .addCase(loginUserService.fulfilled, (state, action) => {
         state.user = action.payload.success ? action.payload.user : null;
         state.isAuthenticated = action.payload.success;
         state.isLoading = false;
       })
-      .addCase(checkAuthAsyncThunk.rejected, (state) => {
+      .addCase(loginUserService.rejected, (state) => {
         state.user = null;
         state.isAuthenticated = false;
         state.isLoading = false;

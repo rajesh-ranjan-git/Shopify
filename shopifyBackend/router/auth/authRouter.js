@@ -1,26 +1,15 @@
 import { Router } from "express";
-import {
-  authMiddleware,
-  login,
-  logout,
-  register,
-} from "../../controllers/auth/authController.js";
+import authMiddleware from "../../middlewares/auth/authMiddleware.js";
+import checkAuth from "../../controllers/auth/checkAuth.js";
+import register from "../../controllers/auth/register.js";
+import login from "../../controllers/auth/login.js";
+import logout from "../../controllers/auth/logout.js";
 
 const authRouter = Router();
 
+authRouter.get("/checkAuth", authMiddleware, checkAuth);
 authRouter.post("/register", register);
 authRouter.post("/login", login);
 authRouter.post("/logout", logout);
-authRouter.get("/checkAuth", authMiddleware, (req, res) => {
-  const user = req.user;
-  console.log("user : ", user);
-
-  return res.status(200).json({
-    status: 200,
-    success: true,
-    message: "Authorized user!",
-    user: user,
-  });
-});
 
 export default authRouter;

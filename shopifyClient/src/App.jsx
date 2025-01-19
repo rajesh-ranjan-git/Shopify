@@ -2,13 +2,13 @@ import { Outlet } from "react-router-dom";
 import { Toaster } from "./components/ui/toaster";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { checkAuthAsyncThunk } from "./store/auth/authSlice";
+import checkAuthService from "./services/auth/checkAuthService";
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(checkAuthAsyncThunk());
+    dispatch(checkAuthService());
   }, [dispatch]);
 
   return (

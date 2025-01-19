@@ -1,7 +1,8 @@
 import axios from "axios";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import { loginUserApi } from "../apiUrls";
 
-export const loginUserService = async (formData) => {
+const loginUserService = createAsyncThunk("/auth/login", async (formData) => {
   try {
     const loginUserResponse = await axios.post(loginUserApi, formData, {
       withCredentials: true,
@@ -10,4 +11,6 @@ export const loginUserService = async (formData) => {
   } catch (error) {
     return error.response.data;
   }
-};
+});
+
+export default loginUserService;
