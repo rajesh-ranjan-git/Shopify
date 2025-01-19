@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { Toaster } from "./components/ui/toaster";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import checkAuthService from "./services/auth/checkAuthService";
 

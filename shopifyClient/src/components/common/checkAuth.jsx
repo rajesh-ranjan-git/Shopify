@@ -13,6 +13,8 @@ const CheckAuth = ({ children }) => {
       location.pathname.includes("/register")
     )
   ) {
+    console.log("here 1");
+
     return <Navigate to={"/auth/login"} />;
   }
 
@@ -20,9 +22,11 @@ const CheckAuth = ({ children }) => {
     (isAuthenticated && location.pathname.includes("/login")) ||
     location.pathname.includes("/register")
   ) {
+    console.log("here 2");
     if (user?.role === "admin") {
       return <Navigate to={"/admin/dashboard"} />;
     } else if (user?.role === "user") {
+      console.log("here 3");
       return <Navigate to={"/shop/home"} />;
     }
   }
