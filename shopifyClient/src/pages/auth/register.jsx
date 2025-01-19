@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useToast } from "@/hooks/use-toast";
 import CommonForm from "@/components/common/form";
 import { registerFormControls } from "@/config/config";
-import { registerUserService } from "@/services/auth/registerUserService";
+import { registerUserAsyncThunk } from "@/store/auth/authSlice";
 
 const initialState = {
   name: "",
@@ -16,18 +17,44 @@ const Register = () => {
   const [formData, setFormData] = useState(initialState);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { toast } = useToast();
 
   const onSubmit = (e) => {
     e.preventDefault();
-
-    console.log("formData from register : ", formData);
-    registerUserService(formData);
-    // dispatch(registerUserService(formData)).then((data) => {
-    //   console.log("data : ", data);
-    //   if (data?.payload?.success) {
-    //     navigate("/auth/login");
-    //   }
-    // });
+    dispatch(registerUserAsyncThunk(formData)).then((data) => {
+      if (data?.payload?.success) {
+        toast({
+          title: data?.payload?.message,
+        });
+        navigate("/auth/login");
+      } else {
+        if (data?.payload?.message === "Validation Error") {
+          if (data?.payload?.errors?.name) {
+            toast({
+              title: data?.payload?.errors?.name,
+              variant: "destructive",
+            });
+          }
+          if (data?.payload?.errors?.email) {
+            toast({
+              title: data?.payload?.errors?.email,
+              variant: "destructive",
+            });
+          }
+          if (data?.payload?.errors?.password) {
+            toast({
+              title: data?.payload?.errors?.password,
+              variant: "destructive",
+            });
+          }
+        } else {
+          toast({
+            title: data?.payload?.message,
+            variant: "destructive",
+          });
+        }
+      }
+    });
   };
 
   return (

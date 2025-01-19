@@ -69,6 +69,7 @@ export const register = async (req, res) => {
       return res.status(400).json({
         status: 400,
         success: false,
+        message: "Validation Error",
         errors: error.messages,
       });
     } else {
@@ -132,6 +133,7 @@ export const login = async (req, res) => {
       return res.status(400).json({
         status: 400,
         success: false,
+        message: "Validation Error",
         errors: error.messages,
       });
     } else {

@@ -1,5 +1,6 @@
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { loginUserService } from "@/services/auth/loginUserService";
 import { registerUserService } from "@/services/auth/registerUserService";
-import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isAuthenticated: false,
@@ -7,28 +8,55 @@ const initialState = {
   user: null,
 };
 
+export const registerUserAsyncThunk = createAsyncThunk(
+  "/auth/register",
+  async (formData) => {
+    return await registerUserService(formData);
+  }
+);
+
+export const loginUserAsyncThunk = createAsyncThunk(
+  "/auth/login",
+  async (formData) => {
+    return await loginUserService(formData);
+  }
+);
+
 const authSlice = createSlice({
   name: "authSlice",
   initialState,
   reducers: {
     setUserInfo: (state, action) => {},
   },
-  // extraReducers: (builder) => {
-  //   builder
-  //     .addCase(registerUserService.pending, (state) => {
-  //       state.isLoading = true;
-  //     })
-  //     .addCase(registerUserService.fulfilled, (state, action) => {
-  //       state.user = null;
-  //       state.isAuthenticated = false;
-  //       state.isLoading = false;
-  //     })
-  //     .addCase(registerUserService.rejected, (state, action) => {
-  //       state.user = null;
-  //       state.isAuthenticated = false;
-  //       state.isLoading = false;
-  //     });
-  // },
+  extraReducers: (builder) => {
+    builder
+      .addCase(registerUserAsyncThunk.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(registerUserAsyncThunk.fulfilled, (state, action) => {
+        state.user = null;
+        state.isAuthenticated = false;
+        state.isLoading = false;
+      })
+      .addCase(registerUserAsyncThunk.rejected, (state, action) => {
+        state.user = null;
+        state.isAuthenticated = false;
+        state.isLoading = false;
+      })
+      .addCase(loginUserAsyncThunk.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(loginUserAsyncThunk.fulfilled, (state, action) => {
+        state.user = null;
+        state.isAuthenticated = false;
+        state.isLoading = false;
+      })
+      .addCase(loginUserAsyncThunk.rejected, (state, action) => {
+        state.user = null;
+        state.isAuthenticated = false;
+        state.isLoading = false;
+      });
+  },
 });
 
 export const { setUser } = authSlice.actions;
