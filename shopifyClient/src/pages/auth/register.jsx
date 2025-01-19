@@ -26,7 +26,7 @@ const Register = () => {
         toast({
           title: data?.payload?.message,
         });
-        navigate("/auth/login");
+        navigate("/admin/dashboard");
       } else {
         if (data?.payload?.message === "Validation Error") {
           toast({

@@ -15,9 +15,6 @@ import ShoppingCheckout from "@/pages/shopping/checkout";
 import ShoppingAccount from "@/pages/shopping/account";
 import CheckAuth from "@/components/common/checkAuth";
 
-const isAuthenticated = false;
-const user = null;
-
 const appRouter = createBrowserRouter([
   {
     path: "/",
@@ -26,7 +23,7 @@ const appRouter = createBrowserRouter([
       {
         path: "/auth",
         element: (
-          <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+          <CheckAuth>
             <AuthLayout />
           </CheckAuth>
         ),
@@ -44,7 +41,7 @@ const appRouter = createBrowserRouter([
       {
         path: "/admin",
         element: (
-          <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+          <CheckAuth>
             <AdminLayout />
           </CheckAuth>
         ),
@@ -66,7 +63,7 @@ const appRouter = createBrowserRouter([
       {
         path: "/shop",
         element: (
-          <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+          <CheckAuth>
             <ShoppingLayout />
           </CheckAuth>
         ),

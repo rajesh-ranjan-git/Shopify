@@ -24,9 +24,7 @@ const Login = () => {
         toast({
           title: data?.payload?.message,
         });
-        console.log("user : ", data?.payload);
-
-        navigate("/auth/login");
+        navigate("/shop/home");
       } else {
         if (data?.payload?.message === "Validation Error") {
           toast({

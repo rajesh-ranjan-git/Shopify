@@ -34,11 +34,11 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(registerUserAsyncThunk.fulfilled, (state, action) => {
-        state.user = null;
-        state.isAuthenticated = false;
+        state.user = action.payload.success ? action.payload.user : null;
+        state.isAuthenticated = action.payload.success ? true : false;
         state.isLoading = false;
       })
-      .addCase(registerUserAsyncThunk.rejected, (state, action) => {
+      .addCase(registerUserAsyncThunk.rejected, (state) => {
         state.user = null;
         state.isAuthenticated = false;
         state.isLoading = false;
@@ -47,11 +47,11 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(loginUserAsyncThunk.fulfilled, (state, action) => {
-        state.user = null;
-        state.isAuthenticated = false;
+        state.user = action.payload.success ? action.payload.user : null;
+        state.isAuthenticated = action.payload.success ? true : false;
         state.isLoading = false;
       })
-      .addCase(loginUserAsyncThunk.rejected, (state, action) => {
+      .addCase(loginUserAsyncThunk.rejected, (state) => {
         state.user = null;
         state.isAuthenticated = false;
         state.isLoading = false;
