@@ -1,10 +1,15 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const CheckAuth = ({ children }) => {
   const location = useLocation();
-  const { isAuthenticated, user } = useSelector((state) => state.authReducer);
+  const { isAuthenticated, isLoading, user } = useSelector(
+    (state) => state.authReducer
+  );
+
+  if (isLoading) return <Skeleton className="w-screen h-screen" />;
 
   if (
     !isAuthenticated &&
@@ -13,8 +18,6 @@ const CheckAuth = ({ children }) => {
       location.pathname.includes("/register")
     )
   ) {
-    console.log("here 1");
-
     return <Navigate to={"/auth/login"} />;
   }
 
@@ -22,11 +25,9 @@ const CheckAuth = ({ children }) => {
     (isAuthenticated && location.pathname.includes("/login")) ||
     location.pathname.includes("/register")
   ) {
-    console.log("here 2");
     if (user?.role === "admin") {
       return <Navigate to={"/admin/dashboard"} />;
     } else if (user?.role === "user") {
-      console.log("here 3");
       return <Navigate to={"/shop/home"} />;
     }
   }
