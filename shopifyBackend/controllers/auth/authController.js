@@ -42,6 +42,7 @@ export const register = async (req, res) => {
         id: user.id,
         name: user.name,
         email: user.email,
+        role: user.role,
       };
 
       // Issue token to login
@@ -54,6 +55,7 @@ export const register = async (req, res) => {
         success: true,
         message: "User created successfully!",
         access_token: `Bearer ${token}`,
+        user: user,
       });
     }
 
@@ -114,6 +116,7 @@ export const login = async (req, res) => {
         id: user.id,
         name: user.name,
         email: user.email,
+        role: user.role,
       };
 
       // Issue token to login
@@ -126,6 +129,7 @@ export const login = async (req, res) => {
         success: true,
         message: "Logged in successfully!",
         access_token: `Bearer ${token}`,
+        user: user,
       });
     }
   } catch (error) {

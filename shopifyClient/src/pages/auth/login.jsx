@@ -24,21 +24,17 @@ const Login = () => {
         toast({
           title: data?.payload?.message,
         });
+        console.log("user : ", data?.payload);
+
         navigate("/auth/login");
       } else {
         if (data?.payload?.message === "Validation Error") {
-          if (data?.payload?.errors?.email) {
-            toast({
-              title: data?.payload?.errors?.email,
-              variant: "destructive",
-            });
-          }
-          if (data?.payload?.errors?.password) {
-            toast({
-              title: data?.payload?.errors?.password,
-              variant: "destructive",
-            });
-          }
+          toast({
+            title: data?.payload?.message,
+            description:
+              data?.payload?.errors?.email || data?.payload?.errors?.password,
+            variant: "destructive",
+          });
         } else {
           toast({
             title: data?.payload?.message,

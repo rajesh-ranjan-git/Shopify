@@ -10,8 +10,8 @@ Welcome to the Shopify project! This platform is designed to provide users with 
 - [Installation Guide](#installation-guide)
 - [Usage Instructions](#usage-instructions)
 - [Contributing](#contributing)
-<!-- - [License](#license) -->
 - [Contact Information](#contact-information)
+<!-- - [License](#license) -->
 
 ## Project Overview
 

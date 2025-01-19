@@ -29,29 +29,20 @@ const Register = () => {
         navigate("/auth/login");
       } else {
         if (data?.payload?.message === "Validation Error") {
-          if (data?.payload?.errors?.name) {
-            toast({
-              title: data?.payload?.errors?.name,
-              variant: "destructive",
-            });
-          }
-          if (data?.payload?.errors?.email) {
-            toast({
-              title: data?.payload?.errors?.email,
-              variant: "destructive",
-            });
-          }
-          if (data?.payload?.errors?.password) {
-            toast({
-              title: data?.payload?.errors?.password,
-              variant: "destructive",
-            });
-          }
+          toast({
+            title: data?.payload?.message,
+            description:
+              data?.payload?.errors?.name ||
+              data?.payload?.errors?.email ||
+              data?.payload?.errors?.password,
+            variant: "destructive",
+          });
         } else {
           toast({
             title: data?.payload?.message,
             variant: "destructive",
           });
+          return;
         }
       }
     });
