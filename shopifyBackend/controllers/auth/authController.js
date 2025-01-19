@@ -50,13 +50,16 @@ export const register = async (req, res) => {
         expiresIn: "365d",
       });
 
-      return res.status(200).json({
-        status: 200,
-        success: true,
-        message: "User created successfully!",
-        access_token: `Bearer ${token}`,
-        user: user,
-      });
+      // Create cookie
+      return res
+        .cookie("token", token, { httpOnly: true, secure: false })
+        .status(200)
+        .json({
+          status: 200,
+          success: true,
+          message: "User created successfully!",
+          user: user,
+        });
     }
 
     return res.status(400).json({
@@ -84,6 +87,7 @@ export const register = async (req, res) => {
   }
 };
 
+// Login user
 export const login = async (req, res) => {
   try {
     const body = req.body;
@@ -124,13 +128,15 @@ export const login = async (req, res) => {
         expiresIn: "365d",
       });
 
-      return res.status(200).json({
-        status: 200,
-        success: true,
-        message: "Logged in successfully!",
-        access_token: `Bearer ${token}`,
-        user: user,
-      });
+      return res
+        .cookie("token", token, { httpOnly: true, secure: false })
+        .status(200)
+        .json({
+          status: 200,
+          success: true,
+          message: "Logged in successfully!",
+          user: user,
+        });
     }
   } catch (error) {
     if (error instanceof errors.E_VALIDATION_ERROR) {
@@ -147,5 +153,40 @@ export const login = async (req, res) => {
         message: "Something went wrong!",
       });
     }
+  }
+};
+
+// Logout user
+export const logout = async () => {
+  // Remove cookie
+  res.clearCookie(
+    "token".json({ success: true, message: "Logged out successfully!" })
+  );
+};
+
+// Auth middleware
+export const authMiddleware = async (req, res, next) => {
+  // Get token from cookies
+  const token = req.cookies.token;
+  console.log("token : ", token);
+
+  if (!token)
+    return res.status(401).json({
+      success: false,
+      message: "Unauthorized user!",
+    });
+
+  try {
+    // Decoding token to get user
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+    console.log("decodedToken : ", decodedToken);
+
+    req.user = decodedToken;
+    next();
+  } catch (error) {
+    return res.status(401).json({
+      success: false,
+      message: "Unauthorized user!",
+    });
   }
 };
