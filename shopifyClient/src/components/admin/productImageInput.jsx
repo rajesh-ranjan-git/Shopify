@@ -1,14 +1,16 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
+import axios from "axios";
+import { File, UploadCloud, X } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { File, UploadCloud, X } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
+import { adminProductImageUploadApi } from "@/services/apiUrls";
 
 const ProductImageInput = ({
   productImage,
   setProductImage,
-  uploadedProductImageUrl,
   setUploadedProductImageUrl,
+  setProductImageUploading,
 }) => {
   const productImageInputRef = useRef(null);
 
@@ -31,6 +33,33 @@ const ProductImageInput = ({
     setProductImage(null);
     if (productImageInputRef.current) productImageInputRef.current.value = "";
   };
+
+  const uploadImageToCloudinary = async () => {
+    setProductImageUploading(true);
+    const adminProductsImageUploadFormData = new FormData();
+    adminProductsImageUploadFormData.append("myFile", productImage);
+
+    const adminProductsImageUploadResponse = await axios.post(
+      adminProductImageUploadApi,
+      adminProductsImageUploadFormData
+    );
+
+    console.log(
+      "adminProductsImageUploadResponse : ",
+      adminProductsImageUploadResponse
+    );
+
+    if (adminProductsImageUploadResponse)
+      setUploadedProductImageUrl(
+        adminProductsImageUploadResponse.data.result.url
+      );
+
+    setProductImageUploading(false);
+  };
+
+  useEffect(() => {
+    if (productImage !== null) uploadImageToCloudinary();
+  }, [productImage]);
 
   return (
     <div className="mx-auto mt-4 w-full max-w-md">
