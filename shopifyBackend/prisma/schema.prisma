@@ -20,3 +20,15 @@ model Users {
   password String
   role     String @default("user")
 }
+
+model Products {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  title       String  @unique
+  description String
+  category    String
+  brand       String
+  price       Int
+  salePrice   Int?
+  totalStock  Int
+  image       String?
+}
