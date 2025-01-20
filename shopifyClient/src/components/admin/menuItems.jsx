@@ -1,6 +1,6 @@
 import React from "react";
-import { adminSidebarMenuItems } from "@/config/config";
 import { useNavigate } from "react-router-dom";
+import { adminSidebarMenuItems } from "@/config/config";
 
 const MenuItems = ({ setOpenSidebar }) => {
   const navigate = useNavigate();
