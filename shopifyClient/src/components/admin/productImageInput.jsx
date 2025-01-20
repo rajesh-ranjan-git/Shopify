@@ -5,11 +5,14 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { adminProductImageUploadApi } from "@/services/apiUrls";
+import { Skeleton } from "../ui/skeleton";
 
 const ProductImageInput = ({
   productImage,
   setProductImage,
+  uploadedProductImageUrl,
   setUploadedProductImageUrl,
+  productImageUploading,
   setProductImageUploading,
 }) => {
   const productImageInputRef = useRef(null);
@@ -36,6 +39,7 @@ const ProductImageInput = ({
 
   const uploadImageToCloudinary = async () => {
     setProductImageUploading(true);
+
     const adminProductsImageUploadFormData = new FormData();
     adminProductsImageUploadFormData.append("myFile", productImage);
 
@@ -86,6 +90,8 @@ const ProductImageInput = ({
             <UploadCloud className="mb-2 w-10 h-10 text-muted-foreground" />
             <span>Drag and Drop or click to upload product image.</span>
           </Label>
+        ) : productImageUploading ? (
+          <Skeleton className="bg-grey-100 h-10" />
         ) : (
           <div className="flex justify-between items-center">
             <div className="flex items-center">

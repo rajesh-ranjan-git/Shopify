@@ -1,6 +1,6 @@
 import axios from "axios";
-import { checkAuthApi } from "../apiUrls";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { checkAuthApi } from "../apiUrls";
 
 const checkAuthService = createAsyncThunk("/auth/checkAuth", async () => {
   try {

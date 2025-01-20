@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -10,6 +10,10 @@ import {
 import CommonForm from "@/components/common/form";
 import { addProductFormElements } from "@/config/config";
 import ProductImageInput from "@/components/admin/productImageInput";
+import { useDispatch, useSelector } from "react-redux";
+import fetchAllProductsService from "@/services/admin/fetchAllProducts";
+import addProductService from "@/services/admin/addProductService";
+import { useToast } from "@/hooks/use-toast";
 
 const initialFormData = {
   image: null,
@@ -30,7 +34,35 @@ const AdminProducts = () => {
   const [uploadedProductImageUrl, setUploadedProductImageUrl] = useState("");
   const [productImageUploading, setProductImageUploading] = useState(false);
 
-  const onSubmit = () => {};
+  const { productList } = useSelector((state) => state.adminProductsReducer);
+
+  const dispatch = useDispatch();
+
+  const { toast } = useToast();
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    dispatch(
+      addProductService({ ...formData, image: uploadedProductImageUrl })
+    ).then((date) => {
+      console.log(data);
+      if (data?.payload?.success) {
+        dispatch(fetchAllProductsService());
+        setOpenCreateProductsDialog(false);
+        setProductImage(null);
+        setFormData(initialFormData);
+        toast({
+          title: "Product added successfully!",
+        });
+      }
+    });
+  };
+
+  useEffect(() => {
+    dispatch(fetchAllProductsService());
+  }, [dispatch]);
+
+  console.log("productList : ", productList);
 
   return (
     <>
@@ -53,7 +85,9 @@ const AdminProducts = () => {
           <ProductImageInput
             productImage={productImage}
             setProductImage={setProductImage}
+            uploadedProductImageUrl={uploadedProductImageUrl}
             setUploadedProductImageUrl={setUploadedProductImageUrl}
+            productImageUploading={productImageUploading}
             setProductImageUploading={setProductImageUploading}
           />
           <div className="py-6">
