@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import fetchAllProductsService from "@/services/admin/fetchAllProducts";
 import addProductService from "@/services/admin/addProductService";
 import { useToast } from "@/hooks/use-toast";
+import AdminProductCard from "@/components/admin/productCard";
 
 const initialFormData = {
   image: null,
@@ -44,7 +45,7 @@ const AdminProducts = () => {
     e.preventDefault();
     dispatch(
       addProductService({ ...formData, image: uploadedProductImageUrl })
-    ).then((date) => {
+    ).then((data) => {
       console.log(data);
       if (data?.payload?.success) {
         dispatch(fetchAllProductsService());
@@ -71,7 +72,15 @@ const AdminProducts = () => {
           Add New Product
         </Button>
       </div>
-      <div className="gap-4 grid md:grid-cols-3 lg:grid-cols-4"></div>
+      <div className="gap-4 grid md:grid-cols-3 lg:grid-cols-4">
+        {/* {productList && productList.length > 0
+          ? productList.map((product) => <AdminProductCard product={product} />)
+          : null} */}
+        <AdminProductCard />
+        <AdminProductCard />
+        <AdminProductCard />
+        <AdminProductCard />
+      </div>
 
       <Sheet
         open={openCreateProductsDialog}
