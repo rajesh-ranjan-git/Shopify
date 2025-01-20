@@ -14,9 +14,9 @@ adminProductsRouter.post(
   productImageUpload
 );
 
-adminProductsRouter.post("/fetchAllProducts", fetchAllProducts);
+adminProductsRouter.get("/fetchAllProducts", fetchAllProducts);
 adminProductsRouter.post("/addProduct", addProduct);
-adminProductsRouter.post("/editProduct", editProduct);
-adminProductsRouter.post("/deleteProduct", deleteProduct);
+adminProductsRouter.put("/editProduct/:id", editProduct);
+adminProductsRouter.delete("/deleteProduct/:id", deleteProduct);
 
 export default adminProductsRouter;
