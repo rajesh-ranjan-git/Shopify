@@ -4,6 +4,7 @@ export const baseApiUrl = `http://localhost:${backendPORT}/api`;
 // Auth APIs
 export const registerUserApi = `${baseApiUrl}/auth/register`;
 export const loginUserApi = `${baseApiUrl}/auth/login`;
+export const logoutUserApi = `${baseApiUrl}/auth/logout`;
 export const checkAuthApi = `${baseApiUrl}/auth/checkAuth`;
 
 // Admin APIs
