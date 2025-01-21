@@ -130,3 +130,36 @@ export const addProductFormElements = [
     placeholder: "Enter total stock",
   },
 ];
+
+export const shopHeaderMenuItems = [
+  {
+    id: "men",
+    label: "Men",
+    path: "/shop/listing",
+    // icon: <LayoutDashboard />,
+  },
+  {
+    id: "women",
+    label: "Women",
+    path: "/shop/listing",
+    // icon: <LayoutDashboard />,
+  },
+  {
+    id: "kids",
+    label: "Kids",
+    path: "/shop/listing",
+    // icon: <LayoutDashboard />,
+  },
+  {
+    id: "footwear",
+    label: "Footwear",
+    path: "/shop/listing",
+    // icon: <LayoutDashboard />,
+  },
+  {
+    id: "accessories",
+    label: "Accessories",
+    path: "/shop/listing",
+    // icon: <LayoutDashboard />,
+  },
+];
