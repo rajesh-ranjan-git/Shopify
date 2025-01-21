@@ -7,12 +7,12 @@ import AdminLayout from "@/components/admin/layout";
 import AdminDashboard from "@/pages/admin/dashboard";
 import AdminProducts from "@/pages/admin/products";
 import AdminOrders from "@/pages/admin/orders";
-import ShoppingLayout from "@/components/shopping/layout";
+import ShopLayout from "@/components/Shop/layout";
 import Error from "@/pages/error/error";
-import ShoppingHome from "@/pages/shopping/home";
-import ShoppingListing from "@/pages/shopping/listing";
-import ShoppingCheckout from "@/pages/shopping/checkout";
-import ShoppingAccount from "@/pages/shopping/account";
+import ShopHome from "@/pages/shop/home";
+import ShopListing from "@/pages/shop/listing";
+import ShopCheckout from "@/pages/shop/checkout";
+import ShopAccount from "@/pages/shop/account";
 import CheckAuth from "@/components/common/checkAuth";
 
 const appRouter = createBrowserRouter([
@@ -64,25 +64,25 @@ const appRouter = createBrowserRouter([
         path: "/shop",
         element: (
           // <CheckAuth>
-          <ShoppingLayout />
+          <ShopLayout />
           // </CheckAuth>
         ),
         children: [
           {
             path: "home",
-            element: <ShoppingHome />,
+            element: <ShopHome />,
           },
           {
             path: "listing",
-            element: <ShoppingListing />,
+            element: <ShopListing />,
           },
           {
             path: "checkout",
-            element: <ShoppingCheckout />,
+            element: <ShopCheckout />,
           },
           {
             path: "account",
-            element: <ShoppingAccount />,
+            element: <ShopAccount />,
           },
         ],
       },
