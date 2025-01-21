@@ -4,7 +4,13 @@ import { logoutUserApi } from "../apiUrls";
 
 const logoutUserService = createAsyncThunk("/auth/logout", async () => {
   try {
-    const logoutUserResponse = await axios.post(logoutUserApi);
+    const logoutUserResponse = await axios.post(
+      logoutUserApi,
+      {},
+      {
+        withCredential: true,
+      }
+    );
 
     return logoutUserResponse.data;
   } catch (error) {

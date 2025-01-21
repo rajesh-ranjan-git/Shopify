@@ -57,17 +57,9 @@ const authSlice = createSlice({
         state.isAuthenticated = false;
         state.isLoading = false;
       })
-      .addCase(logoutUserService.pending, (state) => {
-        state.isLoading = true;
-      })
       .addCase(logoutUserService.fulfilled, (state, action) => {
-        state.user = action.payload.success ? null : state.user;
-        state.isAuthenticated = action.payload.success
-          ? false
-          : state.isAuthenticated;
-        state.isLoading = false;
-      })
-      .addCase(logoutUserService.rejected, (state) => {
+        state.user = null;
+        state.isAuthenticated = false;
         state.isLoading = false;
       });
   },
