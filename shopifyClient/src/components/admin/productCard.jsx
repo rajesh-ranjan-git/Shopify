@@ -28,10 +28,10 @@ const AdminProductCard = ({
                 product.salePrice > 0 ? "line-through" : ""
               } text-lg font-semibold text-primary`}
             >
-              ${product?.price}
+              ₹{product?.price}
             </span>
             {product?.salePrice > 0 ? (
-              <span className="font-bold text-lg">${product?.salePrice}</span>
+              <span className="font-bold text-lg">₹{product?.salePrice}</span>
             ) : null}
           </div>
         </CardContent>

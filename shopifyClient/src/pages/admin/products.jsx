@@ -17,6 +17,7 @@ import editProductService from "@/services/admin/editProduct";
 import { useToast } from "@/hooks/use-toast";
 import AdminProductCard from "@/components/admin/productCard";
 import deleteProductService from "@/services/admin/deleteProduct";
+import { staticProductList } from "./staticProductList";
 
 const initialFormData = {
   image: null,
@@ -89,6 +90,12 @@ const AdminProducts = () => {
     });
   };
 
+  const isFormValid = () => {
+    return Object.keys(formData)
+      .map((key) => formData[key] !== "")
+      .every((item) => item);
+  };
+
   useEffect(() => {
     dispatch(fetchAllProductsService());
   }, [dispatch]);
@@ -103,6 +110,19 @@ const AdminProducts = () => {
       <div className="gap-4 grid md:grid-cols-3 lg:grid-cols-4">
         {productList && productList.length > 0
           ? productList.map((product) => (
+              <AdminProductCard
+                product={product}
+                key={product.id}
+                currentEditedId={currentEditedId}
+                setCurrentEditedId={setCurrentEditedId}
+                setOpenCreateProductsDialog={setOpenCreateProductsDialog}
+                setFormData={setFormData}
+                handleProductDelete={handleProductDelete}
+              />
+            ))
+          : null}
+        {staticProductList && staticProductList.length > 0
+          ? staticProductList.map((product) => (
               <AdminProductCard
                 product={product}
                 key={product.id}
@@ -147,6 +167,7 @@ const AdminProducts = () => {
               setFormData={setFormData}
               buttonText={currentEditedId !== null ? "Edit" : "Add"}
               onSubmit={onSubmit}
+              isButtonDisabled={!isFormValid()}
             />
           </div>
         </SheetContent>
