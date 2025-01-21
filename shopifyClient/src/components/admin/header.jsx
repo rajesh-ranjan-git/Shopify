@@ -1,7 +1,7 @@
 import React from "react";
-import { Button } from "../ui/button";
-import { LogOut, Menu } from "lucide-react";
 import { useDispatch } from "react-redux";
+import { Button } from "@/components/ui/button";
+import { LogOut, Menu } from "lucide-react";
 import logoutUserService from "@/services/auth/logoutUserService";
 
 const AdminHeader = ({ openSidebar, setOpenSidebar }) => {
