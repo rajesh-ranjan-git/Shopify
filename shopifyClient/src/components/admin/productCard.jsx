@@ -8,6 +8,7 @@ const AdminProductCard = ({
   setCurrentEditedId,
   setOpenCreateProductsDialog,
   setFormData,
+  handleProductDelete,
 }) => {
   return (
     <Card className="mx-auto w-full max-w-sm">
@@ -44,7 +45,9 @@ const AdminProductCard = ({
           >
             Edit
           </Button>
-          <Button>Delete</Button>
+          <Button onClick={() => handleProductDelete(product?.id)}>
+            Delete
+          </Button>
         </CardFooter>
       </div>
     </Card>

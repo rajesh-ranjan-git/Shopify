@@ -1,9 +1,18 @@
+import prisma from "../../db/db.config.js";
+
 // Edit a product
 const deleteProduct = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const product = await prisma.products.findByIdAndDelete(id);
+    const product = await prisma.products.delete({
+      where: {
+        id: id,
+      },
+    });
+
+    console.log("id : ", id);
+    console.log("product : ", product);
 
     if (!product) {
       return res.status(404).json({
@@ -22,6 +31,7 @@ const deleteProduct = async (req, res) => {
       product: product,
     });
   } catch (error) {
+    console.log("error : ", error);
     return res.status(500).json({
       status: 500,
       success: false,

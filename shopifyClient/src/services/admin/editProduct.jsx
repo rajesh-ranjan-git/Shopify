@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { editProductApi } from "../apiUrls";
 
 const editProductService = createAsyncThunk(
-  ".products/addProduct",
+  "/products/editProduct",
   async ({ id, formData }) => {
     try {
       const editProductResponse = await axios.put(

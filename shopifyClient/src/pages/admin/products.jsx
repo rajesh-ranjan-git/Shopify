@@ -16,6 +16,7 @@ import addProductService from "@/services/admin/addProductService";
 import editProductService from "@/services/admin/editProduct";
 import { useToast } from "@/hooks/use-toast";
 import AdminProductCard from "@/components/admin/productCard";
+import deleteProductService from "@/services/admin/deleteProduct";
 
 const initialFormData = {
   image: null,
@@ -77,6 +78,17 @@ const AdminProducts = () => {
     }
   };
 
+  const handleProductDelete = (currentProductId) => {
+    dispatch(deleteProductService(currentProductId)).then((data) => {
+      if (data?.payload?.success) {
+        dispatch(fetchAllProductsService());
+        toast({
+          title: "Product deleted successfully!",
+        });
+      }
+    });
+  };
+
   useEffect(() => {
     dispatch(fetchAllProductsService());
   }, [dispatch]);
@@ -98,6 +110,7 @@ const AdminProducts = () => {
                 setCurrentEditedId={setCurrentEditedId}
                 setOpenCreateProductsDialog={setOpenCreateProductsDialog}
                 setFormData={setFormData}
+                handleProductDelete={handleProductDelete}
               />
             ))
           : null}

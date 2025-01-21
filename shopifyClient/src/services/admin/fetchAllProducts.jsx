@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchAllProductsApi } from "../apiUrls";
 
 const fetchAllProductsService = createAsyncThunk(
-  ".products/addProduct",
+  "/products/fetchAllProducts",
   async () => {
     try {
       const fetchAllProductsResponse = await axios.get(fetchAllProductsApi);
