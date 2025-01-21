@@ -23,9 +23,9 @@ const appRouter = createBrowserRouter([
       {
         path: "/auth",
         element: (
-          // <CheckAuth>
-          <AuthLayout />
-          // </CheckAuth>
+          <CheckAuth>
+            <AuthLayout />
+          </CheckAuth>
         ),
         children: [
           {
@@ -41,9 +41,9 @@ const appRouter = createBrowserRouter([
       {
         path: "/admin",
         element: (
-          // <CheckAuth>
-          <AdminLayout />
-          // </CheckAuth>
+          <CheckAuth>
+            <AdminLayout />
+          </CheckAuth>
         ),
         children: [
           {
@@ -63,9 +63,9 @@ const appRouter = createBrowserRouter([
       {
         path: "/shop",
         element: (
-          // <CheckAuth>
-          <ShoppingLayout />
-          // </CheckAuth>
+          <CheckAuth>
+            <ShoppingLayout />
+          </CheckAuth>
         ),
         children: [
           {

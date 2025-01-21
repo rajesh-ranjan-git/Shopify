@@ -1,4 +1,5 @@
-import { errors } from "@vinejs/vine";
+import vine, { errors } from "@vinejs/vine";
+import prisma from "../../db/db.config.js";
 import productSchema from "../../validations/admin/productValidations.js";
 
 // Edit a product
@@ -11,7 +12,9 @@ const editProduct = async (req, res) => {
     const validator = vine.compile(productSchema);
     const payload = await validator.validate(body);
 
-    const findProduct = await prisma.products.findById(id);
+    const findProduct = await prisma.products.findMany({
+      where: { id: id },
+    });
 
     if (!findProduct) {
       return res.status(404).json({
@@ -36,7 +39,16 @@ const editProduct = async (req, res) => {
       where: {
         id: id,
       },
-      data: findProduct,
+      data: {
+        title: findProduct.title,
+        description: findProduct.description,
+        category: findProduct.category,
+        brand: findProduct.brand,
+        price: findProduct.price,
+        salePrice: findProduct.salePrice,
+        totalStock: findProduct.totalStock,
+        image: findProduct.image,
+      },
     });
 
     if (product) {

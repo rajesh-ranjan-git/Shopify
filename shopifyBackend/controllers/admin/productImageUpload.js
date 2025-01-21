@@ -12,7 +12,6 @@ const productImageUpload = async (req, res) => {
       result: result,
     });
   } catch (error) {
-    console.log("error : ", error);
     return res.json({
       success: false,
       message: "Error occurred while uploading image.",

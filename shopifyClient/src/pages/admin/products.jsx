@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -10,9 +11,9 @@ import {
 import CommonForm from "@/components/common/form";
 import { addProductFormElements } from "@/config/config";
 import ProductImageInput from "@/components/admin/productImageInput";
-import { useDispatch, useSelector } from "react-redux";
 import fetchAllProductsService from "@/services/admin/fetchAllProducts";
 import addProductService from "@/services/admin/addProductService";
+import editProductService from "@/services/admin/editProduct";
 import { useToast } from "@/hooks/use-toast";
 import AdminProductCard from "@/components/admin/productCard";
 
@@ -34,6 +35,7 @@ const AdminProducts = () => {
   const [productImage, setProductImage] = useState(null);
   const [uploadedProductImageUrl, setUploadedProductImageUrl] = useState("");
   const [productImageUploading, setProductImageUploading] = useState(false);
+  const [currentEditedId, setCurrentEditedId] = useState(null);
 
   const { productList } = useSelector((state) => state.adminProductsReducer);
 
@@ -43,27 +45,41 @@ const AdminProducts = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(
-      addProductService({ ...formData, image: uploadedProductImageUrl })
-    ).then((data) => {
-      console.log(data);
-      if (data?.payload?.success) {
-        dispatch(fetchAllProductsService());
-        setOpenCreateProductsDialog(false);
-        setProductImage(null);
-        setFormData(initialFormData);
-        toast({
-          title: "Product added successfully!",
-        });
-      }
-    });
+
+    if (currentEditedId !== null) {
+      dispatch(editProductService({ id: currentEditedId, formData })).then(
+        (data) => {
+          if (data?.payload?.success) {
+            dispatch(fetchAllProductsService());
+            setOpenCreateProductsDialog(false);
+            setProductImage(null);
+            setFormData(initialFormData);
+            toast({
+              title: "Product edited successfully!",
+            });
+          }
+        }
+      );
+    } else {
+      dispatch(
+        addProductService({ ...formData, image: uploadedProductImageUrl })
+      ).then((data) => {
+        if (data?.payload?.success) {
+          dispatch(fetchAllProductsService());
+          setOpenCreateProductsDialog(false);
+          setProductImage(null);
+          setFormData(initialFormData);
+          toast({
+            title: "Product added successfully!",
+          });
+        }
+      });
+    }
   };
 
   useEffect(() => {
     dispatch(fetchAllProductsService());
   }, [dispatch]);
-
-  console.log("productList : ", productList);
 
   return (
     <>
@@ -73,22 +89,33 @@ const AdminProducts = () => {
         </Button>
       </div>
       <div className="gap-4 grid md:grid-cols-3 lg:grid-cols-4">
-        {/* {productList && productList.length > 0
-          ? productList.map((product) => <AdminProductCard product={product} />)
-          : null} */}
-        <AdminProductCard />
-        <AdminProductCard />
-        <AdminProductCard />
-        <AdminProductCard />
+        {productList && productList.length > 0
+          ? productList.map((product) => (
+              <AdminProductCard
+                product={product}
+                key={product.id}
+                currentEditedId={currentEditedId}
+                setCurrentEditedId={setCurrentEditedId}
+                setOpenCreateProductsDialog={setOpenCreateProductsDialog}
+                setFormData={setFormData}
+              />
+            ))
+          : null}
       </div>
 
       <Sheet
         open={openCreateProductsDialog}
-        onOpenChange={() => setOpenCreateProductsDialog(false)}
+        onOpenChange={() => {
+          setOpenCreateProductsDialog(false);
+          setCurrentEditedId(null);
+          setFormData(initialFormData);
+        }}
       >
         <SheetContent side="right" className="overflow-auto">
           <SheetHeader>
-            <SheetTitle>Add New Product</SheetTitle>
+            <SheetTitle>
+              {currentEditedId !== null ? "Edit Product" : "Add New Product"}
+            </SheetTitle>
             <SheetDescription></SheetDescription>
           </SheetHeader>
           <ProductImageInput
@@ -98,13 +125,14 @@ const AdminProducts = () => {
             setUploadedProductImageUrl={setUploadedProductImageUrl}
             productImageUploading={productImageUploading}
             setProductImageUploading={setProductImageUploading}
+            isEditMode={currentEditedId !== null}
           />
           <div className="py-6">
             <CommonForm
               formControls={addProductFormElements}
               formData={formData}
               setFormData={setFormData}
-              buttonText="Add"
+              buttonText={currentEditedId !== null ? "Edit" : "Add"}
               onSubmit={onSubmit}
             />
           </div>

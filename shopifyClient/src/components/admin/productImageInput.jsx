@@ -14,6 +14,7 @@ const ProductImageInput = ({
   setUploadedProductImageUrl,
   productImageUploading,
   setProductImageUploading,
+  isEditMode,
 }) => {
   const productImageInputRef = useRef(null);
 
@@ -48,11 +49,6 @@ const ProductImageInput = ({
       adminProductsImageUploadFormData
     );
 
-    console.log(
-      "adminProductsImageUploadResponse : ",
-      adminProductsImageUploadResponse
-    );
-
     if (adminProductsImageUploadResponse)
       setUploadedProductImageUrl(
         adminProductsImageUploadResponse.data.result.url
@@ -71,7 +67,9 @@ const ProductImageInput = ({
         Upload Product Image
       </Label>
       <div
-        className="border-2 p-4 border-dashed rounded-lg"
+        className={`${
+          isEditMode ? "opacity-60 cursor-not-allowed" : "cursor-pointer"
+        } border-2 p-4 border-dashed rounded-lg`}
         onDragOver={(e) => handleDragOver(e)}
         onDrop={(e) => handleDrop(e)}
       >
@@ -79,19 +77,22 @@ const ProductImageInput = ({
           id="productImage"
           type="file"
           className="hidden"
+          disabled={isEditMode}
           ref={productImageInputRef}
           onChange={(e) => handleProductImage(e)}
         />
         {!productImage ? (
           <Label
             htmlFor="productImage"
-            className="flex flex-col justify-center items-center h-32 cursor-pointer"
+            className={`${
+              isEditMode ? "cursor-not-allowed" : "cursor-pointer"
+            } flex flex-col justify-center items-center h-32`}
           >
             <UploadCloud className="mb-2 w-10 h-10 text-muted-foreground" />
             <span>Drag and Drop or click to upload product image.</span>
           </Label>
         ) : productImageUploading ? (
-          <Skeleton className="bg-grey-100 h-10" />
+          <Skeleton className="bg-grey-100 rounded-full w-[100px] h-[20px]" />
         ) : (
           <div className="flex justify-between items-center">
             <div className="flex items-center">

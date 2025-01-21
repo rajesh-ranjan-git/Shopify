@@ -1,3 +1,5 @@
+import prisma from "../../db/db.config.js";
+
 // Fetch all products
 const fetchAllProducts = async (req, res) => {
   try {
