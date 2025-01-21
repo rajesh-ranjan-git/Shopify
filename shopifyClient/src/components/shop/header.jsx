@@ -33,7 +33,7 @@ const MenuItems = () => {
 };
 
 const HeaderRightContent = () => {
-  // const { isAuthenticated, user } = useSelector((state) => state.auth);
+  // const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -76,7 +76,6 @@ const HeaderRightContent = () => {
 };
 
 const ShopHeader = () => {
-  // const { isAuthenticated, user } = useSelector((state) => state.auth);
   return (
     <header className="top-0 z-40 sticky bg-background border-b w-full">
       <div className="flex justify-between items-center px-4 md:px-6 h-16">
