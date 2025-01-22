@@ -4,7 +4,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
 
-const ShopFilter = () => {
+const ShopFilter = ({ filters, handleFilters }) => {
   return (
     <div className="bg-background shadow-sm rounded-lg">
       <div className="p-4 border-b">
@@ -18,7 +18,15 @@ const ShopFilter = () => {
               <div className="gap-2 grid mt-2">
                 {filterOptions[keyItem].map((option) => (
                   <Label className="flex items-center gap-2 font-medium">
-                    <Checkbox />
+                    <Checkbox
+                      checked={
+                        filters &&
+                        Object.keys(filters).length > 0 &&
+                        filters[keyItem] &&
+                        filters[keyItem].indexOf(option.id) > -1
+                      }
+                      onCheckedChange={() => handleFilters(keyItem, option.id)}
+                    />
                     {option.label}
                   </Label>
                 ))}

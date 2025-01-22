@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ShopFilter from "@/components/shop/filter";
 import {
   DropdownMenu,
@@ -8,17 +8,50 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { ArrowUpDown } from "lucide-react";
+import { ArrowUpDown, Scaling } from "lucide-react";
 import { sortOptions } from "@/config/config";
 import { useDispatch, useSelector } from "react-redux";
 import fetchAllShopProductsService from "@/services/shop/fetchAllShopProducts";
 import ShopProductCard from "@/components/shop/productCard";
+import { staticProductList } from "../../components/common/staticProductList";
 
 const ShopListing = () => {
   const dispatch = useDispatch();
   const { shopProductList } = useSelector((state) => state.shopProductsReducer);
+  const [filters, setFilters] = useState({});
+  const [sort, setSort] = useState(null);
 
-  console.log("shopProductList : ", shopProductList);
+  const handleSort = (value) => {
+    setSort(value);
+  };
+
+  const handleFilters = (getSectionId, getCurrentOptions) => {
+    let copyFilters = { ...filters };
+    console.log(copyFilters);
+    const indexOfCurrentSection =
+      Object.keys(copyFilters).indexOf(getSectionId);
+
+    if (indexOfCurrentSection === -1) {
+      copyFilters = { ...copyFilters, [getSectionId]: [getCurrentOptions] };
+    } else {
+      const indexOfCurrentOption =
+        copyFilters[getSectionId].indexOf(getCurrentOptions);
+
+      if (indexOfCurrentOption === -1) {
+        copyFilters[getSectionId].push(getCurrentOptions);
+      } else {
+        copyFilters[getSectionId].splice(indexOfCurrentOption, 1);
+      }
+    }
+
+    setFilters(copyFilters);
+    sessionStorage.setItem("filters", JSON.stringify(copyFilters));
+  };
+
+  useEffect(() => {
+    setSort("price-lowtohigh");
+    setFilters(JSON.parse(sessionStorage.getItem("filters")) || {});
+  }, []);
 
   // Fetch list of products
   useEffect(() => {
@@ -27,13 +60,16 @@ const ShopListing = () => {
 
   return (
     <div className="gap-6 grid grid-cols-1 md:grid-cols-[300px_1fr] p-4 md:p-6">
-      <ShopFilter />
+      <ShopFilter filters={filters} handleFilters={handleFilters} />
       <div className="bg-background shadow-sm rounded-lg w-full">
         <div className="flex justify-between items-center p-4 border-b">
           <h2 className="font-extrabold text-lg">All Products</h2>
           <div className="flex items-center gap-3">
             <span className="text-muted-foreground">
-              {shopProductList?.length} Products
+              {shopProductList
+                ? shopProductList?.length
+                : staticProductList.length}
+              &nbsp; Products
             </span>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -47,9 +83,12 @@ const ShopListing = () => {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-[200px]">
-                <DropdownMenuRadioGroup>
+                <DropdownMenuRadioGroup value={sort} onValueChange={handleSort}>
                   {sortOptions.map((sortItem) => (
-                    <DropdownMenuRadioItem key={sortItem.id}>
+                    <DropdownMenuRadioItem
+                      value={sortItem.id}
+                      key={sortItem.id}
+                    >
                       {sortItem.label}
                     </DropdownMenuRadioItem>
                   ))}
@@ -59,19 +98,16 @@ const ShopListing = () => {
           </div>
         </div>
         <div className="gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {shopProductList && shopProductList.length > 0
+          {/* {shopProductList && shopProductList.length > 0
             ? shopProductList.map((product) => (
                 <ShopProductCard product={product} key={product.id} />
               ))
+            : null} */}
+          {staticProductList && staticProductList.length > 0
+            ? staticProductList.map((product) => (
+                <ShopProductCard product={product} key={product.id} />
+              ))
             : null}
-          {/* {staticProductList && staticProductList.length > 0
-          ? staticProductList.map((product) => (
-              <ShopProductCard
-                product={product}
-                key={product.id}
-              />
-            ))
-          : null} */}
         </div>
       </div>
     </div>

@@ -17,7 +17,7 @@ import editProductService from "@/services/admin/editProduct";
 import { useToast } from "@/hooks/use-toast";
 import AdminProductCard from "@/components/admin/productCard";
 import deleteProductService from "@/services/admin/deleteProduct";
-import { staticProductList } from "./staticProductList";
+import { staticProductList } from "../../components/common/staticProductList";
 
 const initialFormData = {
   image: null,
@@ -108,7 +108,7 @@ const AdminProducts = () => {
         </Button>
       </div>
       <div className="gap-4 grid md:grid-cols-3 lg:grid-cols-4">
-        {productList && productList.length > 0
+        {/* {productList && productList.length > 0
           ? productList.map((product) => (
               <AdminProductCard
                 product={product}
@@ -120,8 +120,8 @@ const AdminProducts = () => {
                 handleProductDelete={handleProductDelete}
               />
             ))
-          : null}
-        {/* {staticProductList && staticProductList.length > 0
+          : null} */}
+        {staticProductList && staticProductList.length > 0
           ? staticProductList.map((product) => (
               <AdminProductCard
                 product={product}
@@ -133,7 +133,7 @@ const AdminProducts = () => {
                 handleProductDelete={handleProductDelete}
               />
             ))
-          : null} */}
+          : null}
       </div>
 
       <Sheet

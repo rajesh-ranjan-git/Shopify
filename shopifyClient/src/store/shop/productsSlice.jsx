@@ -16,7 +16,6 @@ const ShopProductsSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchAllShopProductsService.fulfilled, (state, action) => {
-        console.log("action.payload : ", action.payload);
         state.shopProductList = action.payload.products;
         state.isLoading = false;
       })
