@@ -121,7 +121,7 @@ const AdminProducts = () => {
               />
             ))
           : null}
-        {staticProductList && staticProductList.length > 0
+        {/* {staticProductList && staticProductList.length > 0
           ? staticProductList.map((product) => (
               <AdminProductCard
                 product={product}
@@ -133,7 +133,7 @@ const AdminProducts = () => {
                 handleProductDelete={handleProductDelete}
               />
             ))
-          : null}
+          : null} */}
       </div>
 
       <Sheet

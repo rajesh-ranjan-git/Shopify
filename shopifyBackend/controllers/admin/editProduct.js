@@ -30,9 +30,14 @@ const editProduct = async (req, res) => {
     findProduct.description = payload.description || findProduct.description;
     findProduct.category = payload.category || findProduct.category;
     findProduct.brand = payload.brand || findProduct.brand;
-    findProduct.price = payload.price || findProduct.price;
-    findProduct.salePrice = payload.salePrice || findProduct.salePrice;
-    findProduct.totalStock = payload.totalStock || findProduct.totalStock;
+    findProduct.price =
+      payload.price !== 0 ? payload.price || findProduct.price : 0;
+    findProduct.salePrice =
+      payload.salePrice !== 0 ? payload.salePrice || findProduct.salePrice : 0;
+    findProduct.totalStock =
+      payload.totalStock !== 0
+        ? payload.totalStock || findProduct.totalStock
+        : 0;
     findProduct.image = payload.image || findProduct.image;
 
     const product = await prisma.products.update({
