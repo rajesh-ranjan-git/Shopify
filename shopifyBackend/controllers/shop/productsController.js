@@ -3,7 +3,39 @@ import prisma from "../../db/db.config.js";
 // Fetch all products
 const fetchAllShopProducts = async (req, res) => {
   try {
-    const products = await prisma.products.findMany({});
+    const { category = [], brand = [], sortBy = "price-lowtohigh" } = req.query;
+
+    let filters = {};
+
+    if (category.length) {
+      filters.category = { $in: category.split(",") };
+    }
+
+    if (brand.length) {
+      filters.category = { $in: brand.split(",") };
+    }
+
+    let sort = {};
+
+    switch (sortBy) {
+      case "price-lowtohigh":
+        sort.price = 1;
+        break;
+      case "price-hightolow":
+        sort.price = -1;
+        break;
+      case "title-atoz":
+        sort.title = 1;
+        break;
+      case "title-ztoa":
+        sort.title = -1;
+        break;
+      default:
+        sort.price = 1;
+        break;
+    }
+
+    const products = await prisma.products.findMany(filters).sort(sort);
 
     if (products) {
       return res.status(200).json({

@@ -76,8 +76,12 @@ const ShopListing = () => {
 
   // Fetch list of products
   useEffect(() => {
-    dispatch(fetchAllShopProductsService());
-  }, [dispatch]);
+    if (filters != null && sort !== null) {
+      dispatch(
+        fetchAllShopProductsService({ filterParams: filters, sortParams: sort })
+      );
+    }
+  }, [dispatch, sort, filters]);
 
   return (
     <div className="gap-6 grid grid-cols-1 md:grid-cols-[200px_1fr] p-4 md:p-6">

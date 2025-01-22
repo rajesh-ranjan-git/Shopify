@@ -4,10 +4,14 @@ import { fetchAllShopProductsApi } from "../apiUrls";
 
 const fetchAllShopProductsService = createAsyncThunk(
   "/products/fetchAllShopProducts",
-  async () => {
+  async (filterParams, sortParams) => {
     try {
+      const query = new URLSearchParams({
+        ...filterParams,
+        sortBy: sortParams,
+      });
       const fetchAllShopProductsResponse = await axios.get(
-        fetchAllShopProductsApi
+        `${fetchAllShopProductsApi}/get?${query}`
       );
 
       return fetchAllShopProductsResponse?.data;
