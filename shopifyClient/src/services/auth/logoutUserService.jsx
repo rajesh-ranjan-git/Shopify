@@ -8,7 +8,7 @@ const logoutUserService = createAsyncThunk("/auth/logout", async () => {
       logoutUserApi,
       {},
       {
-        withCredential: true,
+        withCredentials: true,
       }
     );
 

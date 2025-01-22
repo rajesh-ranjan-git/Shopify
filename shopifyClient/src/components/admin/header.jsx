@@ -4,9 +4,11 @@ import { Button } from "@/components/ui/button";
 import { LogOut, Menu } from "lucide-react";
 import logoutUserService from "@/services/auth/logoutUserService";
 import { toast } from "@/hooks/use-toast";
+import { useNavigate } from "react-router-dom";
 
 const AdminHeader = ({ openSidebar, setOpenSidebar }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogoutUser = () => {
     dispatch(logoutUserService()).then((data) => {
