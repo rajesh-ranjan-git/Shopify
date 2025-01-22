@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Button } from "@/components/ui/button";
 import { LogOut, Menu } from "lucide-react";
 import logoutUserService from "@/services/auth/logoutUserService";
+import { toast } from "@/hooks/use-toast";
 
 const AdminHeader = ({ openSidebar, setOpenSidebar }) => {
   const dispatch = useDispatch();
