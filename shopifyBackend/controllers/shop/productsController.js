@@ -1,7 +1,7 @@
 import prisma from "../../db/db.config.js";
 
 // Fetch all products
-const fetchAllProducts = async (req, res) => {
+const fetchAllShopProducts = async (req, res) => {
   try {
     const products = await prisma.products.findMany({});
 
@@ -30,4 +30,4 @@ const fetchAllProducts = async (req, res) => {
   }
 };
 
-export default fetchAllProducts;
+export default fetchAllShopProducts;

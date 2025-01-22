@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ShopFilter from "@/components/shop/filter";
 import {
   DropdownMenu,
@@ -10,8 +10,21 @@ import {
 import { Button } from "@/components/ui/button";
 import { ArrowUpDown } from "lucide-react";
 import { sortOptions } from "@/config/config";
+import { useDispatch, useSelector } from "react-redux";
+import fetchAllShopProductsService from "@/services/shop/fetchAllShopProducts";
+import ShopProductCard from "@/components/shop/productCard";
 
 const ShopListing = () => {
+  const dispatch = useDispatch();
+  const { shopProductList } = useSelector((state) => state.shopProductsReducer);
+
+  console.log("shopProductList : ", shopProductList);
+
+  // Fetch list of products
+  useEffect(() => {
+    dispatch(fetchAllShopProductsService());
+  }, [dispatch]);
+
   return (
     <div className="gap-6 grid grid-cols-1 md:grid-cols-[300px_1fr] p-4 md:p-6">
       <ShopFilter />
@@ -19,7 +32,9 @@ const ShopListing = () => {
         <div className="flex justify-between items-center p-4 border-b">
           <h2 className="font-extrabold text-lg">All Products</h2>
           <div className="flex items-center gap-3">
-            <span className="text-muted-foreground">10 Products</span>
+            <span className="text-muted-foreground">
+              {shopProductList?.length}
+            </span>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
@@ -42,6 +57,21 @@ const ShopListing = () => {
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
+        </div>
+        <div className="gap-4 grid md:grid-cols-3 lg:grid-cols-4">
+          {shopProductList && shopProductList.length > 0
+            ? shopProductList.map((product) => (
+                <ShopProductCard product={product} key={product.id} />
+              ))
+            : null}
+          {/* {staticProductList && staticProductList.length > 0
+          ? staticProductList.map((product) => (
+              <ShopProductCard
+                product={product}
+                key={product.id}
+              />
+            ))
+          : null} */}
         </div>
       </div>
     </div>

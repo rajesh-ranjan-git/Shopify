@@ -13,3 +13,6 @@ export const fetchAllProductsApi = `${baseApiUrl}/admin/products/fetchAllProduct
 export const addProductApi = `${baseApiUrl}/admin/products/addProduct`;
 export const editProductApi = `${baseApiUrl}/admin/products/editProduct`;
 export const deleteProductApi = `${baseApiUrl}/admin/products/deleteProduct`;
+
+// Shop APIs
+export const fetchAllShopProductsApi = `${baseApiUrl}/shop/products/fetchAllShopProducts`;
