@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import ShopFilter from "@/components/shop/filter";
 import {
   DropdownMenu,
@@ -8,19 +10,23 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { ArrowUpDown, Scaling } from "lucide-react";
+import { ArrowUpDown } from "lucide-react";
 import { sortOptions } from "@/config/config";
-import { useDispatch, useSelector } from "react-redux";
 import fetchAllShopProductsService from "@/services/shop/fetchAllShopProducts";
 import ShopProductCard from "@/components/shop/productCard";
-import { staticProductList } from "../../components/common/staticProductList";
-import { useSearchParams } from "react-router-dom";
+import { staticProductList } from "@/components/common/staticProductList";
+import fetchShopProductDetails from "@/services/shop/fetchShopProductDetails";
+import ShopProductDetails from "@/components/shop/productDetails";
+import { staticProductDetails } from "@/components/common/staticProductDetails";
 
 const ShopListing = () => {
   const dispatch = useDispatch();
-  const { shopProductList } = useSelector((state) => state.shopProductsReducer);
+  const { shopProductList, shopProductDetails } = useSelector(
+    (state) => state.shopProductsReducer
+  );
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState(null);
+  const [openShopProductDetails, setOpenShopProductDetails] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const handleSort = (value) => {
@@ -60,6 +66,12 @@ const ShopListing = () => {
     }
 
     return queryParams.join("&");
+  };
+
+  const handleShopProductDetails = (getCurrentProductId) => {
+    console.log(getCurrentProductId);
+    dispatch(fetchShopProductDetails(getCurrentProductId));
+    setOpenShopProductDetails(true);
   };
 
   useEffect(() => {
@@ -125,16 +137,26 @@ const ShopListing = () => {
         <div className="gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {/* {shopProductList && shopProductList.length > 0
             ? shopProductList.map((product) => (
-                <ShopProductCard product={product} key={product.id} />
+                <ShopProductCard product={product} handleShopProductDetails={handleShopProductDetails} key={product.id} />
               ))
             : null} */}
           {staticProductList && staticProductList.length > 0
             ? staticProductList.map((product) => (
-                <ShopProductCard product={product} key={product.id} />
+                <ShopProductCard
+                  product={product}
+                  handleShopProductDetails={handleShopProductDetails}
+                  key={product.id}
+                />
               ))
             : null}
         </div>
       </div>
+      <ShopProductDetails
+        openShopProductDetails={openShopProductDetails}
+        setOpenShopProductDetails={setOpenShopProductDetails}
+        // shopProductDetails={shopProductDetails}
+        productDetails={staticProductDetails}
+      />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import prisma from "../../db/db.config.js";
 
-// Fetch all products
+// Fetch Shop products
 const fetchAllShopProducts = async (req, res) => {
   try {
     const { category = [], brand = [], sortBy = "price-lowtohigh" } = req.query;

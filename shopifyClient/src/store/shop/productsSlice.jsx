@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import fetchAllShopProductsService from "@/services/shop/fetchAllShopProducts";
+import fetchShopProductDetails from "@/services/shop/fetchShopProductDetails";
 
 const initialState = {
   isLoading: false,
   shopProductList: [],
+  shopProductDetails: null,
 };
 
 const ShopProductsSlice = createSlice({
@@ -21,6 +23,17 @@ const ShopProductsSlice = createSlice({
       })
       .addCase(fetchAllShopProductsService.rejected, (state) => {
         state.shopProductList = [];
+        state.isLoading = false;
+      })
+      .addCase(fetchShopProductDetails.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchShopProductDetails.fulfilled, (state, action) => {
+        state.shopProductDetails = action.payload.product;
+        state.isLoading = false;
+      })
+      .addCase(fetchShopProductDetails.rejected, (state) => {
+        state.shopProductDetails = null;
         state.isLoading = false;
       });
   },

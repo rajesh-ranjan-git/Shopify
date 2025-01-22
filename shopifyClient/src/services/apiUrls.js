@@ -16,3 +16,4 @@ export const deleteProductApi = `${baseApiUrl}/admin/products/deleteProduct`;
 
 // Shop APIs
 export const fetchAllShopProductsApi = `${baseApiUrl}/shop/products/fetchAllShopProducts`;
+export const fetchShopProductDetailsApi = `${baseApiUrl}/shop/products/fetchShopProductDetails`;

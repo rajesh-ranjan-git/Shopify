@@ -12,7 +12,7 @@ export const staticProductList = [
       "http://res.cloudinary.com/rajesh-ranjan-cloudinary/image/upload/v1737449415/agbf8k3eallghz9rlbcp.jpg",
   },
   {
-    id: "678f5ef4423b4aec1809b5bf",
+    id: "678f5ef4423b4aec1809b5be",
     title: "Product Two",
     description: "Product Two",
     category: "kids",
@@ -24,7 +24,7 @@ export const staticProductList = [
       "http://res.cloudinary.com/rajesh-ranjan-cloudinary/image/upload/v1737449415/agbf8k3eallghz9rlbcp.jpg",
   },
   {
-    id: "678f5ef4423b4aec1809b5bf",
+    id: "678f5ef4423b4aec1809b5bd",
     title: "Product Three",
     description: "Product Three",
     category: "kids",
@@ -36,7 +36,7 @@ export const staticProductList = [
       "http://res.cloudinary.com/rajesh-ranjan-cloudinary/image/upload/v1737449415/agbf8k3eallghz9rlbcp.jpg",
   },
   {
-    id: "678f5ef4423b4aec1809b5bf",
+    id: "678f5ef4423b4aec1809b5bc",
     title: "Product Four",
     description: "Product Four",
     category: "kids",

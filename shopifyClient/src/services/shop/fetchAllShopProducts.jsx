@@ -11,7 +11,7 @@ const fetchAllShopProductsService = createAsyncThunk(
         sortBy: sortParams,
       });
       const fetchAllShopProductsResponse = await axios.get(
-        `${fetchAllShopProductsApi}/get?${query}`
+        `${fetchAllShopProductsApi}?${query}`
       );
 
       return fetchAllShopProductsResponse?.data;
