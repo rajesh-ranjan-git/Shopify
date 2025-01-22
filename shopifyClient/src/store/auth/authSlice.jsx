@@ -35,7 +35,9 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(registerUserService.fulfilled, (state, action) => {
+        console.log("state.user : ", state.user);
         state.user = action.payload.success ? action.payload.user : null;
+        console.log("state.user : ", state.user);
         state.isAuthenticated = action.payload.success;
         state.isLoading = false;
       })
@@ -48,7 +50,9 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(loginUserService.fulfilled, (state, action) => {
+        console.log("state.user : ", state.user);
         state.user = action.payload.success ? action.payload.user : null;
+        console.log("state.user : ", state.user);
         state.isAuthenticated = action.payload.success;
         state.isLoading = false;
       })

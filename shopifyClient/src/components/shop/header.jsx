@@ -33,7 +33,7 @@ const MenuItems = () => {
 };
 
 const HeaderRightContent = () => {
-  // const { user } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.authReducer);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -51,15 +51,13 @@ const HeaderRightContent = () => {
         <DropdownMenuTrigger asChild>
           <Avatar className="bg-black">
             <AvatarFallback className="bg-black font-extrabold text-white">
-              {/* {user?.name[0].toUpperCase()} */}
-              RR
+              {user?.name[0].toUpperCase()}
+              {/* RR */}
             </AvatarFallback>
           </Avatar>
         </DropdownMenuTrigger>
         <DropdownMenuContent side="right" className="w-56">
-          <DropdownMenuLabel>
-            Logged in as {/* {user?.name */}
-          </DropdownMenuLabel>
+          <DropdownMenuLabel>Logged in as {user?.name}!</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={() => navigate("/shop/account")}>
             <UserRound className="mr-2 w-4 h-4" />
