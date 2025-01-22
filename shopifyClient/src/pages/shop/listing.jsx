@@ -33,7 +33,7 @@ const ShopListing = () => {
           <h2 className="font-extrabold text-lg">All Products</h2>
           <div className="flex items-center gap-3">
             <span className="text-muted-foreground">
-              {shopProductList?.length}
+              {shopProductList?.length} Products
             </span>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -58,7 +58,7 @@ const ShopListing = () => {
             </DropdownMenu>
           </div>
         </div>
-        <div className="gap-4 grid md:grid-cols-3 lg:grid-cols-4">
+        <div className="gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {shopProductList && shopProductList.length > 0
             ? shopProductList.map((product) => (
                 <ShopProductCard product={product} key={product.id} />
