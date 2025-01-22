@@ -14,12 +14,14 @@ import { useDispatch, useSelector } from "react-redux";
 import fetchAllShopProductsService from "@/services/shop/fetchAllShopProducts";
 import ShopProductCard from "@/components/shop/productCard";
 import { staticProductList } from "../../components/common/staticProductList";
+import { useSearchParams } from "react-router-dom";
 
 const ShopListing = () => {
   const dispatch = useDispatch();
   const { shopProductList } = useSelector((state) => state.shopProductsReducer);
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const handleSort = (value) => {
     setSort(value);
@@ -48,10 +50,29 @@ const ShopListing = () => {
     sessionStorage.setItem("filters", JSON.stringify(copyFilters));
   };
 
+  const createSearchParams = (filterParams) => {
+    const queryParams = [];
+
+    for (const [key, value] of Object.entries(filterParams)) {
+      const paramValue = value.join(",");
+
+      queryParams.push(`${key}=${encodeURIComponent(paramValue)}`);
+    }
+
+    return queryParams.join("&");
+  };
+
   useEffect(() => {
     setSort("price-lowtohigh");
     setFilters(JSON.parse(sessionStorage.getItem("filters")) || {});
   }, []);
+
+  useEffect(() => {
+    if (filters && Object.keys(filters).length > 0) {
+      const createQueryString = createSearchParams(filters);
+      setSearchParams(new URLSearchParams(createQueryString));
+    }
+  }, [filters]);
 
   // Fetch list of products
   useEffect(() => {
@@ -59,7 +80,7 @@ const ShopListing = () => {
   }, [dispatch]);
 
   return (
-    <div className="gap-6 grid grid-cols-1 md:grid-cols-[300px_1fr] p-4 md:p-6">
+    <div className="gap-6 grid grid-cols-1 md:grid-cols-[200px_1fr] p-4 md:p-6">
       <ShopFilter filters={filters} handleFilters={handleFilters} />
       <div className="bg-background shadow-sm rounded-lg w-full">
         <div className="flex justify-between items-center p-4 border-b">
