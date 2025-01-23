@@ -5,9 +5,13 @@ const fetchShopProductDetails = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const product = await prisma.products.findMany({
+    console.log("id : ", id);
+
+    const product = await prisma.products.findFirst({
       where: { id: id },
     });
+
+    console.log("product : ", product);
 
     if (!product) {
       return res.status(404).json({
@@ -24,6 +28,7 @@ const fetchShopProductDetails = async (req, res) => {
       product: product,
     });
   } catch (error) {
+    console.log("error : ", error);
     return res.status(500).json({
       status: 500,
       success: false,

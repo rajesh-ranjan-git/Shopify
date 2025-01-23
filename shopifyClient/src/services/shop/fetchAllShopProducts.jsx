@@ -14,8 +14,13 @@ const fetchAllShopProductsService = createAsyncThunk(
         `${fetchAllShopProductsApi}?${query}`
       );
 
+      console.log(
+        "fetchAllShopProductsResponse : ",
+        fetchAllShopProductsResponse
+      );
       return fetchAllShopProductsResponse?.data;
     } catch (error) {
+      console.log("error : ", error);
       return error.response.data;
     }
   }

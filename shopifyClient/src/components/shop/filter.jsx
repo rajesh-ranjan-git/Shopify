@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { filterOptions } from "@/config/config";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -12,12 +12,15 @@ const ShopFilter = ({ filters, handleFilters }) => {
       </div>
       <div className="space-y-4 p-4">
         {Object.keys(filterOptions).map((keyItem) => (
-          <>
+          <Fragment key={keyItem}>
             <div>
               <h3 className="font-bold text-base">{keyItem}</h3>
               <div className="gap-2 grid mt-2">
                 {filterOptions[keyItem].map((option) => (
-                  <Label className="flex items-center gap-2 font-medium">
+                  <Label
+                    className="flex items-center gap-2 font-medium"
+                    key={option.id}
+                  >
                     <Checkbox
                       checked={
                         filters &&
@@ -33,7 +36,7 @@ const ShopFilter = ({ filters, handleFilters }) => {
               </div>
             </div>
             <Separator />
-          </>
+          </Fragment>
         ))}
       </div>
     </div>

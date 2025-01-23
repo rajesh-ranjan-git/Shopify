@@ -10,8 +10,18 @@ const fetchShopProductDetails = createAsyncThunk(
         `${fetchShopProductDetailsApi}/${id}`
       );
 
+      console.log(
+        "fetchShopProductDetailsResponse : ",
+        fetchShopProductDetailsResponse
+      );
+      console.log(
+        "fetchShopProductDetailsResponse.data : ",
+        fetchShopProductDetailsResponse.data
+      );
+
       return fetchShopProductDetailsResponse?.data;
     } catch (error) {
+      console.log("error : ", error);
       return error.response.data;
     }
   }

@@ -158,7 +158,7 @@ const ShopListing = () => {
       <ShopProductDetails
         openShopProductDetails={openShopProductDetails}
         setOpenShopProductDetails={setOpenShopProductDetails}
-        shopProductDetails={shopProductDetails}
+        productDetails={shopProductDetails}
         // productDetails={staticProductDetails}
       />
     </div>

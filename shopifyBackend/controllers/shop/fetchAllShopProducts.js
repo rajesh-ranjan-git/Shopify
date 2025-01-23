@@ -5,6 +5,8 @@ const fetchAllShopProducts = async (req, res) => {
   try {
     const { category = [], brand = [], sortBy = "price-lowtohigh" } = req.query;
 
+    console.log("req.query : ", req.query);
+
     let filters = {};
 
     if (category.length) {
@@ -14,6 +16,8 @@ const fetchAllShopProducts = async (req, res) => {
     if (brand.length) {
       filters.category = { $in: brand.split(",") };
     }
+
+    console.log("filters : ", filters);
 
     let sort = {};
 
@@ -35,7 +39,12 @@ const fetchAllShopProducts = async (req, res) => {
         break;
     }
 
-    const products = await prisma.products.findMany(filters).sort(sort);
+    console.log("sort : ", sort);
+
+    // const products = await prisma.products.findMany(filters).sort(sort);
+    const products = await prisma.products.findMany(filters);
+
+    console.log("products : ", products);
 
     if (products) {
       return res.status(200).json({
@@ -54,6 +63,7 @@ const fetchAllShopProducts = async (req, res) => {
       },
     });
   } catch (error) {
+    console.log("error : ", error);
     return res.status(500).json({
       status: 500,
       success: false,

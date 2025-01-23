@@ -29,6 +29,8 @@ const ShopProductsSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchShopProductDetails.fulfilled, (state, action) => {
+        console.log("action.payload : ", action.payload);
+        console.log("action.payload.product : ", action.payload.product);
         state.shopProductDetails = action.payload.product;
         state.isLoading = false;
       })

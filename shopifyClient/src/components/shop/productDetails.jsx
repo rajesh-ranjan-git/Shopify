@@ -1,5 +1,10 @@
 import React from "react";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 import { Avatar, AvatarFallback } from "../ui/avatar";
@@ -11,6 +16,7 @@ const ShopProductDetails = ({
   setOpenShopProductDetails,
   productDetails,
 }) => {
+  console.log("productDetails : ", productDetails);
   return (
     <Dialog
       open={openShopProductDetails}
@@ -27,12 +33,17 @@ const ShopProductDetails = ({
           />
         </div>
         <div className="">
-          <div>
-            <h1 className="font-extrabold text-3xl">{productDetails?.title}</h1>
-            <p className="mt-4 mb-5 text-muted-foreground text02xl">
-              {productDetails?.description}
-            </p>
-          </div>
+          <DialogTitle>
+            <div>
+              <h1 className="font-extrabold text-3xl">
+                {productDetails?.title}
+              </h1>
+              <p className="mt-4 mb-5 text-muted-foreground text02xl">
+                {productDetails?.description}
+              </p>
+            </div>
+          </DialogTitle>
+          <DialogDescription></DialogDescription>
           <div className="flex justify-between items-center">
             <p
               className={`font-bold text-3xl text-primary ${
