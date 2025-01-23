@@ -15,4 +15,7 @@ router.use("/admin/products", adminProductsRouter);
 // Shop Product routes
 router.use("/shop/products", shopProductsRouter);
 
+// Cart routes
+router.use("/shop/cart", cartRouter);
+
 export default router;
