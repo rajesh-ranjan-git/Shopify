@@ -82,6 +82,9 @@ const ShopListing = () => {
   useEffect(() => {
     if (filters && Object.keys(filters).length > 0) {
       const createQueryString = createSearchParams(filters);
+
+      console.log("createQueryString : ", createQueryString);
+
       setSearchParams(new URLSearchParams(createQueryString));
     }
   }, [filters]);
@@ -89,6 +92,7 @@ const ShopListing = () => {
   // Fetch list of products
   useEffect(() => {
     if (filters != null && sort !== null) {
+      console.log("sort : ", sort);
       dispatch(
         fetchAllShopProductsService({ filterParams: filters, sortParams: sort })
       );
