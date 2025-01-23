@@ -16,7 +16,6 @@ const ShopProductDetails = ({
   setOpenShopProductDetails,
   productDetails,
 }) => {
-  console.log("productDetails : ", productDetails);
   return (
     <Dialog
       open={openShopProductDetails}

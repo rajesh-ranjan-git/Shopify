@@ -1,50 +1,46 @@
 import prisma from "../../db/db.config.js";
 
 // Fetch Shop products
-const fetchAllShopProducts = async (req, res) => {
+const fetchShopProducts = async (req, res) => {
   try {
     const { category = [], brand = [], sortBy = "price-lowtohigh" } = req.query;
 
-    console.log("req.query : ", req.query);
-
+    // Handle Filters
     let filters = {};
 
     if (category.length) {
-      filters.category = { $in: category.split(",") };
+      filters.category = { in: category.split(",") };
     }
 
     if (brand.length) {
-      filters.category = { $in: brand.split(",") };
+      filters.brand = { in: brand.split(",") };
     }
 
-    console.log("filters : ", filters);
-
-    let sort = {};
+    // Handle Sorting
+    let orderBy = {};
 
     switch (sortBy) {
       case "price-lowtohigh":
-        sort.price = 1;
+        orderBy = { price: "asc" };
         break;
       case "price-hightolow":
-        sort.price = -1;
+        orderBy = { price: "desc" };
         break;
       case "title-atoz":
-        sort.title = 1;
+        orderBy = { title: "asc" };
         break;
       case "title-ztoa":
-        sort.title = -1;
+        orderBy = { title: "desc" };
         break;
       default:
-        sort.price = 1;
+        orderBy = { price: "asc" };
         break;
     }
 
-    console.log("sort : ", sort);
-
-    // const products = await prisma.products.findMany(filters).sort(sort);
-    const products = await prisma.products.findMany(filters);
-
-    console.log("products : ", products);
+    const products = await prisma.products.findMany({
+      where: filters,
+      orderBy,
+    });
 
     if (products) {
       return res.status(200).json({
@@ -72,4 +68,4 @@ const fetchAllShopProducts = async (req, res) => {
   }
 };
 
-export default fetchAllShopProducts;
+export default fetchShopProducts;

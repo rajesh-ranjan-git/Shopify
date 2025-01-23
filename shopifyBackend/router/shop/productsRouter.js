@@ -1,10 +1,10 @@
 import express from "express";
-import fetchAllShopProducts from "../../controllers/shop/fetchAllShopProducts.js";
+import fetchShopProducts from "../../controllers/shop/fetchShopProducts.js";
 import fetchShopProductDetails from "../../controllers/shop/fetchShopProductDetails.js";
 
 const shopProductsRouter = express.Router();
 
-shopProductsRouter.get("/fetchAllShopProducts", fetchAllShopProducts);
+shopProductsRouter.get("/fetchShopProducts", fetchShopProducts);
 shopProductsRouter.get("/fetchShopProductDetails/:id", fetchShopProductDetails);
 
 export default shopProductsRouter;

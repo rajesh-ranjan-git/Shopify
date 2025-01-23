@@ -12,12 +12,12 @@ import {
 import { Button } from "@/components/ui/button";
 import { ArrowUpDown } from "lucide-react";
 import { sortOptions } from "@/config/config";
-import fetchAllShopProductsService from "@/services/shop/fetchAllShopProducts";
 import ShopProductCard from "@/components/shop/productCard";
 import { staticProductList } from "@/components/common/staticProductList";
 import fetchShopProductDetails from "@/services/shop/fetchShopProductDetails";
 import ShopProductDetails from "@/components/shop/productDetails";
 import { staticProductDetails } from "@/components/common/staticProductDetails";
+import fetchShopProductsService from "@/services/shop/fetchShopProducts";
 
 const ShopListing = () => {
   const dispatch = useDispatch();
@@ -35,7 +35,6 @@ const ShopListing = () => {
 
   const handleFilters = (getSectionId, getCurrentOptions) => {
     let copyFilters = { ...filters };
-    console.log(copyFilters);
     const indexOfCurrentSection =
       Object.keys(copyFilters).indexOf(getSectionId);
 
@@ -69,7 +68,6 @@ const ShopListing = () => {
   };
 
   const handleShopProductDetails = (getCurrentProductId) => {
-    console.log(getCurrentProductId);
     dispatch(fetchShopProductDetails(getCurrentProductId));
     setOpenShopProductDetails(true);
   };
@@ -83,8 +81,6 @@ const ShopListing = () => {
     if (filters && Object.keys(filters).length > 0) {
       const createQueryString = createSearchParams(filters);
 
-      console.log("createQueryString : ", createQueryString);
-
       setSearchParams(new URLSearchParams(createQueryString));
     }
   }, [filters]);
@@ -92,9 +88,8 @@ const ShopListing = () => {
   // Fetch list of products
   useEffect(() => {
     if (filters != null && sort !== null) {
-      console.log("sort : ", sort);
       dispatch(
-        fetchAllShopProductsService({ filterParams: filters, sortParams: sort })
+        fetchShopProductsService({ filterParams: filters, sortParams: sort })
       );
     }
   }, [dispatch, sort, filters]);
