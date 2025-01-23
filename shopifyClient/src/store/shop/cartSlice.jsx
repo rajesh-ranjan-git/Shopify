@@ -18,38 +18,54 @@ const ShopCartSlice = createSlice({
       .addCase(fetchShopCartService.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(fetchShopCartService.fulfilled, (state) => {
-        state.isLoading = true;
+      .addCase(fetchShopCartService.fulfilled, (state, action) => {
+        console.log("action.payload : ", action.payload);
+        console.log("action.payload.data : ", action.payload.data);
+        state.cartItems = action.payload.data;
+        state.isLoading = false;
       })
       .addCase(fetchShopCartService.rejected, (state) => {
-        state.isLoading = true;
+        state.cartItems = [];
+        state.isLoading = false;
       })
       .addCase(addToShopCartService.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(addToShopCartService.fulfilled, (state) => {
-        state.isLoading = true;
+      .addCase(addToShopCartService.fulfilled, (state, action) => {
+        console.log("action.payload : ", action.payload);
+        console.log("action.payload.data : ", action.payload.data);
+        state.cartItems = action.payload.data;
+        state.isLoading = false;
       })
       .addCase(addToShopCartService.rejected, (state) => {
-        state.isLoading = true;
+        state.cartItems = [];
+        state.isLoading = false;
       })
       .addCase(updateShopCartService.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(updateShopCartService.fulfilled, (state) => {
-        state.isLoading = true;
+      .addCase(updateShopCartService.fulfilled, (state, action) => {
+        console.log("action.payload : ", action.payload);
+        console.log("action.payload.data : ", action.payload.data);
+        state.cartItems = action.payload.data;
+        state.isLoading = false;
       })
       .addCase(updateShopCartService.rejected, (state) => {
-        state.isLoading = true;
+        state.cartItems = [];
+        state.isLoading = false;
       })
       .addCase(deleteShopCartService.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(deleteShopCartService.fulfilled, (state) => {
-        state.isLoading = true;
+      .addCase(deleteShopCartService.fulfilled, (state, action) => {
+        console.log("action.payload : ", action.payload);
+        console.log("action.payload.data : ", action.payload.data);
+        state.cartItems = action.payload.data;
+        state.isLoading = false;
       })
       .addCase(deleteShopCartService.rejected, (state) => {
-        state.isLoading = true;
+        state.cartItems = [];
+        state.isLoading = false;
       });
   },
 });

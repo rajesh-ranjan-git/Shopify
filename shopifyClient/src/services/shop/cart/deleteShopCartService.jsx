@@ -9,8 +9,8 @@ const deleteShopCartService = createAsyncThunk(
     console.log("productId : ", productId);
 
     try {
-      const deleteShopCartResponse = await axios.get(
-        `${deleteShopCartApi}/${userId}`,
+      const deleteShopCartResponse = await axios.delete(
+        { deleteShopCartApi },
         { userId, productId },
         {
           withCredentials: true,

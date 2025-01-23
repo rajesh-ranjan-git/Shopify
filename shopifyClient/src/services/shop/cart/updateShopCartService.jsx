@@ -10,8 +10,8 @@ const updateShopCartService = createAsyncThunk(
     console.log("quantity : ", quantity);
 
     try {
-      const updateShopCartResponse = await axios.get(
-        `${updateShopCartApi}/${userId}`,
+      const updateShopCartResponse = await axios.put(
+        { updateShopCartApi },
         { userId, productId, quantity },
         {
           withCredentials: true,
