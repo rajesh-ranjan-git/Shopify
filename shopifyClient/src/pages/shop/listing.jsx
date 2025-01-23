@@ -20,6 +20,7 @@ import fetchShopProductsService from "@/services/shop/products/fetchShopProducts
 import fetchShopProductDetailsService from "@/services/shop/products/fetchShopProductDetailsService";
 import addToShopCartService from "@/services/shop/cart/addToShopCartService";
 import fetchShopCartService from "@/services/shop/cart/fetchShopCartService";
+import { useToast } from "@/hooks/use-toast";
 
 const ShopListing = () => {
   const dispatch = useDispatch();
@@ -27,11 +28,11 @@ const ShopListing = () => {
     (state) => state.shopProductsReducer
   );
   const { user } = useSelector((state) => state.authReducer);
-  const { cartItems } = useSelector((state) => state.shopCartReducer);
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState(null);
   const [openShopProductDetails, setOpenShopProductDetails] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+  const { toast } = useToast();
 
   const handleSort = (value) => {
     setSort(value);
@@ -86,6 +87,9 @@ const ShopListing = () => {
     ).then((data) => {
       if (data?.payload?.success) {
         dispatch(fetchShopCartService(user?.id));
+        toast({
+          title: "Item added to cart!",
+        });
       }
     });
   };

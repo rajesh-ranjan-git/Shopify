@@ -3,7 +3,10 @@ import prisma from "../../../db/db.config.js";
 // Fetch Shop products
 const deleteCartItems = async (req, res) => {
   try {
-    const { userId, productId } = req.body;
+    const { userId, productId } = req.params;
+
+    console.log("userId : ", userId);
+    console.log("productId : ", productId);
 
     // Validating input
     if (!userId) {
