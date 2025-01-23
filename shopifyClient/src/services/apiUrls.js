@@ -17,3 +17,9 @@ export const deleteProductApi = `${baseApiUrl}/admin/products/deleteProduct`;
 // Shop APIs
 export const fetchShopProductsApi = `${baseApiUrl}/shop/products/fetchShopProducts`;
 export const fetchShopProductDetailsApi = `${baseApiUrl}/shop/products/fetchShopProductDetails`;
+
+// Cart APIs
+export const fetchShopCartApi = `${baseApiUrl}/shop/cart/fetchCartItems/:userId`;
+export const addToShopCartApi = `${baseApiUrl}/shop/cart/addCartItems`;
+export const updateShopCartApi = `${baseApiUrl}/shop/cart/updateCartItems`;
+export const deleteShopCartApi = `${baseApiUrl}/shop/cart/deleteCartItems`;

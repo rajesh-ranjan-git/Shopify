@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import fetchShopProductsService from "@/services/shop/fetchShopProducts";
-import fetchShopProductDetails from "@/services/shop/fetchShopProductDetails";
+import fetchShopProductsService from "@/services/shop/products/fetchShopProductsService";
+import fetchShopProductDetails from "@/services/shop/products/fetchShopProductDetailsService";
 
 const initialState = {
   isLoading: false,

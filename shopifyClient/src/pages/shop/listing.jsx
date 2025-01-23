@@ -14,10 +14,10 @@ import { ArrowUpDown } from "lucide-react";
 import { sortOptions } from "@/config/config";
 import ShopProductCard from "@/components/shop/productCard";
 import { staticProductList } from "@/components/common/staticProductList";
-import fetchShopProductDetails from "@/services/shop/fetchShopProductDetails";
+import fetchShopProductDetails from "@/services/shop/products/fetchShopProductDetailsService";
 import ShopProductDetails from "@/components/shop/productDetails";
 import { staticProductDetails } from "@/components/common/staticProductDetails";
-import fetchShopProductsService from "@/services/shop/fetchShopProducts";
+import fetchShopProductsService from "@/services/shop/products/fetchShopProductsService";
 
 const ShopListing = () => {
   const dispatch = useDispatch();
