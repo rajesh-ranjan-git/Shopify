@@ -4,9 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { brandOptionsMap, categoryOptionsMap } from "@/config/config";
 
-const ShopProductCard = ({ product, handleShopProductDetails }) => {
+const ShopProductCard = ({
+  product,
+  handleShopProductDetails,
+  handleAddToCart,
+}) => {
   return (
-    <Card className="mx-auto w-full max-w-sm">
+    <Card className="mx-auto w-full max-w-sm cursor-pointer">
       <div onClick={() => handleShopProductDetails(product?.id)}>
         <div className="relative">
           <img
@@ -45,10 +49,12 @@ const ShopProductCard = ({ product, handleShopProductDetails }) => {
             ) : null}
           </div>
         </CardContent>
-        <CardFooter className="flex justify-between items-center">
-          <Button className="w-full">Add to Cart</Button>
-        </CardFooter>
       </div>
+      <CardFooter className="flex justify-between items-center">
+        <Button className="w-full" onClick={() => handleAddToCart(product.id)}>
+          Add to Cart
+        </Button>
+      </CardFooter>
     </Card>
   );
 };

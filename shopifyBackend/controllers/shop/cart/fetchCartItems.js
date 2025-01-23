@@ -3,8 +3,7 @@ import prisma from "../../../db/db.config.js";
 // Fetch Cart Items
 const fetchCartItems = async (req, res) => {
   try {
-    const { userId } = req.body;
-    console.log("userId : ", userId);
+    const { userId } = req.params;
 
     // Validating input
     if (!userId) {
@@ -25,8 +24,6 @@ const fetchCartItems = async (req, res) => {
       },
     });
 
-    console.log("cart : ", cart);
-
     if (cart && cart.length > 0) {
       return res.status(200).json({
         status: 200,
@@ -44,7 +41,6 @@ const fetchCartItems = async (req, res) => {
     });
   } catch (error) {
     // Check for errors
-    console.log("error : ", error);
     return res.status(500).json({
       status: 500,
       success: false,

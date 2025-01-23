@@ -4,8 +4,6 @@ import prisma from "../../../db/db.config.js";
 const deleteCartItems = async (req, res) => {
   try {
     const { userId, productId } = req.body;
-    console.log("userId : ", userId);
-    console.log("productId : ", productId);
 
     // Validating input
     if (!userId) {
@@ -34,8 +32,6 @@ const deleteCartItems = async (req, res) => {
       },
     });
 
-    console.log("itemToDelete : ", itemToDelete);
-
     if (!itemToDelete) {
       return res.status(400).json({
         status: 400,
@@ -53,15 +49,13 @@ const deleteCartItems = async (req, res) => {
       },
     });
 
-    console.log("cart : ", cart);
-
     return res.status(200).json({
       status: 200,
       success: true,
       message: "Item deleted from cart!",
     });
   } catch (error) {
-    console.log("error : ", error);
+    // Check for errors
     return res.status(500).json({
       status: 500,
       success: false,

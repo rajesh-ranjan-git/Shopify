@@ -11,7 +11,7 @@ const AdminProductCard = ({
   handleProductDelete,
 }) => {
   return (
-    <Card className="mx-auto w-full max-w-sm">
+    <Card className="mx-auto w-full max-w-sm cursor-pointer">
       <div>
         <div className="relative">
           <img

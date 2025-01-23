@@ -5,9 +5,6 @@ import { deleteShopCartApi } from "../../apiUrls";
 const deleteShopCartService = createAsyncThunk(
   "/products/deleteCartItems",
   async ({ userId, productId }) => {
-    console.log("userId : ", userId);
-    console.log("productId : ", productId);
-
     try {
       const deleteShopCartResponse = await axios.delete(
         { deleteShopCartApi },
@@ -17,15 +14,8 @@ const deleteShopCartService = createAsyncThunk(
         }
       );
 
-      console.log("deleteShopCartResponse : ", deleteShopCartResponse);
-      console.log(
-        "deleteShopCartResponse.data : ",
-        deleteShopCartResponse.data
-      );
-
       return deleteShopCartResponse?.data;
     } catch (error) {
-      console.log("error : ", error);
       return error.response.data;
     }
   }

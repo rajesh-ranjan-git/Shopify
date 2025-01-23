@@ -6,7 +6,7 @@ import deleteCartItems from "../../controllers/shop/cart/deleteCartItems.js";
 
 const cartRouter = express.Router();
 
-cartRouter.get("/fetchCartItems", fetchCartItems);
+cartRouter.get("/fetchCartItems/:userId", fetchCartItems);
 cartRouter.post("/addCartItems", addCartItems);
 cartRouter.put("/updateCartItems", updateCartItems);
 cartRouter.delete("/deleteCartItems", deleteCartItems);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { House, LogOut, Menu, ShoppingCart, UserRound } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,6 +15,7 @@ import {
 import { shopHeaderMenuItems } from "@/config/config";
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import logoutUserService from "@/services/auth/logoutUserService";
+import ShopCartWrapper from "./cartWrapper";
 
 const MenuItems = () => {
   return (
@@ -34,6 +35,7 @@ const MenuItems = () => {
 
 const HeaderRightContent = () => {
   const { user } = useSelector((state) => state.authReducer);
+  const [openCart, setOpenCart] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -43,10 +45,13 @@ const HeaderRightContent = () => {
 
   return (
     <div className="flex lg:flex-row flex-col lg:items-center gap-4">
-      <Button variant="outline" size="icon">
-        <ShoppingCart className="w-6 h-6" />
-        <span className="sr-only">Cart</span>
-      </Button>
+      <Sheet open={openCart} onOpenChange={setOpenCart}>
+        <Button variant="outline" size="icon" onClick={() => setOpenCart(true)}>
+          <ShoppingCart className="w-6 h-6" />
+          <span className="sr-only">Cart</span>
+        </Button>
+        <ShopCartWrapper />
+      </Sheet>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Avatar className="bg-black">

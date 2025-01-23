@@ -4,9 +4,6 @@ import prisma from "../../../db/db.config.js";
 const updateCartItems = async (req, res) => {
   try {
     const { userId, productId, quantity } = req.body;
-    console.log("userId : ", userId);
-    console.log("productId : ", productId);
-    console.log("quantity : ", quantity);
 
     // Validating input
     if (!userId) {
@@ -43,8 +40,6 @@ const updateCartItems = async (req, res) => {
       },
     });
 
-    console.log("existingCartItem : ", existingCartItem);
-
     let cart;
 
     if (!existingCartItem) {
@@ -53,7 +48,6 @@ const updateCartItems = async (req, res) => {
         status: 400,
         success: true,
         message: "Item is not present in cart!",
-        cart: cart,
       });
     }
 
@@ -77,7 +71,6 @@ const updateCartItems = async (req, res) => {
     });
   } catch (error) {
     // Check for errors
-    console.log("error : ", error);
     return res.status(500).json({
       status: 500,
       success: false,

@@ -14,16 +14,20 @@ import { ArrowUpDown } from "lucide-react";
 import { sortOptions } from "@/config/config";
 import ShopProductCard from "@/components/shop/productCard";
 import { staticProductList } from "@/components/common/staticProductList";
-import fetchShopProductDetails from "@/services/shop/products/fetchShopProductDetailsService";
 import ShopProductDetails from "@/components/shop/productDetails";
 import { staticProductDetails } from "@/components/common/staticProductDetails";
 import fetchShopProductsService from "@/services/shop/products/fetchShopProductsService";
+import fetchShopProductDetailsService from "@/services/shop/products/fetchShopProductDetailsService";
+import addToShopCartService from "@/services/shop/cart/addToShopCartService";
+import fetchShopCartService from "@/services/shop/cart/fetchShopCartService";
 
 const ShopListing = () => {
   const dispatch = useDispatch();
   const { shopProductList, shopProductDetails } = useSelector(
     (state) => state.shopProductsReducer
   );
+  const { user } = useSelector((state) => state.authReducer);
+  const { cartItems } = useSelector((state) => state.shopCartReducer);
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState(null);
   const [openShopProductDetails, setOpenShopProductDetails] = useState(false);
@@ -68,8 +72,22 @@ const ShopListing = () => {
   };
 
   const handleShopProductDetails = (getCurrentProductId) => {
-    dispatch(fetchShopProductDetails(getCurrentProductId));
+    dispatch(fetchShopProductDetailsService(getCurrentProductId));
     setOpenShopProductDetails(true);
+  };
+
+  const handleAddToCart = (getCurrentProductId) => {
+    dispatch(
+      addToShopCartService({
+        userId: user?.id,
+        productId: getCurrentProductId,
+        quantity: 1,
+      })
+    ).then((data) => {
+      if (data?.payload?.success) {
+        dispatch(fetchShopCartService(user?.id));
+      }
+    });
   };
 
   useEffect(() => {
@@ -139,6 +157,7 @@ const ShopListing = () => {
                 <ShopProductCard
                   product={product}
                   handleShopProductDetails={handleShopProductDetails}
+                  handleAddToCart={handleAddToCart}
                   key={product.id}
                 />
               ))
