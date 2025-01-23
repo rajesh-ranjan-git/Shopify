@@ -11,9 +11,6 @@ const deleteProduct = async (req, res) => {
       },
     });
 
-    console.log("id : ", id);
-    console.log("product : ", product);
-
     if (!product) {
       return res.status(404).json({
         errors: {
@@ -31,7 +28,6 @@ const deleteProduct = async (req, res) => {
       product: product,
     });
   } catch (error) {
-    console.log("error : ", error);
     return res.status(500).json({
       status: 500,
       success: false,
