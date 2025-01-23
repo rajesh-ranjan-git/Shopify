@@ -135,13 +135,8 @@ const ShopListing = () => {
           </div>
         </div>
         <div className="gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {/* {shopProductList && shopProductList.length > 0
+          {shopProductList && shopProductList.length > 0
             ? shopProductList.map((product) => (
-                <ShopProductCard product={product} handleShopProductDetails={handleShopProductDetails} key={product.id} />
-              ))
-            : null} */}
-          {staticProductList && staticProductList.length > 0
-            ? staticProductList.map((product) => (
                 <ShopProductCard
                   product={product}
                   handleShopProductDetails={handleShopProductDetails}
@@ -149,13 +144,22 @@ const ShopListing = () => {
                 />
               ))
             : null}
+          {/* {staticProductList && staticProductList.length > 0
+            ? staticProductList.map((product) => (
+                <ShopProductCard
+                  product={product}
+                  handleShopProductDetails={handleShopProductDetails}
+                  key={product.id}
+                />
+              ))
+            : null} */}
         </div>
       </div>
       <ShopProductDetails
         openShopProductDetails={openShopProductDetails}
         setOpenShopProductDetails={setOpenShopProductDetails}
-        // shopProductDetails={shopProductDetails}
-        productDetails={staticProductDetails}
+        shopProductDetails={shopProductDetails}
+        // productDetails={staticProductDetails}
       />
     </div>
   );

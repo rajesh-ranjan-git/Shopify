@@ -108,7 +108,7 @@ const AdminProducts = () => {
         </Button>
       </div>
       <div className="gap-4 grid md:grid-cols-3 lg:grid-cols-4">
-        {/* {productList && productList.length > 0
+        {productList && productList.length > 0
           ? productList.map((product) => (
               <AdminProductCard
                 product={product}
@@ -120,8 +120,8 @@ const AdminProducts = () => {
                 handleProductDelete={handleProductDelete}
               />
             ))
-          : null} */}
-        {staticProductList && staticProductList.length > 0
+          : null}
+        {/* {staticProductList && staticProductList.length > 0
           ? staticProductList.map((product) => (
               <AdminProductCard
                 product={product}
@@ -133,7 +133,7 @@ const AdminProducts = () => {
                 handleProductDelete={handleProductDelete}
               />
             ))
-          : null}
+          : null} */}
       </div>
 
       <Sheet
