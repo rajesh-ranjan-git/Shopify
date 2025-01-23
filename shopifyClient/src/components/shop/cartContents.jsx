@@ -5,11 +5,36 @@ import { Button } from "@/components/ui/button";
 import deleteShopCartService from "@/services/shop/cart/deleteShopCartService";
 import { useToast } from "@/hooks/use-toast";
 import fetchShopCartService from "@/services/shop/cart/fetchShopCartService";
+import updateShopCartService from "@/services/shop/cart/updateShopCartService";
 
 const ShopCartContents = ({ cartItem }) => {
   const { user } = useSelector((state) => state.authReducer);
   const dispatch = useDispatch();
   const { toast } = useToast();
+
+  const handleUpdateCartItems = (getCartItem, typeOfAction) => {
+    let updatedQuantity = getCartItem?.quantity;
+    if (typeOfAction === "increment") {
+      updatedQuantity++;
+    } else {
+      updatedQuantity--;
+    }
+
+    dispatch(
+      updateShopCartService({
+        userId: user?.id,
+        productId: getCartItem?.productId,
+        quantity: updatedQuantity,
+      })
+    ).then((data) => {
+      if (data?.payload?.success) {
+        dispatch(fetchShopCartService(user?.id));
+        toast({
+          title: "Cart items updated!",
+        });
+      }
+    });
+  };
 
   const handleDeleteCartItem = (getCartItem) => {
     dispatch(
@@ -18,7 +43,7 @@ const ShopCartContents = ({ cartItem }) => {
         productId: getCartItem.productId,
       })
     ).then((data) => {
-      if (data.payload.success) {
+      if (data?.payload?.success) {
         dispatch(fetchShopCartService(user?.id));
         toast({
           title: "Item deleted from cart!",
@@ -41,6 +66,7 @@ const ShopCartContents = ({ cartItem }) => {
             variant="outline"
             size="icon"
             className="rounded-full w-8 h-8"
+            onClick={() => handleUpdateCartItems(cartItem, "decrement")}
           >
             <Minus className="w-4 h-4" />
             <span className="sr-only">Decrease</span>
@@ -50,6 +76,7 @@ const ShopCartContents = ({ cartItem }) => {
             variant="outline"
             size="icon"
             className="rounded-full w-8 h-8"
+            onClick={() => handleUpdateCartItems(cartItem, "increment")}
           >
             <Plus className="w-4 h-4" />
             <span className="sr-only">Increase</span>

@@ -7,7 +7,7 @@ const updateShopCartService = createAsyncThunk(
   async ({ userId, productId, quantity }) => {
     try {
       const updateShopCartResponse = await axios.put(
-        { updateShopCartApi },
+        updateShopCartApi,
         { userId, productId, quantity },
         {
           withCredentials: true,
