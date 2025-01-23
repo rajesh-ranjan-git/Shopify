@@ -51,7 +51,7 @@ const ShopProductCard = ({
         </CardContent>
       </div>
       <CardFooter className="flex justify-between items-center">
-        <Button className="w-full" onClick={() => handleAddToCart(product.id)}>
+        <Button className="w-full" onClick={() => handleAddToCart(product?.id)}>
           Add to Cart
         </Button>
       </CardFooter>

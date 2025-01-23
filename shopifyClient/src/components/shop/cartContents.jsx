@@ -66,6 +66,7 @@ const ShopCartContents = ({ cartItem }) => {
             variant="outline"
             size="icon"
             className="rounded-full w-8 h-8"
+            disabled={cartItem?.quantity <= 1}
             onClick={() => handleUpdateCartItems(cartItem, "decrement")}
           >
             <Minus className="w-4 h-4" />

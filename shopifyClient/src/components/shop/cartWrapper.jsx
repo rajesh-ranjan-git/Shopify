@@ -9,6 +9,15 @@ import { Button } from "@/components/ui/button";
 import ShopCartContents from "./cartContents";
 
 const ShopCartWrapper = ({ cartItems }) => {
+  const totalCartAmount = cartItems.reduce(
+    (sum, item) =>
+      (sum +=
+        (item?.product?.salePrice > 0
+          ? item?.product?.salePrice
+          : item?.product?.price) * item?.quantity),
+    0
+  );
+
   return (
     <SheetContent className="sm:max-w-md">
       <SheetHeader>
@@ -28,7 +37,7 @@ const ShopCartWrapper = ({ cartItems }) => {
       <div className="space-y-4 mt-8">
         <div className="flex justify-between">
           <span className="font-bold">Total Amount</span>
-          <span className="font-bold">₹1000</span>
+          <span className="font-bold">₹{totalCartAmount}</span>
         </div>
       </div>
       <SheetDescription></SheetDescription>

@@ -15,6 +15,7 @@ const ShopProductDetails = ({
   openShopProductDetails,
   setOpenShopProductDetails,
   productDetails,
+  handleAddToCart,
 }) => {
   return (
     <Dialog
@@ -68,7 +69,12 @@ const ShopProductDetails = ({
             <span className="text-muted-foreground">(4.5)</span>
           </div>
           <div className="mt-5 mb-5">
-            <Button className="w-full">Add to Cart</Button>
+            <Button
+              className="w-full"
+              onClick={() => handleAddToCart(productDetails?.id)}
+            >
+              Add to Cart
+            </Button>
           </div>
           <Separator />
           <div className="max-h-[300px] overflow-auto">

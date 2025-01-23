@@ -181,6 +181,7 @@ const ShopListing = () => {
         openShopProductDetails={openShopProductDetails}
         setOpenShopProductDetails={setOpenShopProductDetails}
         productDetails={shopProductDetails}
+        handleAddToCart={handleAddToCart}
         // productDetails={staticProductDetails}
       />
     </div>
