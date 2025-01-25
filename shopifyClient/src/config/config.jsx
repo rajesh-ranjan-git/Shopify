@@ -1,4 +1,14 @@
-import { LayoutDashboard, PackageOpen, ShoppingBag } from "lucide-react";
+import {
+  Baby,
+  Cat,
+  Footprints,
+  LayoutDashboard,
+  PackageOpen,
+  Watch,
+  Shirt,
+  ShoppingBag,
+  Zap,
+} from "lucide-react";
 
 export const registerFormControls = [
   {
@@ -48,6 +58,23 @@ export const loginFormControls = [
   },
 ];
 
+export const categories = [
+  { id: "men", label: "Men", icon: Shirt },
+  { id: "women", label: "Women", icon: Cat },
+  { id: "kids", label: "Kids", icon: Baby },
+  { id: "accessories", label: "Accessories", icon: Watch },
+  { id: "footwear", label: "Footwear", icon: Footprints },
+];
+
+export const brands = [
+  { id: "nike", label: "Nike", icon: Zap },
+  { id: "adidas", label: "Adidas", icon: Zap },
+  { id: "puma", label: "Puma", icon: Zap },
+  { id: "levi", label: "Levi's", icon: Zap },
+  { id: "zara", label: "Zara", icon: Zap },
+  { id: "h&m", label: "H&M", icon: Zap },
+];
+
 export const adminSidebarMenuItems = [
   {
     id: "dashboard",
@@ -87,26 +114,15 @@ export const addProductFormElements = [
     label: "Category",
     name: "category",
     componentType: "select",
-    options: [
-      { id: "men", label: "Men" },
-      { id: "women", label: "Women" },
-      { id: "kids", label: "Kids" },
-      { id: "accessories", label: "Accessories" },
-      { id: "footwear", label: "Footwear" },
-    ],
+    placeholder: "Choose category",
+    options: categories,
   },
   {
     label: "Brand",
     name: "brand",
     componentType: "select",
-    options: [
-      { id: "nike", label: "Nike" },
-      { id: "adidas", label: "Adidas" },
-      { id: "puma", label: "Puma" },
-      { id: "levi", label: "Levi's" },
-      { id: "zara", label: "Zara" },
-      { id: "h&m", label: "H&M" },
-    ],
+    placeholder: "Choose brand",
+    options: brands,
   },
   {
     label: "Price",
@@ -132,6 +148,12 @@ export const addProductFormElements = [
 ];
 
 export const shopHeaderMenuItems = [
+  {
+    id: "home",
+    label: "Home",
+    path: "/shop/home",
+    // icon: <LayoutDashboard />,
+  },
   {
     id: "men",
     label: "Men",

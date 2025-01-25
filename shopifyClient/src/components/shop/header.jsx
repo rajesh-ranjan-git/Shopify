@@ -25,7 +25,7 @@ const MenuItems = () => {
         <Link
           className="font-medium text-sm"
           key={menuItem.id}
-          to="/shop/listing"
+          to={menuItem.path}
         >
           {menuItem.label}
         </Link>
