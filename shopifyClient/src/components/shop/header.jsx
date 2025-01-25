@@ -19,7 +19,7 @@ import ShopCartWrapper from "./cartWrapper";
 import fetchShopCartService from "@/services/shop/cart/fetchShopCartService";
 import { Label } from "@/components/ui/label";
 
-const MenuItems = () => {
+const MenuItems = ({ setOpenMobileNav }) => {
   const navigate = useNavigate();
 
   const handleNavigateToListing = (getCurrentMenuItem) => {
@@ -34,6 +34,7 @@ const MenuItems = () => {
 
     sessionStorage.setItem("filters", JSON.stringify(currentFilter));
     navigate(getCurrentMenuItem.path);
+    setOpenMobileNav(false);
   };
 
   return (
@@ -52,9 +53,9 @@ const MenuItems = () => {
 };
 
 const HeaderRightContent = () => {
+  const [openCart, setOpenCart] = useState(false);
   const { user } = useSelector((state) => state.authReducer);
   const { cartItems } = useSelector((state) => state.shopCartReducer);
-  const [openCart, setOpenCart] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -75,6 +76,7 @@ const HeaderRightContent = () => {
         </Button>
         <ShopCartWrapper
           cartItems={cartItems && cartItems.length > 0 ? cartItems : []}
+          setOpenCart={setOpenCart}
         />
       </Sheet>
       <DropdownMenu>
@@ -104,6 +106,8 @@ const HeaderRightContent = () => {
 };
 
 const ShopHeader = () => {
+  const [openMobileNav, setOpenMobileNav] = useState(false);
+
   return (
     <header className="top-0 z-40 sticky bg-background border-b w-full">
       <div className="flex justify-between items-center px-4 md:px-6 h-16">
@@ -111,7 +115,7 @@ const ShopHeader = () => {
           <House className="w-6 h-6" />
           <span className="font-bold">Shopify</span>
         </Link>
-        <Sheet>
+        <Sheet open={openMobileNav} onOpenChange={setOpenMobileNav}>
           <SheetTrigger asChild>
             <Button variant="outline" size="icon" className="lg:hidden">
               <Menu className="w-6 h-6" />
@@ -119,13 +123,13 @@ const ShopHeader = () => {
             </Button>
           </SheetTrigger>
           <SheetContent side="left" className="w-full max-w-xs">
-            <MenuItems />
+            <MenuItems setOpenMobileNav={setOpenMobileNav} />
             <HeaderRightContent />
           </SheetContent>
         </Sheet>
         <div className="lg:block hidden">
           <div>
-            <MenuItems />
+            <MenuItems setOpenMobileNav={setOpenMobileNav} />
           </div>
         </div>
         <div className="lg:block hidden">
