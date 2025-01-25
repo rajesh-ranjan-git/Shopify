@@ -1,6 +1,8 @@
 import React from "react";
 import accountImage from "@/assets/account.jpg";
-import { Tabs } from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Orders from "@/components/shop/orders";
+import Address from "@/components/shop/address";
 
 const ShopAccount = () => {
   return (
@@ -13,7 +15,18 @@ const ShopAccount = () => {
       </div>
       <div className="gap-8 grid grid-cols-1 mx-auto py-8 container">
         <div className="flex flex-col bg-background shadow-sm p-6 border rounded-lg">
-          <Tabs></Tabs>
+          <Tabs defaultValue="orders">
+            <TabsList>
+              <TabsTrigger value="orders">Orders</TabsTrigger>
+              <TabsTrigger value="address">Address</TabsTrigger>
+            </TabsList>
+            <TabsContent value="orders">
+              <Orders />
+            </TabsContent>
+            <TabsContent value="address">
+              <Address />
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
     </div>
