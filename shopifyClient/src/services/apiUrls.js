@@ -23,3 +23,9 @@ export const fetchShopCartApi = `${baseApiUrl}/shop/cart/fetchCartItems`;
 export const addToShopCartApi = `${baseApiUrl}/shop/cart/addCartItems`;
 export const updateShopCartApi = `${baseApiUrl}/shop/cart/updateCartItems`;
 export const deleteShopCartApi = `${baseApiUrl}/shop/cart/deleteCartItems`;
+
+// Address APIs
+export const fetchAddressApi = `${baseApiUrl}/shop/address/fetchAddress`;
+export const addAddressApi = `${baseApiUrl}/shop/address/addAddress`;
+export const updateAddressApi = `${baseApiUrl}/shop/address/updateAddress`;
+export const deleteAddressApi = `${baseApiUrl}/shop/address/deleteAddress`;

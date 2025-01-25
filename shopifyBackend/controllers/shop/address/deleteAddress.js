@@ -1,9 +1,9 @@
 import prisma from "../../../db/db.config.js";
 
-// Delete Cart Items
-const deleteCartItems = async (req, res) => {
+// Delete Address
+const deleteAddress = async (req, res) => {
   try {
-    const { userId, productId } = req.params;
+    const { userId, addressId } = req.params;
 
     // Validating input
     if (!userId) {
@@ -14,21 +14,19 @@ const deleteCartItems = async (req, res) => {
       });
     }
 
-    if (!productId) {
+    if (!addressId) {
       return res.status(400).json({
         status: 400,
         success: false,
-        message: "ProductId is required!",
+        message: "AddressId is required!",
       });
     }
 
     // Check if item does not exist
-    const itemToDelete = await prisma.cart.findUnique({
+    const itemToDelete = await prisma.cart.findFirst({
       where: {
-        userId_productId: {
-          userId: userId,
-          productId: productId,
-        },
+        userId: userId,
+        addressId: addressId,
       },
     });
 
@@ -36,34 +34,30 @@ const deleteCartItems = async (req, res) => {
       return res.status(400).json({
         status: 400,
         success: false,
-        message: "Item not present in cart!",
+        message: "Address not found!",
       });
     }
 
     // If item is present then delete
-    await prisma.cart.delete({
+    const deletedAddress = await prisma.cart.delete({
       where: {
-        userId_productId: {
-          userId: userId,
-          productId: productId,
-        },
+        userId: userId,
+        addressId: addressId,
       },
     });
 
-    // Fetch updated cart to return
-    const cart = await prisma.cart.findMany({
-      where: {
-        userId: userId,
-      },
-      include: {
-        product: true,
-      },
-    });
+    if (!deletedAddress) {
+      return res.status(500).json({
+        status: 500,
+        success: false,
+        message: "Could not delete address!",
+      });
+    }
 
     return res.status(200).json({
       status: 200,
       success: true,
-      message: "Item deleted from cart!",
+      message: "Address deleted successfully!",
       cart: cart,
     });
   } catch (error) {
@@ -76,4 +70,4 @@ const deleteCartItems = async (req, res) => {
   }
 };
 
-export default deleteCartItems;
+export default deleteAddress;

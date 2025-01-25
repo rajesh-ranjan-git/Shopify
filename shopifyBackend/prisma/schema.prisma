@@ -22,7 +22,8 @@ model Users {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  Cart Cart[]
+  Cart    Cart[]
+  Address Address[]
 }
 
 model Products {
@@ -51,4 +52,18 @@ model Cart {
   product Products @relation(fields: [productId], references: [id], onDelete: Cascade)
 
   @@unique([userId, productId], map: "unique_user_product") // Ensure unique product per user
+}
+
+model Address {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @db.ObjectId
+  address   String
+  city      String
+  pincode   String
+  phone     String
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user Users @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

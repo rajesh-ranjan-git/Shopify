@@ -1,6 +1,6 @@
 import prisma from "../../../db/db.config.js";
 
-// Add items to cart
+// Update items to cart
 const updateCartItems = async (req, res) => {
   try {
     const { userId, productId, quantity } = req.body;
