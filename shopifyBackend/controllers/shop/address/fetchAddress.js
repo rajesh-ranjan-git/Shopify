@@ -15,7 +15,7 @@ const fetchAddress = async (req, res) => {
     }
 
     // Check if address is present
-    const addressList = await prisma.cart.findMany({
+    const addressList = await prisma.address.findMany({
       where: {
         userId: userId,
       },

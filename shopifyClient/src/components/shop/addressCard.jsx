@@ -1,17 +1,26 @@
 import React from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Label } from "../ui/label";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
 
-const AddressCard = ({ addressInfo }) => {
+const AddressCard = ({
+  addressItem,
+  handleUpdateAddress,
+  handleDeleteAddress,
+}) => {
   return (
     <Card>
-      <CardContent className="gap-4 grid">
-        <Label>{addressInfo?.address}</Label>
-        <Label>{addressInfo?.city}</Label>
-        <Label>{addressInfo?.pincode}</Label>
-        <Label>{addressInfo?.phone}</Label>
-        <Label>{addressInfo?.notes}</Label>
+      <CardContent className="gap-4 grid p-4">
+        <Label>Address : {addressItem?.address}</Label>
+        <Label>City : {addressItem?.city}</Label>
+        <Label>Pin Code : {addressItem?.pincode}</Label>
+        <Label>Phone No. : {addressItem?.phone}</Label>
+        <Label>Additional Notes : {addressItem?.notes}</Label>
       </CardContent>
+      <CardFooter className="flex justify-between p-3">
+        <Button onClick={() => handleUpdateAddress(addressItem)}>Update</Button>
+        <Button onClick={() => handleDeleteAddress(addressItem)}>Delete</Button>
+      </CardFooter>
     </Card>
   );
 };

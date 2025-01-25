@@ -4,11 +4,11 @@ import { updateAddressApi } from "../../apiUrls";
 
 const updateAddressService = createAsyncThunk(
   "/products/updateCartItems",
-  async ({ userId, addressId, formdata }) => {
+  async ({ userId, addressId, formData }) => {
     try {
       const updateAddressServiceResponse = await axios.put(
         `${updateAddressApi}/${userId}/${addressId}`,
-        { formdata },
+        formData,
         {
           withCredentials: true,
         }

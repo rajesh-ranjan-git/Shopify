@@ -4,13 +4,11 @@ import { addAddressApi } from "../../apiUrls";
 
 const addAddressService = createAsyncThunk(
   "/products/addAddress",
-  async ({ userId, formData }) => {
-    // const { address, city, pincode, phone, notes } = formData;
+  async (formData) => {
     try {
       const addAddressServiceResponse = await axios.post(
         addAddressApi,
-        // { userId, address, city, pincode, phone, notes },
-        { formData },
+        formData,
         {
           withCredentials: true,
         }

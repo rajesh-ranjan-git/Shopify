@@ -23,10 +23,9 @@ const deleteAddress = async (req, res) => {
     }
 
     // Check if item does not exist
-    const itemToDelete = await prisma.cart.findFirst({
+    const itemToDelete = await prisma.address.findFirst({
       where: {
-        userId: userId,
-        addressId: addressId,
+        AND: { userId: userId, id: addressId },
       },
     });
 
@@ -39,10 +38,9 @@ const deleteAddress = async (req, res) => {
     }
 
     // If item is present then delete
-    const deletedAddress = await prisma.cart.delete({
+    const deletedAddress = await prisma.address.delete({
       where: {
-        userId: userId,
-        addressId: addressId,
+        id: addressId,
       },
     });
 
@@ -50,7 +48,7 @@ const deleteAddress = async (req, res) => {
       return res.status(500).json({
         status: 500,
         success: false,
-        message: "Could not delete address!",
+        message: "Unable to delete address!",
       });
     }
 
@@ -58,7 +56,6 @@ const deleteAddress = async (req, res) => {
       status: 200,
       success: true,
       message: "Address deleted successfully!",
-      cart: cart,
     });
   } catch (error) {
     // Check for errors

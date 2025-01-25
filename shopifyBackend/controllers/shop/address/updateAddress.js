@@ -4,6 +4,7 @@ import prisma from "../../../db/db.config.js";
 const updateAddress = async (req, res) => {
   try {
     const { userId, addressId } = req.params;
+    const { address, city, pincode, phone, notes } = req.body;
 
     // Validating input
     if (!userId) {
@@ -22,13 +23,10 @@ const updateAddress = async (req, res) => {
       });
     }
 
-    const { formData } = req.body;
-
     // Check if address already exists
-    const existingAddress = await prisma.cart.findFirst({
+    const existingAddress = await prisma.address.findFirst({
       where: {
-        userId: userId,
-        addressId: addressId,
+        AND: { userId: userId, id: addressId },
       },
     });
 
@@ -36,25 +34,37 @@ const updateAddress = async (req, res) => {
       // If address does not exist
       return res.status(400).json({
         status: 400,
-        success: true,
+        success: false,
         message: "Address does not exist!",
       });
     }
 
     // If address present then update
-    const updatedAddress = await prisma.cart.update({
+    const updatedAddress = await prisma.address.update({
       where: {
-        userId: userId,
-        addressId: addressId,
+        id: addressId,
       },
-      data: formData,
+      data: {
+        address: address,
+        city: city,
+        pincode: pincode,
+        phone: phone,
+        notes: notes,
+      },
     });
+
+    if (!updatedAddress) {
+      return res.status(500).json({
+        status: 500,
+        success: false,
+        message: "Unable to update address!",
+      });
+    }
 
     return res.status(200).json({
       status: 200,
       success: true,
       message: "Address updated successfully!",
-      address: updatedAddress,
     });
   } catch (error) {
     // Check for errors

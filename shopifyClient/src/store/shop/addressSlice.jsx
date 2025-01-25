@@ -19,7 +19,7 @@ const AddressSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchAddressService.fulfilled, (state, action) => {
-        state.addressList = action?.payload?.address;
+        state.addressList = action?.payload?.addressList;
         state.isLoading = false;
       })
       .addCase(fetchAddressService.rejected, (state) => {
@@ -29,34 +29,28 @@ const AddressSlice = createSlice({
       .addCase(addAddressService.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(addAddressService.fulfilled, (state, action) => {
-        state.addressList = action?.payload?.address;
+      .addCase(addAddressService.fulfilled, (state) => {
         state.isLoading = false;
       })
       .addCase(addAddressService.rejected, (state) => {
-        state.addressList = [];
         state.isLoading = false;
       })
       .addCase(updateAddressService.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(updateAddressService.fulfilled, (state, action) => {
-        state.addressList = action?.payload?.address;
         state.isLoading = false;
       })
       .addCase(updateAddressService.rejected, (state) => {
-        state.addressList = [];
         state.isLoading = false;
       })
       .addCase(deleteAddressService.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(deleteAddressService.fulfilled, (state, action) => {
-        state.addressList = action?.payload?.address;
         state.isLoading = false;
       })
       .addCase(deleteAddressService.rejected, (state) => {
-        state.addressList = [];
         state.isLoading = false;
       });
   },

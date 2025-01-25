@@ -45,7 +45,7 @@ const addAddress = async (req, res) => {
       });
     }
 
-    const newAddress = await prisma.cart.create({
+    const newAddress = await prisma.address.create({
       data: {
         userId: userId,
         address: address,

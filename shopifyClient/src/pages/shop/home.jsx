@@ -73,10 +73,6 @@ const ShopHome = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    console.log("openShopProductDetails : ", openShopProductDetails);
-  }, [openShopProductDetails]);
-
-  useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
     }, [2000]);
