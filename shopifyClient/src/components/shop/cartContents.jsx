@@ -4,7 +4,6 @@ import { Minus, Plus, Trash } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import deleteShopCartService from "@/services/shop/cart/deleteShopCartService";
 import { useToast } from "@/hooks/use-toast";
-import fetchShopCartService from "@/services/shop/cart/fetchShopCartService";
 import updateShopCartService from "@/services/shop/cart/updateShopCartService";
 
 const ShopCartContents = ({ cartItem }) => {
@@ -13,22 +12,17 @@ const ShopCartContents = ({ cartItem }) => {
   const { toast } = useToast();
 
   const handleUpdateCartItems = (getCartItem, typeOfAction) => {
-    let updatedQuantity = getCartItem?.quantity;
-    if (typeOfAction === "increment") {
-      updatedQuantity++;
-    } else {
-      updatedQuantity--;
-    }
-
     dispatch(
       updateShopCartService({
         userId: user?.id,
         productId: getCartItem?.productId,
-        quantity: updatedQuantity,
+        quantity:
+          typeOfAction === "increment"
+            ? getCartItem?.quantity + 1
+            : getCartItem?.quantity - 1,
       })
     ).then((data) => {
       if (data?.payload?.success) {
-        dispatch(fetchShopCartService(user?.id));
         toast({
           title: "Cart items updated!",
         });
@@ -44,7 +38,6 @@ const ShopCartContents = ({ cartItem }) => {
       })
     ).then((data) => {
       if (data?.payload?.success) {
-        dispatch(fetchShopCartService(user?.id));
         toast({
           title: "Item deleted from cart!",
         });

@@ -40,8 +40,6 @@ const updateCartItems = async (req, res) => {
       },
     });
 
-    let cart;
-
     if (!existingCartItem) {
       // If item is not present in cart
       return res.status(400).json({
@@ -52,7 +50,7 @@ const updateCartItems = async (req, res) => {
     }
 
     // If item present in cart then update the quantity
-    cart = await prisma.cart.update({
+    await prisma.cart.update({
       where: {
         userId_productId: {
           userId: userId,
@@ -64,10 +62,21 @@ const updateCartItems = async (req, res) => {
       },
     });
 
+    // Fetch the updated cart to return
+    const cart = await prisma.cart.findMany({
+      where: {
+        userId: userId,
+      },
+      include: {
+        product: true,
+      },
+    });
+
     return res.status(200).json({
       status: 200,
       success: true,
       message: "Cart Items updated!",
+      cart: cart,
     });
   } catch (error) {
     // Check for errors

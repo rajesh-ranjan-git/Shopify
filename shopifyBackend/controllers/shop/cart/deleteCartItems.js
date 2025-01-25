@@ -40,7 +40,8 @@ const deleteCartItems = async (req, res) => {
       });
     }
 
-    const cart = await prisma.cart.delete({
+    // If item is present then delete
+    await prisma.cart.delete({
       where: {
         userId_productId: {
           userId: userId,
@@ -49,10 +50,21 @@ const deleteCartItems = async (req, res) => {
       },
     });
 
+    // Fetch updated cart to return
+    const cart = await prisma.cart.findMany({
+      where: {
+        userId: userId,
+      },
+      include: {
+        product: true,
+      },
+    });
+
     return res.status(200).json({
       status: 200,
       success: true,
       message: "Item deleted from cart!",
+      cart: cart,
     });
   } catch (error) {
     // Check for errors
