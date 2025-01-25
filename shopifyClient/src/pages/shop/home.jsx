@@ -10,11 +10,21 @@ import { brands, categories } from "@/config/config";
 import { Card, CardContent } from "@/components/ui/card";
 import ShopProductCard from "@/components/shop/productCard";
 import fetchShopProductsService from "@/services/shop/products/fetchShopProductsService";
+import fetchShopProductDetailsService from "@/services/shop/products/fetchShopProductDetailsService";
+import addToShopCartService from "@/services/shop/cart/addToShopCartService";
+import fetchShopCartService from "@/services/shop/cart/fetchShopCartService";
+import { useToast } from "@/hooks/use-toast";
+import ShopProductDetails from "@/components/shop/productDetails";
 
 const ShopHome = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [openShopProductDetails, setOpenShopProductDetails] = useState(false);
   const navigate = useNavigate();
-  const { shopProductList } = useSelector((state) => state.shopProductsReducer);
+  const { user } = useSelector((state) => state.authReducer);
+  const { shopProductList, shopProductDetails } = useSelector(
+    (state) => state.shopProductsReducer
+  );
+  const { toast } = useToast();
 
   const slides = [bannerOne, bannerTwo, bannerThree];
 
@@ -31,6 +41,28 @@ const ShopHome = () => {
     navigate("/shop/listing");
   };
 
+  const handleShopProductDetails = (getCurrentProductId) => {
+    dispatch(fetchShopProductDetailsService(getCurrentProductId));
+    setOpenShopProductDetails(true);
+  };
+
+  const handleAddToCart = (getCurrentProductId) => {
+    dispatch(
+      addToShopCartService({
+        userId: user?.id,
+        productId: getCurrentProductId,
+        quantity: 1,
+      })
+    ).then((data) => {
+      if (data?.payload?.success) {
+        dispatch(fetchShopCartService(user?.id));
+        toast({
+          title: "Item added to cart!",
+        });
+      }
+    });
+  };
+
   useEffect(() => {
     dispatch(
       fetchShopProductsService({
@@ -39,6 +71,10 @@ const ShopHome = () => {
       })
     );
   }, [dispatch]);
+
+  useEffect(() => {
+    console.log("openShopProductDetails : ", openShopProductDetails);
+  }, [openShopProductDetails]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -139,8 +175,8 @@ const ShopHome = () => {
               ? shopProductList.map((product) => (
                   <ShopProductCard
                     product={product}
-                    // handleShopProductDetails={handleShopProductDetails}
-                    // handleAddToCart={handleAddToCart}
+                    handleShopProductDetails={handleShopProductDetails}
+                    handleAddToCart={handleAddToCart}
                     key={product.id}
                   />
                 ))
@@ -148,6 +184,13 @@ const ShopHome = () => {
           </div>
         </div>
       </section>
+      <ShopProductDetails
+        openShopProductDetails={openShopProductDetails}
+        setOpenShopProductDetails={setOpenShopProductDetails}
+        productDetails={shopProductDetails}
+        handleAddToCart={handleAddToCart}
+        // productDetails={staticProductDetails}
+      />
     </div>
   );
 };
