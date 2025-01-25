@@ -79,7 +79,7 @@ const HeaderRightContent = () => {
       </Sheet>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Avatar className="bg-black">
+          <Avatar className="bg-black cursor-pointer">
             <AvatarFallback className="bg-black font-extrabold text-white">
               {user?.name[0].toUpperCase()}
               {/* RR */}
