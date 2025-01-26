@@ -113,7 +113,7 @@ const ShopHeader = () => {
       <div className="flex justify-between items-center px-4 md:px-6 h-16">
         <Link className="flex items-center gap-2" to="/shop/home">
           <House className="w-6 h-6" />
-          <span className="font-bold">Shopify</span>
+          <span className="font-bold">Shopprixity</span>
         </Link>
         <Sheet open={openMobileNav} onOpenChange={setOpenMobileNav}>
           <SheetTrigger asChild>

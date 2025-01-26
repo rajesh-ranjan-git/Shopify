@@ -1,6 +1,6 @@
-# Shopify
+# Shopprixity
 
-Welcome to the Shopify project! This platform is designed to provide users with an intuitive and robust online shopping experience. Whether you're a seller looking to set up an online store or a customer browsing for products, Shopify simplifies the entire e-commerce process.
+Welcome to the Shopprixity project! This platform is designed to provide users with an intuitive and robust online shopping experience. Whether you're a seller looking to set up an online store or a customer browsing for products, Shopprixity simplifies the entire e-commerce process.
 
 ## Table of Contents
 
@@ -15,7 +15,7 @@ Welcome to the Shopify project! This platform is designed to provide users with 
 
 ## Project Overview
 
-Shopify is a comprehensive e-commerce platform that connects customers with online stores. It includes features like:
+Shopprixity is a comprehensive e-commerce platform that connects customers with online stores. It includes features like:
 
 - Product catalog management
 - Shopping cart and checkout process
@@ -37,7 +37,7 @@ This project is designed to cater to both small businesses and large enterprises
 
 ## Tech Stack
 
-Shopify is built using the following technologies:
+Shopprixity is built using the following technologies:
 
 - **Frontend:** HTML, CSS, JavaScript, React (for dynamic rendering)
 - **Backend:** Node.js, Express.js
@@ -49,7 +49,7 @@ Shopify is built using the following technologies:
 
 ## Installation Guide
 
-To get started with Shopify locally, follow these steps:
+To get started with Shopprixity locally, follow these steps:
 
 ### Prerequisites
 
@@ -62,20 +62,20 @@ To get started with Shopify locally, follow these steps:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/rajesh-ranjan-git/shopify.git
-   cd shopify
+   git clone https://github.com/rajesh-ranjan-git/Shopprixity.git
+   cd Shopprixity
    ```
 
 2. For Backend
 
    ```bash
-   cd shopifyBackend
+   cd ShopprixityBackend
    ```
 
 3. For Client
 
    ```bash
-   cd shopifyClient
+   cd ShopprixityClient
    ```
 
 4. Install dependencies (for both Backed and Client):
@@ -98,8 +98,8 @@ To get started with Shopify locally, follow these steps:
    ```bash
    npm run dev
    ```
-7. The backend for Shopify should now be running at http://localhost:5000
-8. The client for Shopify should now be running at http://localhost:5173
+7. The backend for Shopprixity should now be running at http://localhost:5000
+8. The client for Shopprixity should now be running at http://localhost:5173
 
 ## Usage Instructions
 
@@ -111,7 +111,7 @@ To get started with Shopify locally, follow these steps:
 
 ## Contributing
 
-We welcome contributions to improve the Shopify project! To get started:
+We welcome contributions to improve the Shopprixity project! To get started:
 
 1. Fork the repository.
 2. Create a new branch for your feature or bug fix.
@@ -131,8 +131,8 @@ For any questions or support, please contact us at:
 
 - Email: rajeshranjan8271.com
 - Contact Number: 9999340771
-<!-- - GitHub Issues: https://github.com/rajesh-ranjan-git/shopify/issues -->
+<!-- - GitHub Issues: https://github.com/rajesh-ranjan-git/Shopprixity/issues -->
 
-We hope you enjoy using Shopify!
+We hope you enjoy using Shopprixity!
 
 ---

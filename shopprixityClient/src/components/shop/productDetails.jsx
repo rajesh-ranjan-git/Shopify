@@ -95,7 +95,7 @@ const ShopProductDetails = ({
                     <Star className="w-5 h-5 fill-primary" />
                     <Star className="w-5 h-5 fill-primary" />
                   </div>
-                  <p className="text-muted-foreground">This is Shopify!</p>
+                  <p className="text-muted-foreground">This is Shopprixity!</p>
                 </div>
               </div>
             </div>
@@ -115,7 +115,7 @@ const ShopProductDetails = ({
                     <Star className="w-5 h-5 fill-primary" />
                     <Star className="w-5 h-5 fill-primary" />
                   </div>
-                  <p className="text-muted-foreground">This is Shopify!</p>
+                  <p className="text-muted-foreground">This is Shopprixity!</p>
                 </div>
               </div>
             </div>
@@ -135,7 +135,7 @@ const ShopProductDetails = ({
                     <Star className="w-5 h-5 fill-primary" />
                     <Star className="w-5 h-5 fill-primary" />
                   </div>
-                  <p className="text-muted-foreground">This is Shopify!</p>
+                  <p className="text-muted-foreground">This is Shopprixity!</p>
                 </div>
               </div>
             </div>

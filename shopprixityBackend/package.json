@@ -1,7 +1,7 @@
 {
-  "name": "shopifyBackend",
+  "name": "shopprixityBackend",
   "version": "1.0.0",
-  "description": "This is the backend for shopify.",
+  "description": "This is the backend for shoshopprixity.",
   "license": "ISC",
   "author": "Rajesh Ranjan",
   "type": "module",
