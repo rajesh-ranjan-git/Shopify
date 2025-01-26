@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import checkoutImage from "@/assets/account.jpg";
 import Address from "@/components/shop/address";
 import { useSelector } from "react-redux";
@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 
 const ShopCheckout = () => {
   const { cartItems } = useSelector((state) => state.shopCartReducer);
-  const totalCartAmount = cartItems.reduce(
+  const totalCartAmount = cartItems?.reduce(
     (sum, item) =>
       (sum +=
         (item?.product?.salePrice > 0
@@ -27,11 +27,15 @@ const ShopCheckout = () => {
       <div className="gap-3 grid grid-cols-1 sm:grid-cols-2 mt-5 p-5">
         <Address />
         <div className="flex flex-col gap-4">
-          {cartItems && cartItems.length > 0
-            ? cartItems.map((cartItem) => (
-                <ShopCartContents cartItem={cartItem} />
-              ))
-            : null}
+          {cartItems && cartItems.length > 0 ? (
+            cartItems.map((cartItem) => (
+              <ShopCartContents cartItem={cartItem} key={cartItem?.id} />
+            ))
+          ) : (
+            <p className="text-2xl text-bold text-center">
+              Nothing in your cart!
+            </p>
+          )}
           <div className="space-y-4 mt-8">
             <div className="flex justify-between">
               <span className="font-bold">Total Amount</span>

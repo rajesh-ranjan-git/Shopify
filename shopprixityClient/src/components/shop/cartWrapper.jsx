@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   SheetContent,
   SheetDescription,
@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import ShopCartContents from "./cartContents";
 import { useNavigate } from "react-router-dom";
 
-const ShopCartWrapper = ({ cartItems, setOpenCart }) => {
+const ShopCartWrapper = ({ cartItems, setOpenCart, setOpenMobileNav }) => {
   const navigate = useNavigate();
 
   const totalCartAmount = cartItems.reduce(
@@ -24,6 +24,7 @@ const ShopCartWrapper = ({ cartItems, setOpenCart }) => {
   const handleCheckout = () => {
     navigate("/shop/checkout");
     setOpenCart(false);
+    setOpenMobileNav(false);
   };
 
   return (

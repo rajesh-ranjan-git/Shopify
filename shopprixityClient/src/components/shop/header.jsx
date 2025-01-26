@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react";
 import { House, LogOut, Menu, ShoppingCart, UserRound } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -52,7 +58,7 @@ const MenuItems = ({ setOpenMobileNav }) => {
   );
 };
 
-const HeaderRightContent = () => {
+const HeaderRightContent = ({ setOpenMobileNav }) => {
   const [openCart, setOpenCart] = useState(false);
   const { user } = useSelector((state) => state.authReducer);
   const { cartItems } = useSelector((state) => state.shopCartReducer);
@@ -77,6 +83,7 @@ const HeaderRightContent = () => {
         <ShopCartWrapper
           cartItems={cartItems && cartItems.length > 0 ? cartItems : []}
           setOpenCart={setOpenCart}
+          setOpenMobileNav={setOpenMobileNav}
         />
       </Sheet>
       <DropdownMenu>
@@ -91,7 +98,12 @@ const HeaderRightContent = () => {
         <DropdownMenuContent side="right" className="w-56">
           <DropdownMenuLabel>Logged in as {user?.name}!</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={() => navigate("/shop/account")}>
+          <DropdownMenuItem
+            onClick={() => {
+              navigate("/shop/account");
+              setOpenMobileNav(false);
+            }}
+          >
             <UserRound className="mr-2 w-4 h-4" />
             <span>Account</span>
           </DropdownMenuItem>
@@ -122,10 +134,12 @@ const ShopHeader = () => {
               <span className="sr-only">Toggle header menu</span>
             </Button>
           </SheetTrigger>
+          <SheetTitle className="hidden"></SheetTitle>
           <SheetContent side="left" className="w-full max-w-xs">
             <MenuItems setOpenMobileNav={setOpenMobileNav} />
-            <HeaderRightContent />
+            <HeaderRightContent setOpenMobileNav={setOpenMobileNav} />
           </SheetContent>
+          <SheetDescription className="hidden"></SheetDescription>
         </Sheet>
         <div className="lg:block hidden">
           <div>
@@ -133,7 +147,7 @@ const ShopHeader = () => {
           </div>
         </div>
         <div className="lg:block hidden">
-          <HeaderRightContent />
+          <HeaderRightContent setOpenMobileNav={setOpenMobileNav} />
         </div>
       </div>
     </header>
