@@ -1,7 +1,12 @@
+import AdminOrders from "@/components/admin/orders";
 import React from "react";
 
-const AdminOrders = () => {
-  return <div>AdminOrders</div>;
+const AdminOrdersPage = () => {
+  return (
+    <div>
+      <AdminOrders />
+    </div>
+  );
 };
 
-export default AdminOrders;
+export default AdminOrdersPage;

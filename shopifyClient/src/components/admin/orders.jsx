@@ -10,19 +10,19 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Dialog } from "@/components/ui/dialog";
-import ShopOrderDetails from "./orderDetails";
+import AdminOrderDetails from "./orderDetails";
 
-const ShopOrders = () => {
+const AdminOrders = () => {
   const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
 
   return (
     <Card>
-      <CardHeader>Order History</CardHeader>
+      <CardHeader>All Orders</CardHeader>
       <CardContent>
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Order Id</TableHead>
+              <TableHead> Order Id</TableHead>
               <TableHead>Date</TableHead>
               <TableHead>Status</TableHead>
               <TableHead>Price</TableHead>
@@ -45,7 +45,7 @@ const ShopOrders = () => {
                   <Button onClick={() => setOpenDetailsDialog(true)}>
                     Details
                   </Button>
-                  <ShopOrderDetails />
+                  <AdminOrderDetails />
                 </Dialog>
               </TableCell>
             </TableRow>
@@ -56,4 +56,4 @@ const ShopOrders = () => {
   );
 };
 
-export default ShopOrders;
+export default AdminOrders;
