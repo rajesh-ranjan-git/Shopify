@@ -1,6 +1,6 @@
 # Shopprixity
 
-Welcome to the Shopprixity project! This platform is designed to provide users with an intuitive and robust online shopping experience. Whether you're a seller looking to set up an online store or a customer browsing for products, Shopprixity simplifies the entire e-commerce process.
+Welcome to the Shopprixity! This platform is designed to provide users with an intuitive and robust online shopping experience. Whether you're a seller looking to set up an online store or a customer browsing for products, Shopprixity simplifies the entire e-commerce process.
 
 ## Table of Contents
 
