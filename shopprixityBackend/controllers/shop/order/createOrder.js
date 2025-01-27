@@ -7,6 +7,7 @@ const createOrder = async (req, res) => {
     const {
       userId,
       orderItems,
+      cartId,
       shippingAddress,
       totalAmount,
       orderStatus,
@@ -67,6 +68,7 @@ const createOrder = async (req, res) => {
             orderNumber: Number(Math.random() * 10000000),
             userId: userId,
             orderItems: orderItems,
+            cartId: cartId,
             totalAmount: totalAmount,
             orderStatus: orderStatus,
             payerId: payerId,

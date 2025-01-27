@@ -4,18 +4,14 @@ import { createOrderApi } from "../../apiUrls";
 
 const createOrderService = createAsyncThunk(
   "/order/createOrder",
-  async ({ orderData }) => {
+  async (orderData) => {
     try {
-      const addToShopCartResponse = await axios.post(
-        createOrderApi,
-        orderData,
-        {
-          withCredentials: true,
-        }
-      );
+      const createOrderResponse = await axios.post(createOrderApi, orderData, {
+        withCredentials: true,
+      });
 
-      console.log("addToShopCartResponse : ", addToShopCartResponse);
-      return addToShopCartResponse?.data;
+      console.log("createOrderResponse : ", createOrderResponse);
+      return createOrderResponse?.data;
     } catch (error) {
       console.log("error : ", error);
       return error.response.data;

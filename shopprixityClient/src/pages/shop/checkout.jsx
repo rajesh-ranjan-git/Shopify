@@ -34,6 +34,7 @@ const ShopCheckout = () => {
         price: item.salePrice > 0 ? item.salePrice : item.price,
         quantity: item.quantity,
       })),
+      cartId: cartItems?.id,
       shippingAddress: currentSelectedAddress,
       totalAmount: totalCartAmount,
       orderStatus: "pending",

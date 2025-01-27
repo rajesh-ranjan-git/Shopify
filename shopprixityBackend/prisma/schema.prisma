@@ -51,6 +51,7 @@ model Cart {
 
   user    Users    @relation(fields: [userId], references: [id], onDelete: Cascade)
   product Products @relation(fields: [productId], references: [id], onDelete: Cascade)
+  Orders  Orders[]
 
   @@unique([userId, productId], map: "unique_user_product") // Ensure unique product per user
 }
@@ -75,6 +76,8 @@ model Orders {
   userId          String          @db.ObjectId
   user            Users           @relation(fields: [userId], references: [id])
   orderItems      OrderItems[]
+  cartId          String          @db.ObjectId
+  cart            Cart            @relation(fields: [cartId], references: [id])
   totalAmount     Int
   orderStatus     String
   payerId         String

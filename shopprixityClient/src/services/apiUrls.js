@@ -32,3 +32,4 @@ export const deleteAddressApi = `${baseApiUrl}/shop/address/deleteAddress`;
 
 // Order APIs
 export const createOrderApi = `${baseApiUrl}/shop/order/createOrder`;
+export const capturePaymentServiceApi = `${baseApiUrl}/shop/order/capturePayment`;

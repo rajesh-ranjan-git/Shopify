@@ -19,6 +19,10 @@ const OrderSlice = createSlice({
         state.approvalURL = action.payload.approvalURL;
         state.orderId = action.payload.orderId;
         state.isLoading = false;
+        sessionStorage.setItem(
+          "currentOrderId",
+          JSON.stringify(action.payload.orderId)
+        );
       }),
       builder.addCase(createOrderService.rejected, (state) => {
         state.approvalURL = null;
