@@ -29,3 +29,6 @@ export const fetchAddressApi = `${baseApiUrl}/shop/address/fetchAddress`;
 export const addAddressApi = `${baseApiUrl}/shop/address/addAddress`;
 export const updateAddressApi = `${baseApiUrl}/shop/address/updateAddress`;
 export const deleteAddressApi = `${baseApiUrl}/shop/address/deleteAddress`;
+
+// Order APIs
+export const createOrderApi = `${baseApiUrl}/shop/order/createOrder`;

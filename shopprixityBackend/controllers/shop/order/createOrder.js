@@ -14,8 +14,6 @@ const createOrder = async (req, res) => {
       paymentId,
       paymentStatus,
       paymentMethod,
-      orderDate,
-      orderUpdateDate,
     } = req.body;
 
     const createPaymentJSON = {
@@ -24,14 +22,14 @@ const createOrder = async (req, res) => {
         payment_method: "paypal",
       },
       redirect_urls: {
-        return_url: "http://localhost:5173/shop/paypalReturnPage",
-        cancel_url: "http://localhost:5173/shop/paypalCancelPage",
+        return_url: "http://localhost:5173/shop/paypal/paypalReturnPage",
+        cancel_url: "http://localhost:5173/shop/paypal/paypalCancelPage",
       },
       transactions: {
         item_list: {
           items: orderItems.map((item) => ({
             name: item.title,
-            sju: item.productId,
+            sku: item.productId,
             price: item.price.toFixed(2),
             currency: "INR",
             quantity: item.quantity,
@@ -51,73 +49,57 @@ const createOrder = async (req, res) => {
         return res.status(500).json({
           status: 500,
           success: false,
-          message: "Something went wrong while create paypal payment!",
+          message: "Something went wrong while creating paypal payment!",
         });
       } else {
-        const order = prisma.orders.create({
+        const newShippingAddress = await prisma.shippingAddress.create({
           data: {
-            orderNumber,
-            userId,
-            orderItems,
-            totalAmount,
-            orderStatus,
-            payerId,
-            paymentId,
-            paymentStatus,
-            paymentMethod,
-            addressId,
+            address: shippingAddress.address,
+            city: shippingAddress.city,
+            pincode: shippingAddress.pincode,
+            phone: shippingAddress.phone,
+            notes: shippingAddress.notes,
           },
         });
+
+        const newOrder = await prisma.orders.create({
+          data: {
+            orderNumber: Number(Math.random() * 10000000),
+            userId: userId,
+            orderItems: orderItems,
+            totalAmount: totalAmount,
+            orderStatus: orderStatus,
+            payerId: payerId,
+            paymentId: paymentId,
+            paymentStatus: paymentStatus,
+            paymentMethod: paymentMethod,
+            addressId: newShippingAddress.id,
+          },
+        });
+
+        const newOrderItems = orderItems.map(async (item) => {
+          item = await prisma.orderItems.create({
+            data: {
+              orderId: newOrder.id,
+              productId: item.productId,
+              quantity: item.quantity,
+              price: item.quantity,
+              image: item.image,
+            },
+          });
+        });
+
+        const approvalURL = paymentInfo.links.find(
+          (link) => link.rel === "approval_url"
+        ).href;
+
+        return res.status(201).json({
+          success: true,
+          approvalURL,
+          orderId: order.id,
+          message: "Order created successfully!",
+        });
       }
-    });
-
-    // Check if item already exists
-    const existingCartItem = await prisma.cart.findUnique({
-      where: {
-        userId_productId: {
-          userId: userId,
-          productId: productId,
-        },
-      },
-    });
-
-    let cart;
-
-    if (!existingCartItem) {
-      // If no cart items then create cart and add items
-      cart = await prisma.cart.create({
-        data: {
-          userId: userId,
-          productId: productId,
-          quantity: quantity,
-        },
-      });
-
-      return res.status(201).json({
-        status: 201,
-        success: true,
-        message: "Item added to cart!",
-        cart: cart,
-      });
-    }
-
-    // If item present in cart then increase the quantity
-    cart = await prisma.cart.update({
-      where: {
-        userId_productId: {
-          userId: userId,
-          productId: productId,
-        },
-      },
-      data: {
-        quantity: existingCartItem.quantity + quantity,
-      },
-    });
-
-    return res.status(200).json({
-      status: 200,
-      success: true,
-      message: "Cart Items updated!",
     });
   } catch (error) {
     // Check for errors
