@@ -2,31 +2,42 @@ import React, { useState } from "react";
 import { DialogContent } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
+import { Badge } from "@/components/ui/badge";
 
 const initialFormData = {
   status: "",
 };
 
-const ShopOrderDetails = () => {
+const ShopOrderDetails = ({ orderDetails }) => {
   return (
     <DialogContent className="sm:max-w-[600px]">
       <div className="gap-6 grid">
         <div className="gap-2 grid">
           <div className="flex justify-between items-center mt-6">
             <p className="font-medium">Order Id</p>
-            <Label>1</Label>
+            <Label>{orderDetails?.orderNumber}</Label>
           </div>
           <div className="flex justify-between items-center mt-2">
             <p className="font-medium">Date</p>
-            <Label>02/01/2025</Label>
+            <Label>{orderDetails?.orderDate.split("T")[0]}</Label>
           </div>
           <div className="flex justify-between items-center mt-2">
             <p className="font-medium">Status</p>
-            <Label>Delivered</Label>
+            <Label>
+              <Badge
+                className={`${
+                  orderDetails?.orderStatus === "confirmed"
+                    ? "bg-green-500"
+                    : "bg-black"
+                } px-3 py-1`}
+              >
+                {orderDetails?.orderStatus}
+              </Badge>
+            </Label>
           </div>
           <div className="flex justify-between items-center mt-2">
             <p className="font-medium">Price</p>
-            <Label>₹1040</Label>
+            <Label>₹{orderDetails?.totalAmount}</Label>
           </div>
         </div>
         <Separator />
@@ -35,7 +46,7 @@ const ShopOrderDetails = () => {
             <div className="font-medium">Order Details</div>
             <ul className="gap-3 grid">
               <li className="flex justify-between item-center">
-                <span>Product One</span>
+                <span>{orderDetails?.orderItems?.title}</span>
                 <span>₹100</span>
               </li>
             </ul>

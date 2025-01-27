@@ -1,16 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
 import createOrderService from "@/services/shop/order/createOrderService";
+import fetchAllOrdersByUserService from "@/services/shop/order/fetchAllOrdersByUserService";
+import fetchOrderDetailsService from "@/services/shop/order/fetchOrderDetailsService";
 
 const initialState = {
   isLoading: false,
   approvalURL: null,
   orderId: null,
+  ordersList: [],
+  orderDetails: null,
 };
 
 const OrderSlice = createSlice({
   name: "shopOrder",
   initialState,
-  reducers: {},
+  reducers: {
+    resetOrderDetails: (state) => {
+      state.orderDetails = null;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(createOrderService.pending, (state) => {
       state.isLoading = true;
@@ -28,8 +36,35 @@ const OrderSlice = createSlice({
         state.approvalURL = null;
         state.orderId = null;
         state.isLoading = false;
+        sessionStorage.removeItem("currentOrderId");
+      }),
+      builder.addCase(fetchAllOrdersByUserService.pending, (state) => {
+        state.isLoading = true;
+      }),
+      builder.addCase(
+        fetchAllOrdersByUserService.fulfilled,
+        (state, action) => {
+          state.isLoading = false;
+          state.ordersList = action.payload.data;
+        }
+      ),
+      builder.addCase(fetchAllOrdersByUserService.rejected, (state) => {
+        state.isLoading = false;
+        state.ordersList = [];
+      }),
+      builder.addCase(fetchOrderDetailsService.pending, (state) => {
+        state.isLoading = true;
+      }),
+      builder.addCase(fetchOrderDetailsService.fulfilled, (state) => {
+        state.isLoading = false;
+        state.orderDetails = action.payload.data;
+      }),
+      builder.addCase(fetchOrderDetailsService.rejected, (state) => {
+        state.isLoading = false;
+        state.orderDetails = null;
       });
   },
 });
 
+export const { resetOrderDetails } = OrderSlice.actions;
 export default OrderSlice.reducer;
