@@ -24,6 +24,7 @@ model Users {
 
   Cart    Cart[]
   Address Address[]
+  Order   Orders[]
 }
 
 model Products {
@@ -66,4 +67,45 @@ model Address {
   updatedAt DateTime @updatedAt
 
   user Users @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Orders {
+  id              String          @id @default(auto()) @map("_id") @db.ObjectId
+  orderNumber     String          @unique
+  userId          String          @db.ObjectId
+  user            Users           @relation(fields: [userId], references: [id])
+  orderItems      OrderItems[]
+  totalAmount     Int
+  orderStatus     String
+  payerId         String
+  paymentId       String
+  paymentStatus   String
+  paymentMethod   String
+  addressId       String          @db.ObjectId
+  shippingAddress ShippingAddress @relation(fields: [addressId], references: [id])
+  orderDate       DateTime        @default(now())
+  orderUpdateDate DateTime        @updatedAt
+}
+
+model OrderItems {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  orderId   String   @db.ObjectId
+  order     Orders   @relation(fields: [orderId], references: [id])
+  productId String   @db.ObjectId
+  quantity  Int
+  price     Float
+  image     String
+  createdAt DateTime @default(now())
+}
+
+model ShippingAddress {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  address   String
+  city      String
+  pincode   String
+  phone     String
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Order     Orders[]
 }
