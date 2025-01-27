@@ -3,6 +3,6 @@ import createOrder from "../../controllers/shop/order/createOrder.js";
 
 const orderRouter = express.Router();
 
-addressRouter.post("/createOrder", createOrder);
+orderRouter.post("/createOrder", createOrder);
 
 export default orderRouter;

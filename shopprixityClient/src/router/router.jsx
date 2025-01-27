@@ -14,6 +14,7 @@ import ShopListing from "@/pages/shop/listing";
 import ShopCheckout from "@/pages/shop/checkout";
 import ShopAccount from "@/pages/shop/account";
 import CheckAuth from "@/components/common/checkAuth";
+import PaypalReturnPage from "@/pages/shop/paypalReturnPage";
 
 const appRouter = createBrowserRouter([
   {
@@ -83,6 +84,10 @@ const appRouter = createBrowserRouter([
           {
             path: "account",
             element: <ShopAccount />,
+          },
+          {
+            path: "paypalReturnPage",
+            element: <PaypalReturnPage />,
           },
         ],
       },

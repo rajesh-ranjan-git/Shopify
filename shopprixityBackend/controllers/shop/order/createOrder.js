@@ -22,8 +22,8 @@ const createOrder = async (req, res) => {
         payment_method: "paypal",
       },
       redirect_urls: {
-        return_url: "http://localhost:5173/shop/paypal/paypalReturnPage",
-        cancel_url: "http://localhost:5173/shop/paypal/paypalCancelPage",
+        return_url: "http://localhost:5173/shop/paypalReturnPage",
+        cancel_url: "http://localhost:5173/shop/paypalCancelPage",
       },
       transactions: {
         item_list: {
