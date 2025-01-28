@@ -29,6 +29,29 @@ const capturePayment = async (req, res) => {
     order.paymentId = paymentId;
     order.payerId = payerId;
 
+    for (let item of order.orderItems) {
+      let product = await prisma.products.findUnique(item.productId);
+
+      if (!product) {
+        return res.status(404).json({
+          status: 404,
+          success: false,
+          message: `Not enough stock for this product ${product.title}!`,
+        });
+      }
+
+      product.totalStock -= item.quantity;
+
+      await prisma.products.update({
+        where: {
+          id: item.productId,
+        },
+        data: {
+          totalStock: product.totalStock,
+        },
+      });
+    }
+
     order = await prisma.orders.update({
       where: {
         orderId: orderId,
