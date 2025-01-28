@@ -4,10 +4,11 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import CommonForm from "@/components/common/form";
 import { Badge } from "@/components/ui/badge";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import updateOrderStatusService from "@/services/admin/order/updateOrderStatus";
 import fetchAdminOrderDetailsService from "@/services/admin/order/fetchAdminOrderDetailsService";
 import fetchAllOrdersService from "@/services/admin/order/fetchAllOrdersService";
+import { useToast } from "@/hooks/use-toast";
 
 const initialFormData = {
   status: "",
@@ -15,10 +16,10 @@ const initialFormData = {
 
 const AdminOrderDetails = ({ orderDetails }) => {
   const [formData, setFormData] = useState(initialFormData);
-  const { user } = useSelector((state) => state.authReducer);
   const dispatch = useDispatch();
+  const { toast } = useToast();
 
-  const handleOrderStatus = (e) => {
+  const handleUpdateOrderStatus = (e) => {
     e.preventDefault();
     const status = formData;
     dispatch(
@@ -31,6 +32,9 @@ const AdminOrderDetails = ({ orderDetails }) => {
         dispatch(fetchAdminOrderDetailsService(orderDetails?.id));
         dispatch(fetchAllOrdersService());
         setFormData(initialFormData);
+        toast({
+          title: "Order status updated successfully!",
+        });
       }
     });
   };
@@ -114,7 +118,7 @@ const AdminOrderDetails = ({ orderDetails }) => {
             formData={formData}
             setFormData={setFormData}
             buttonText={"Update Order Status"}
-            onSubmit={handleOrderStatus}
+            onSubmit={handleUpdateOrderStatus}
           />
         </div>
       </div>
