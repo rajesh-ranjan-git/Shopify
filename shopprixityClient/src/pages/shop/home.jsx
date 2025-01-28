@@ -185,7 +185,6 @@ const ShopHome = () => {
         setOpenShopProductDetails={setOpenShopProductDetails}
         productDetails={shopProductDetails}
         handleAddToCart={handleAddToCart}
-        // productDetails={staticProductDetails}
       />
     </div>
   );

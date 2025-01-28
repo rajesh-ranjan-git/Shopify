@@ -152,43 +152,36 @@ export const shopHeaderMenuItems = [
     id: "home",
     label: "Home",
     path: "/shop/home",
-    // icon: <LayoutDashboard />,
   },
   {
     id: "products",
     label: "Products",
     path: "/shop/listing",
-    // icon: <LayoutDashboard />,
   },
   {
     id: "men",
     label: "Men",
     path: "/shop/listing",
-    // icon: <LayoutDashboard />,
   },
   {
     id: "women",
     label: "Women",
     path: "/shop/listing",
-    // icon: <LayoutDashboard />,
   },
   {
     id: "kids",
     label: "Kids",
     path: "/shop/listing",
-    // icon: <LayoutDashboard />,
   },
   {
     id: "footwear",
     label: "Footwear",
     path: "/shop/listing",
-    // icon: <LayoutDashboard />,
   },
   {
     id: "accessories",
     label: "Accessories",
     path: "/shop/listing",
-    // icon: <LayoutDashboard />,
   },
 ];
 

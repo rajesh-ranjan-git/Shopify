@@ -17,7 +17,6 @@ import editProductService from "@/services/admin/products/editProductService";
 import { useToast } from "@/hooks/use-toast";
 import AdminProductCard from "@/components/admin/productCard";
 import deleteProductService from "@/services/admin/products/deleteProductService";
-import { staticProductList } from "../../components/common/staticProductList";
 
 const initialFormData = {
   image: null,
@@ -121,19 +120,6 @@ const AdminProducts = () => {
               />
             ))
           : null}
-        {/* {staticProductList && staticProductList.length > 0
-          ? staticProductList.map((product) => (
-              <AdminProductCard
-                product={product}
-                key={product.id}
-                currentEditedId={currentEditedId}
-                setCurrentEditedId={setCurrentEditedId}
-                setOpenCreateProductsDialog={setOpenCreateProductsDialog}
-                setFormData={setFormData}
-                handleProductDelete={handleProductDelete}
-              />
-            ))
-          : null} */}
       </div>
 
       <Sheet

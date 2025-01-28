@@ -13,9 +13,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowUpDown } from "lucide-react";
 import { sortOptions } from "@/config/config";
 import ShopProductCard from "@/components/shop/productCard";
-import { staticProductList } from "@/components/common/staticProductList";
 import ShopProductDetails from "@/components/shop/productDetails";
-import { staticProductDetails } from "@/components/common/staticProductDetails";
 import fetchShopProductsService from "@/services/shop/products/fetchShopProductsService";
 import fetchShopProductDetailsService from "@/services/shop/products/fetchShopProductDetailsService";
 import addToShopCartService from "@/services/shop/cart/addToShopCartService";
@@ -126,9 +124,7 @@ const ShopListing = () => {
           <h2 className="font-extrabold text-lg">All Products</h2>
           <div className="flex items-center gap-3">
             <span className="text-muted-foreground">
-              {shopProductList
-                ? shopProductList?.length
-                : staticProductList.length}
+              {shopProductList && shopProductList?.length}
               &nbsp; Products
             </span>
             <DropdownMenu>
@@ -168,15 +164,6 @@ const ShopListing = () => {
                 />
               ))
             : null}
-          {/* {staticProductList && staticProductList.length > 0
-            ? staticProductList.map((product) => (
-                <ShopProductCard
-                  product={product}
-                  handleShopProductDetails={handleShopProductDetails}
-                  key={product.id}
-                />
-              ))
-            : null} */}
         </div>
       </div>
       <ShopProductDetails
@@ -184,7 +171,6 @@ const ShopListing = () => {
         setOpenShopProductDetails={setOpenShopProductDetails}
         productDetails={shopProductDetails}
         handleAddToCart={handleAddToCart}
-        // productDetails={staticProductDetails}
       />
     </div>
   );
