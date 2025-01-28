@@ -39,7 +39,9 @@ const MenuItems = ({ setOpenMobileNav }) => {
     sessionStorage.removeItem("filters");
 
     const currentFilter =
-      getCurrentMenuItem.id !== "home" && getCurrentMenuItem.id !== "products"
+      getCurrentMenuItem.id !== "home" &&
+      getCurrentMenuItem.id !== "products" &&
+      getCurrentMenuItem.id !== "search"
         ? {
             category: [getCurrentMenuItem.id],
           }
