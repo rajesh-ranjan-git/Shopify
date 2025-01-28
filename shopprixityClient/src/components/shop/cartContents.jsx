@@ -8,10 +8,41 @@ import updateShopCartService from "@/services/shop/cart/updateShopCartService";
 
 const ShopCartContents = ({ cartItem }) => {
   const { user } = useSelector((state) => state.authReducer);
+  const { cartItems } = useSelector((state) => state.shopCartReducer);
+  const { productList } = useSelector((state) => state.shopProductsReducer);
   const dispatch = useDispatch();
   const { toast } = useToast();
 
   const handleUpdateCartItems = (getCartItem, typeOfAction) => {
+    if (typeOfAction === "increment") {
+      let getCurrentCartItems = cartItems.items || [];
+
+      if (getCurrentCartItems.length > 0) {
+        const indexOfCurrentCartItem = getCurrentCartItems.findIndex(
+          (item) => item.productId === getCartItem?.productId
+        );
+
+        const getCurrentProductIndex = productList.findIndex(
+          (product) => product?.id === getCartItem?.productId
+        );
+
+        const getTotalStock = productList[getCurrentProductIndex].totalStock;
+
+        if (indexOfCurrentCartItem > -1) {
+          const getQuantity =
+            getCurrentCartItems[indexOfCurrentCartItem].quantity;
+
+          if (getQuantity + 1 > getTotalStock) {
+            toast({
+              title: `Only ${getQuantity} items can be added for this product!`,
+              variant: "destructive",
+            });
+
+            return;
+          }
+        }
+      }
+    }
     dispatch(
       updateShopCartService({
         userId: user?.id,

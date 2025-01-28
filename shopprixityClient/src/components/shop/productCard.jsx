@@ -60,20 +60,17 @@ const ShopProductCard = ({
       </div>
       <CardFooter className="flex justify-between items-center">
         {product?.totalStock === 0 ? (
-          <Button className="opacity-65 w-full cursor-not-allowed">
+          <Button className="opacity-60 w-full cursor-not-allowed">
             Out of stock
           </Button>
         ) : (
           <Button
             className="w-full"
-            onClick={() => handleAddToCart(product?.id)}
+            onClick={() => handleAddToCart(product?.id, product?.totalStock)}
           >
             Add to cart
           </Button>
         )}
-        <Button className="w-full" onClick={() => handleAddToCart(product?.id)}>
-          Add to cart
-        </Button>
       </CardFooter>
     </Card>
   );

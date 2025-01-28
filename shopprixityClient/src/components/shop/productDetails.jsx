@@ -69,12 +69,20 @@ const ShopProductDetails = ({
             <span className="text-muted-foreground">(4.5)</span>
           </div>
           <div className="mt-5 mb-5">
-            <Button
-              className="w-full"
-              onClick={() => handleAddToCart(productDetails?.id)}
-            >
-              Add to Cart
-            </Button>
+            {productDetails?.totalStock === 0 ? (
+              <Button className="opacity-60 w-full cursor-not-allowed">
+                Out of stock
+              </Button>
+            ) : (
+              <Button
+                className="w-full"
+                onClick={() =>
+                  handleAddToCart(product?.id, product?.totalStock)
+                }
+              >
+                Add to cart
+              </Button>
+            )}
           </div>
           <Separator />
           <div className="max-h-[300px] overflow-auto">
