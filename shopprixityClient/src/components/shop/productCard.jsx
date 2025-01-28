@@ -18,7 +18,15 @@ const ShopProductCard = ({
             alt={product?.title}
             className="rounded-t-lg w-full h-[300px] object-cover"
           />
-          {product?.salePrice > 0 ? (
+          {product?.totalStock === 0 ? (
+            <Badge className="top-2 left-2 absolute bg-red-500 hover:bg-red-600">
+              Out of stock
+            </Badge>
+          ) : product?.totalStock <= 10 ? (
+            <Badge className="top-2 left-2 absolute bg-red-500 hover:bg-red-600">
+              {`Only ${product?.totalStock} items left`}
+            </Badge>
+          ) : product?.salePrice > 0 ? (
             <Badge className="top-2 left-2 absolute bg-red-500 hover:bg-red-600">
               Sale
             </Badge>
@@ -51,8 +59,20 @@ const ShopProductCard = ({
         </CardContent>
       </div>
       <CardFooter className="flex justify-between items-center">
+        {product?.totalStock === 0 ? (
+          <Button className="opacity-65 w-full cursor-not-allowed">
+            Out of stock
+          </Button>
+        ) : (
+          <Button
+            className="w-full"
+            onClick={() => handleAddToCart(product?.id)}
+          >
+            Add to cart
+          </Button>
+        )}
         <Button className="w-full" onClick={() => handleAddToCart(product?.id)}>
-          Add to Cart
+          Add to cart
         </Button>
       </CardFooter>
     </Card>
