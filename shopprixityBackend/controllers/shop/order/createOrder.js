@@ -65,7 +65,6 @@ const createOrder = async (req, res) => {
 
         const newOrder = await prisma.orders.create({
           data: {
-            orderNumber: Number(Math.random() * 10000000),
             userId: userId,
             orderItems: orderItems,
             cartId: cartId,
