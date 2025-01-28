@@ -65,8 +65,10 @@ const ShopOrders = () => {
                     <TableCell>
                       <Badge
                         className={`${
-                          orderItem?.orderStatus === "confirmed"
+                          orderDetails?.orderStatus === "confirmed"
                             ? "bg-green-500"
+                            : orderDetails?.orderStatus === "rejected"
+                            ? "bg-red-600"
                             : "bg-black"
                         } px-3 py-1`}
                       >

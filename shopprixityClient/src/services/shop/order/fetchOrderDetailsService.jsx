@@ -4,10 +4,10 @@ import { fetchOrderDetailsServiceApi } from "../../apiUrls";
 
 const fetchOrderDetailsService = createAsyncThunk(
   "/order/orderDetails",
-  async (userId) => {
+  async (orderId) => {
     try {
       const fetchOrderDetailsResponse = await axios.get(
-        `${fetchOrderDetailsServiceApi}/${userId}`,
+        `${fetchOrderDetailsServiceApi}/${orderId}`,
         {
           withCredentials: true,
         }

@@ -1,5 +1,4 @@
 import prisma from "../../../db/db.config.js";
-import paypal from "../../../helpers/paypal.js";
 
 // Add items to cart
 const fetchAllOrdersByUser = async (req, res) => {

@@ -27,6 +27,8 @@ const ShopOrderDetails = ({ orderDetails }) => {
                 className={`${
                   orderDetails?.orderStatus === "confirmed"
                     ? "bg-green-500"
+                    : orderDetails?.orderStatus === "rejected"
+                    ? "bg-red-600"
                     : "bg-black"
                 } px-3 py-1`}
               >
@@ -61,10 +63,6 @@ const ShopOrderDetails = ({ orderDetails }) => {
                     </li>
                   ))
                 : null}
-              <li className="flex justify-between item-center">
-                <span>{orderDetails?.orderItems?.title}</span>
-                <span>₹100</span>
-              </li>
             </ul>
           </div>
         </div>

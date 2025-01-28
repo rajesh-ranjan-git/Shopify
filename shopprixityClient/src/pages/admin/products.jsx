@@ -11,12 +11,12 @@ import {
 import CommonForm from "@/components/common/form";
 import { addProductFormElements } from "@/config/config";
 import ProductImageInput from "@/components/admin/productImageInput";
-import fetchAllProductsService from "@/services/admin/fetchAllProductsService";
-import addProductService from "@/services/admin/addProductService";
-import editProductService from "@/services/admin/editProductService";
+import fetchAllProductsService from "@/services/admin/products/fetchAllProductsService";
+import addProductService from "@/services/admin/products/addProductService";
+import editProductService from "@/services/admin/products/editProductService";
 import { useToast } from "@/hooks/use-toast";
 import AdminProductCard from "@/components/admin/productCard";
-import deleteProductService from "@/services/admin/deleteProductService";
+import deleteProductService from "@/services/admin/products/deleteProductService";
 import { staticProductList } from "../../components/common/staticProductList";
 
 const initialFormData = {

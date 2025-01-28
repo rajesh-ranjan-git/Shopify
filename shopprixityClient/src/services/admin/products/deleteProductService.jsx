@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { deleteProductApi } from "../apiUrls";
+import { deleteProductApi } from "../../apiUrls";
 
 const deleteProductService = createAsyncThunk(
   "/products/deleteProduct",

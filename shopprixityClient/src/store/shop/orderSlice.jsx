@@ -20,10 +20,11 @@ const OrderSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(createOrderService.pending, (state) => {
-      state.isLoading = true;
-    }),
-      builder.addCase(createOrderService.fulfilled, (state, action) => {
+    builder
+      .addCase(createOrderService.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(createOrderService.fulfilled, (state, action) => {
         state.approvalURL = action.payload.approvalURL;
         state.orderId = action.payload.orderId;
         state.isLoading = false;
@@ -31,35 +32,32 @@ const OrderSlice = createSlice({
           "currentOrderId",
           JSON.stringify(action.payload.orderId)
         );
-      }),
-      builder.addCase(createOrderService.rejected, (state) => {
+      })
+      .addCase(createOrderService.rejected, (state) => {
         state.approvalURL = null;
         state.orderId = null;
         state.isLoading = false;
         sessionStorage.removeItem("currentOrderId");
-      }),
-      builder.addCase(fetchAllOrdersByUserService.pending, (state) => {
+      })
+      .addCase(fetchAllOrdersByUserService.pending, (state) => {
         state.isLoading = true;
-      }),
-      builder.addCase(
-        fetchAllOrdersByUserService.fulfilled,
-        (state, action) => {
-          state.isLoading = false;
-          state.ordersList = action.payload.data;
-        }
-      ),
-      builder.addCase(fetchAllOrdersByUserService.rejected, (state) => {
+      })
+      .addCase(fetchAllOrdersByUserService.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.ordersList = action.payload.data;
+      })
+      .addCase(fetchAllOrdersByUserService.rejected, (state) => {
         state.isLoading = false;
         state.ordersList = [];
-      }),
-      builder.addCase(fetchOrderDetailsService.pending, (state) => {
+      })
+      .addCase(fetchOrderDetailsService.pending, (state) => {
         state.isLoading = true;
-      }),
-      builder.addCase(fetchOrderDetailsService.fulfilled, (state) => {
+      })
+      .addCase(fetchOrderDetailsService.fulfilled, (state) => {
         state.isLoading = false;
         state.orderDetails = action.payload.data;
-      }),
-      builder.addCase(fetchOrderDetailsService.rejected, (state) => {
+      })
+      .addCase(fetchOrderDetailsService.rejected, (state) => {
         state.isLoading = false;
         state.orderDetails = null;
       });

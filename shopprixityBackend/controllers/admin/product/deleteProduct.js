@@ -1,4 +1,4 @@
-import prisma from "../../db/db.config.js";
+import prisma from "../../../db/db.config.js";
 
 // Edit a product
 const deleteProduct = async (req, res) => {

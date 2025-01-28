@@ -5,6 +5,7 @@ import shopProductsRouter from "./shop/productsRouter.js";
 import cartRouter from "./shop/cartRouter.js";
 import addressRouter from "./shop/addressRouter.js";
 import orderRouter from "./shop/orderRouter.js";
+import adminOrderRouter from "./admin/orderRouter.js";
 
 const router = Router();
 
@@ -25,5 +26,8 @@ router.use("/shop/address", addressRouter);
 
 // Order routes
 router.use("/shop/order", orderRouter);
+
+// Admin Order routes
+router.use("/admin/order", adminOrderRouter);
 
 export default router;

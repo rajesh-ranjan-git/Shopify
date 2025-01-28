@@ -1,4 +1,4 @@
-import { imageUploadHelper } from "../../helpers/cloudinary.js";
+import { imageUploadHelper } from "../../../helpers/cloudinary.js";
 
 // Product image upload to cloudinary using multer
 const productImageUpload = async (req, res) => {

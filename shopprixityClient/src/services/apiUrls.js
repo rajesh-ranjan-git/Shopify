@@ -35,3 +35,8 @@ export const createOrderApi = `${baseApiUrl}/shop/order/createOrder`;
 export const capturePaymentServiceApi = `${baseApiUrl}/shop/order/capturePayment`;
 export const fetchAllOrdersByUserServiceApi = `${baseApiUrl}/shop/order/allOrders`;
 export const fetchOrderDetailsServiceApi = `${baseApiUrl}/shop/order/orderDetails`;
+
+// Admin Order APIs
+export const fetchAllOrdersServiceApi = `${baseApiUrl}/admin/order/allOrders`;
+export const fetchAdminOrderDetailsServiceApi = `${baseApiUrl}/admin/order/orderDetails`;
+export const updateOrderStatusServiceApi = `${baseApiUrl}/admin/order/updateOrderStatus`;

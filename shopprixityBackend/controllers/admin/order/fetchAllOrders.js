@@ -1,29 +1,23 @@
 import prisma from "../../../db/db.config.js";
 
-// Add items to cart
-const fetchOrderDetails = async (req, res) => {
+// Fetch all orders of all users
+const fetchAllOrders = async (req, res) => {
   try {
-    const { orderId } = req.params;
+    const orders = await prisma.orders.findMany({});
 
-    const order = await prisma.orders.findUnique({
-      where: {
-        id: orderId,
-      },
-    });
-
-    if (!order) {
+    if (!orders.length) {
       return res.status(400).json({
         status: 400,
         success: false,
-        message: "Order not found!",
+        message: "No orders found!",
       });
     }
 
     return res.status(200).json({
       status: 200,
       success: true,
-      message: "Order details fetched successfully!",
-      order: order,
+      message: "Orders fetched successfully!",
+      orders: orders,
     });
   } catch (error) {
     // Check for errors
@@ -36,4 +30,4 @@ const fetchOrderDetails = async (req, res) => {
   }
 };
 
-export default fetchOrderDetails;
+export default fetchAllOrders;

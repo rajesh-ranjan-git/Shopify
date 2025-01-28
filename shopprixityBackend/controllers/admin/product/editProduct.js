@@ -1,6 +1,6 @@
 import vine, { errors } from "@vinejs/vine";
-import prisma from "../../db/db.config.js";
-import productSchema from "../../validations/admin/productValidations.js";
+import prisma from "../../../db/db.config.js";
+import productSchema from "../../../validations/admin/productValidations.js";
 
 // Edit a product
 const editProduct = async (req, res) => {
