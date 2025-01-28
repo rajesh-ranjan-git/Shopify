@@ -38,6 +38,8 @@ const ShopListing = () => {
     setSort(value);
   };
 
+  const categorySearchParam = searchParams.get("category");
+
   const handleFilters = (getSectionId, getCurrentOptions) => {
     let copyFilters = { ...filters };
     const indexOfCurrentSection =
@@ -97,7 +99,7 @@ const ShopListing = () => {
   useEffect(() => {
     setSort("price-lowtohigh");
     setFilters(JSON.parse(sessionStorage.getItem("filters")) || {});
-  }, []);
+  }, [categorySearchParam]);
 
   useEffect(() => {
     if (filters && Object.keys(filters).length > 0) {

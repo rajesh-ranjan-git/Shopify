@@ -155,6 +155,12 @@ export const shopHeaderMenuItems = [
     // icon: <LayoutDashboard />,
   },
   {
+    id: "products",
+    label: "Products",
+    path: "/shop/listing",
+    // icon: <LayoutDashboard />,
+  },
+  {
     id: "men",
     label: "Men",
     path: "/shop/listing",
