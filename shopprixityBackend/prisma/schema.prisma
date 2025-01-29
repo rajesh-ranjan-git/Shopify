@@ -52,7 +52,6 @@ model Cart {
 
   user    Users    @relation(fields: [userId], references: [id])
   product Products @relation(fields: [productId], references: [id])
-  Orders  Orders[]
 
   @@unique([userId, productId], map: "unique_user_product") // Ensure unique product per user
 }
@@ -74,7 +73,6 @@ model Address {
 model Orders {
   id              String   @id @default(auto()) @map("_id") @db.ObjectId
   userId          String   @db.ObjectId
-  cartId          String   @db.ObjectId
   totalAmount     Int
   orderStatus     String
   payerId         String
@@ -86,7 +84,6 @@ model Orders {
   orderUpdateDate DateTime @updatedAt
 
   users           Users           @relation(fields: [userId], references: [id])
-  cart            Cart            @relation(fields: [cartId], references: [id])
   shippingAddress ShippingAddress @relation(fields: [addressId], references: [id])
 
   orderItems OrderItems[]

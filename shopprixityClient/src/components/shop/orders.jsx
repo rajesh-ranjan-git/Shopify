@@ -21,11 +21,12 @@ const ShopOrders = () => {
   const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.authReducer);
-  const { orderList, orderDetails } = useSelector(
+  const { ordersList, orderDetails } = useSelector(
     (state) => state.orderReducer
   );
 
   const handleOrderDetails = (orderId) => {
+    console.log("orderId : ", orderId);
     dispatch(fetchOrderDetailsService(orderId));
     setOpenDetailsDialog(true);
   };
@@ -57,10 +58,10 @@ const ShopOrders = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {orderList && orderList.length > 0
-              ? orderList.map((orderItem) => (
-                  <TableRow>
-                    <TableCell>{orderItem?.orderNumber}</TableCell>
+            {ordersList && ordersList.length > 0
+              ? ordersList.map((orderItem) => (
+                  <TableRow key={orderItem.id}>
+                    <TableCell>{orderItem?.id}</TableCell>
                     <TableCell>{orderItem?.orderDate.split("T")[0]}</TableCell>
                     <TableCell>
                       <Badge

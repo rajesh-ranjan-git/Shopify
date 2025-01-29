@@ -44,7 +44,7 @@ const OrderSlice = createSlice({
       })
       .addCase(fetchAllOrdersByUserService.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.ordersList = action.payload.data;
+        state.ordersList = action?.payload?.orders;
       })
       .addCase(fetchAllOrdersByUserService.rejected, (state) => {
         state.isLoading = false;
@@ -53,9 +53,9 @@ const OrderSlice = createSlice({
       .addCase(fetchOrderDetailsService.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(fetchOrderDetailsService.fulfilled, (state) => {
+      .addCase(fetchOrderDetailsService.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.orderDetails = action.payload.data;
+        state.orderDetails = action?.payload?.order;
       })
       .addCase(fetchOrderDetailsService.rejected, (state) => {
         state.isLoading = false;

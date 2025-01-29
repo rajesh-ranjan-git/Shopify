@@ -9,6 +9,9 @@ const fetchOrderDetails = async (req, res) => {
       where: {
         id: orderId,
       },
+      include: {
+        orderItems: true,
+      },
     });
 
     if (!order) {
@@ -18,6 +21,8 @@ const fetchOrderDetails = async (req, res) => {
         message: "Order not found!",
       });
     }
+
+    console.log("order : ", order);
 
     return res.status(200).json({
       status: 200,

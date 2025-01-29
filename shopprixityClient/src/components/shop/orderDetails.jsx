@@ -8,13 +8,15 @@ import { Badge } from "@/components/ui/badge";
 const ShopOrderDetails = ({ orderDetails }) => {
   const { user } = useSelector((state) => state.authReducer);
 
+  console.log("orderDetails : ", orderDetails);
+
   return (
     <DialogContent className="sm:max-w-[600px]">
       <div className="gap-6 grid">
         <div className="gap-2 grid">
           <div className="flex justify-between items-center mt-6">
             <p className="font-medium">Order Id</p>
-            <Label>{orderDetails?.orderNumber}</Label>
+            <Label>{orderDetails?.id}</Label>
           </div>
           <div className="flex justify-between items-center mt-2">
             <p className="font-medium">Date</p>

@@ -14,6 +14,9 @@ const capturePayment = async (req, res) => {
         id: orderId,
       },
     });
+
+    console.log("order : ", order);
+
     if (!order) {
       return res.status(400).json({
         status: 400,
@@ -22,16 +25,18 @@ const capturePayment = async (req, res) => {
       });
     }
 
-    const cart = await prisma.cart.delete({
-      where: {
-        id: order.cartId,
-      },
-    });
+    // const cart = await prisma.cart.delete({
+    //   where: {
+    //     id: order.cartId,
+    //   },
+    // });
 
     order.paymentStatus = "paid";
     order.orderStatus = "confirmed";
     order.paymentId = paymentId;
     order.payerId = payerId;
+
+    console.log("order : ", order);
 
     for (let item of order.orderItems) {
       let product = await prisma.products.findUnique(item.productId);
