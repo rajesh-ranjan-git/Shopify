@@ -7,6 +7,7 @@ import checkAuthService from "./services/auth/checkAuthService";
 function App() {
   const dispatch = useDispatch();
 
+  // Check for auth validation on page load
   useEffect(() => {
     dispatch(checkAuthService());
   }, [dispatch]);
