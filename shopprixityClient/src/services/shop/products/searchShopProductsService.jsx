@@ -10,8 +10,6 @@ const searchShopProductsService = createAsyncThunk(
         `${searchShopProductsServiceApi}/${searchKeyword}`
       );
 
-      console.log("searchShopProductsResponse : ", searchShopProductsResponse);
-
       return searchShopProductsResponse?.data;
     } catch (error) {
       return error.response.data;

@@ -5,8 +5,6 @@ const searchShopProducts = async (req, res) => {
   try {
     const { searchKeyword } = req.params;
 
-    console.log("searchKeyword : ", searchKeyword);
-
     if (!searchKeyword || typeof searchKeyword !== "string") {
       return res.status(400).json({
         status: 400,
@@ -26,8 +24,6 @@ const searchShopProducts = async (req, res) => {
       },
     });
 
-    console.log("searchResults : ", searchResults);
-
     if (searchResults) {
       return res.status(200).json({
         status: 200,
@@ -43,7 +39,6 @@ const searchShopProducts = async (req, res) => {
       message: "Could not find searched products!",
     });
   } catch (error) {
-    console.log("error : ", error);
     return res.status(500).json({
       status: 500,
       success: false,

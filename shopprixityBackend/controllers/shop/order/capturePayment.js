@@ -5,9 +5,13 @@ const capturePayment = async (req, res) => {
   try {
     const { paymentId, payerId, orderId } = req.body;
 
+    console.log("paymentId : ", paymentId);
+    console.log("payerId : ", payerId);
+    console.log("orderId : ", orderId);
+
     let order = await prisma.orders.findUnique({
       where: {
-        orderId: orderId,
+        id: orderId,
       },
     });
     if (!order) {

@@ -9,7 +9,7 @@ const PaypalReturnPage = () => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const paymentId = params.get("paymentId");
-  const payerId = params.get("payerID");
+  const payerId = params.get("PayerID");
 
   useEffect(() => {
     if (paymentId && payerId) {
@@ -26,16 +26,20 @@ const PaypalReturnPage = () => {
       ).then((data) => {
         if (data?.payload?.success) {
           sessionStorage.removeItem("currentOrderId");
-          window.location.href = "shop/paymentSuccess";
+          window.location.href = "/shop/paymentSuccess";
         }
       });
     }
   }, [paymentId, payerId, dispatch]);
 
+  console.log("paymentId : ", paymentId);
+  console.log("payerId : ", payerId);
+  console.log("dispatch : ", dispatch);
+
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Procession order...</CardTitle>
+        <CardTitle>Processing order...</CardTitle>
       </CardHeader>
     </Card>
   );

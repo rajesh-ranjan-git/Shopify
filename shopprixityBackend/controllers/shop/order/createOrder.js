@@ -6,8 +6,8 @@ const createOrder = async (req, res) => {
   try {
     const {
       userId,
-      orderItems,
       cartId,
+      orderItems,
       shippingAddress,
       totalAmount,
       orderStatus,
@@ -16,6 +16,17 @@ const createOrder = async (req, res) => {
       paymentStatus,
       paymentMethod,
     } = req.body;
+
+    console.log("userId : ", userId);
+    console.log("cartId : ", cartId);
+    console.log("orderItems : ", orderItems);
+    console.log("shippingAddress : ", shippingAddress);
+    console.log("totalAmount : ", totalAmount);
+    console.log("orderStatus : ", orderStatus);
+    console.log("payerId : ", payerId);
+    console.log("paymentId : ", paymentId);
+    console.log("paymentStatus : ", paymentStatus);
+    console.log("paymentMethod : ", paymentMethod);
 
     const createPaymentJSON = {
       intent: "sale",
@@ -26,23 +37,27 @@ const createOrder = async (req, res) => {
         return_url: "http://localhost:5173/shop/paypalReturnPage",
         cancel_url: "http://localhost:5173/shop/paypalCancelPage",
       },
-      transactions: {
-        item_list: {
-          items: orderItems.map((item) => ({
-            name: item.title,
-            sku: item.productId,
-            price: item.price.toFixed(2),
-            currency: "INR",
-            quantity: item.quantity,
-          })),
+      transactions: [
+        {
+          item_list: {
+            items: orderItems.map((item) => ({
+              name: item.title,
+              sku: item.productId,
+              price: item.price.toFixed(2),
+              currency: "USD",
+              quantity: item.quantity,
+            })),
+          },
+          amount: {
+            currency: "USD",
+            total: totalAmount.toFixed(2),
+          },
+          description: "Order Description",
         },
-        amount: {
-          currency: "INR",
-          total: totalAmount.toFixed(2),
-        },
-        description: "Order Description",
-      },
+      ],
     };
+
+    console.log("createPaymentJSON : ", createPaymentJSON);
 
     paypal.payment.create(createPaymentJSON, async (error, paymentInfo) => {
       if (error) {
@@ -63,10 +78,11 @@ const createOrder = async (req, res) => {
           },
         });
 
+        console.log("newShippingAddress : ", newShippingAddress);
+
         const newOrder = await prisma.orders.create({
           data: {
             userId: userId,
-            orderItems: orderItems,
             cartId: cartId,
             totalAmount: totalAmount,
             orderStatus: orderStatus,
@@ -77,6 +93,8 @@ const createOrder = async (req, res) => {
             addressId: newShippingAddress.id,
           },
         });
+
+        console.log("newOrder : ", newOrder);
 
         const newOrderItems = orderItems.map(async (item) => {
           item = await prisma.orderItems.create({
@@ -90,14 +108,18 @@ const createOrder = async (req, res) => {
           });
         });
 
+        console.log("newOrderItems : ", newOrderItems);
+
         const approvalURL = paymentInfo.links.find(
           (link) => link.rel === "approval_url"
         ).href;
 
+        console.log("approvalURL : ", approvalURL);
+
         return res.status(201).json({
           success: true,
           approvalURL,
-          orderId: order.id,
+          orderId: newOrder.id,
           message: "Order created successfully!",
         });
       }

@@ -29,7 +29,7 @@ const ShopCheckout = () => {
   const handleInitiatePaypalPayment = () => {
     if (currentSelectedAddress === null) {
       toast({
-        title: "Please select ane address to proceed!",
+        title: "Please select an address to proceed!",
         variant: "destructive",
       });
 
@@ -45,16 +45,21 @@ const ShopCheckout = () => {
       return;
     }
 
+    console.log("cartItems : ", cartItems);
+
     const orderData = {
       userId: user?.id,
+      cartId: cartItems?.id,
       orderItems: cartItems.map((item) => ({
-        title: item.title,
+        title: item.product.title,
         productId: item.productId,
-        image: item.image,
-        price: item.salePrice > 0 ? item.salePrice : item.price,
+        image: item.product.image,
+        price:
+          item.product.salePrice > 0
+            ? item.product.salePrice
+            : item.product.price,
         quantity: item.quantity,
       })),
-      cartId: cartItems?.id,
       shippingAddress: currentSelectedAddress,
       totalAmount: totalCartAmount,
       orderStatus: "pending",
@@ -77,6 +82,9 @@ const ShopCheckout = () => {
   if (approvalURL) {
     window.location.href = approvalURL;
   }
+
+  console.log("cartItems : ", cartItems);
+  console.log("isPaymentStarted : ", isPaymentStarted);
 
   return (
     <div className="flex flex-col">

@@ -19,6 +19,8 @@ const ShopCartSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchShopCartService.fulfilled, (state, action) => {
+        console.log("action : ", action);
+        console.log("action?.payload : ", action?.payload);
         state.cartItems = action?.payload?.cart;
         state.isLoading = false;
       })
