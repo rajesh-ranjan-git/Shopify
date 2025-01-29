@@ -22,13 +22,14 @@ const deleteAddress = async (req, res) => {
       });
     }
 
-    // Check if item does not exist
+    // Find address to delete
     const itemToDelete = await prisma.address.findFirst({
       where: {
         AND: { userId: userId, id: addressId },
       },
     });
 
+    // Check if address is not found
     if (!itemToDelete) {
       return res.status(400).json({
         status: 400,
@@ -37,13 +38,14 @@ const deleteAddress = async (req, res) => {
       });
     }
 
-    // If item is present then delete
+    // Delete address if found
     const deletedAddress = await prisma.address.delete({
       where: {
         id: addressId,
       },
     });
 
+    // Check if delete address is not successful
     if (!deletedAddress) {
       return res.status(500).json({
         status: 500,
@@ -52,6 +54,7 @@ const deleteAddress = async (req, res) => {
       });
     }
 
+    // Check if delete address is successful
     return res.status(200).json({
       status: 200,
       success: true,

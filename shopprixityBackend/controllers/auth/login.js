@@ -19,6 +19,7 @@ const login = async (req, res) => {
       where: { email: payload.email },
     });
 
+    // Check if user not found
     if (!user) {
       return res.status(400).json({
         status: 400,
@@ -26,7 +27,9 @@ const login = async (req, res) => {
         message: "User does not exist!",
       });
     } else {
-      // Decrypt password
+      // Decrypt password if user found
+
+      // Check if password is invalid
       if (!bcrypt.compareSync(payload.password, user.password)) {
         return res.status(400).json({
           status: 400,
@@ -34,6 +37,8 @@ const login = async (req, res) => {
           message: "Invalid credentials!",
         });
       }
+
+      // Create payload if password is valid
       const payloadData = {
         id: user.id,
         name: user.name,
@@ -57,6 +62,7 @@ const login = async (req, res) => {
         });
     }
   } catch (error) {
+    // Check for validation error
     if (error instanceof errors.E_VALIDATION_ERROR) {
       return res.status(400).json({
         status: 400,
@@ -65,6 +71,7 @@ const login = async (req, res) => {
         errors: error.messages,
       });
     } else {
+      // Check for other errors
       return res.status(500).json({
         status: 500,
         success: false,

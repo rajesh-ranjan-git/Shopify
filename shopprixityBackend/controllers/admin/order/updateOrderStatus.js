@@ -1,17 +1,19 @@
 import prisma from "../../../db/db.config.js";
 
-// AUpdate order status
+// Update order status
 const updateOrderStatus = async (req, res) => {
   try {
     const { orderId } = req.params;
     const { orderStatus } = req.body;
 
+    // Find order with orderID
     const order = await prisma.orders.findUnique({
       where: {
         id: orderId,
       },
     });
 
+    // Check if order is not found
     if (!order) {
       return res.status(400).json({
         status: 400,
@@ -20,6 +22,7 @@ const updateOrderStatus = async (req, res) => {
       });
     }
 
+    // Update order status
     const updatedOrder = await prisma.orders.update({
       where: {
         id: orderId,
@@ -29,6 +32,7 @@ const updateOrderStatus = async (req, res) => {
       },
     });
 
+    // Check if order is updated
     if (updatedOrder) {
       return res.status(200).json({
         status: 200,
@@ -38,6 +42,7 @@ const updateOrderStatus = async (req, res) => {
       });
     }
 
+    // Check if order is not updated
     return res.status(400).json({
       status: 400,
       success: true,

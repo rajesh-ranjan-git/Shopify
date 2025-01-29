@@ -6,6 +6,7 @@ import fetchAllOrdersByUser from "../../controllers/shop/order/fetchAllOrdersByU
 
 const orderRouter = express.Router();
 
+// Shop Order routes
 orderRouter.post("/createOrder", createOrder);
 orderRouter.post("/capturePayment", capturePayment);
 orderRouter.get("/allOrders/:userId", fetchAllOrdersByUser);

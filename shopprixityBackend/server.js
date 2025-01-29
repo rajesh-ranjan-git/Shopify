@@ -40,7 +40,9 @@ server.use("/api", router);
 
 // Server response
 server.get("/", (req, res) => {
-  return res.json({ message: `Server is running at http://localhost:${PORT}` });
+  return res.json({
+    message: `Shoprixity server is running at http://localhost:${PORT}`,
+  });
 });
 
 // Listen to server
@@ -49,5 +51,5 @@ server.listen(PORT, (error) => {
     console.log({ error: "An error occurred while creating server!" });
     return;
   }
-  console.log(`Server is running at http://localhost:${PORT}`);
+  console.log(`Shoprixity server is running at http://localhost:${PORT}`);
 });

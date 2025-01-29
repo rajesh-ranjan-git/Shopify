@@ -14,6 +14,8 @@ const addProduct = async (req, res) => {
     const product = await prisma.products.create({
       data: payload,
     });
+
+    // Check if product is added
     if (product) {
       return res.status(201).json({
         status: 201,
@@ -23,6 +25,7 @@ const addProduct = async (req, res) => {
       });
     }
 
+    // Check if product is not added
     return res.status(400).json({
       errors: {
         status: 400,
@@ -31,6 +34,7 @@ const addProduct = async (req, res) => {
       },
     });
   } catch (error) {
+    // Check for validation error
     if (error instanceof errors.E_VALIDATION_ERROR) {
       return res.status(400).json({
         status: 400,
@@ -39,6 +43,7 @@ const addProduct = async (req, res) => {
         errors: error.messages,
       });
     } else {
+      // Check for all other errors
       return res.status(500).json({
         status: 500,
         success: false,

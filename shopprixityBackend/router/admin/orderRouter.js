@@ -5,6 +5,7 @@ import updateOrderStatus from "../../controllers/admin/order/updateOrderStatus.j
 
 const adminOrderRouter = express.Router();
 
+// Admin Order routes
 adminOrderRouter.get("/allOrders", fetchAllOrders);
 adminOrderRouter.get("/orderDetails/:orderId", fetchOrderDetails);
 adminOrderRouter.put("/updateOrderStatus/:orderId", updateOrderStatus);

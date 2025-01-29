@@ -22,7 +22,7 @@ const deleteCartItems = async (req, res) => {
       });
     }
 
-    // Check if item does not exist
+    // Find item to delete from cart
     const itemToDelete = await prisma.cart.findUnique({
       where: {
         userId_productId: {
@@ -32,6 +32,7 @@ const deleteCartItems = async (req, res) => {
       },
     });
 
+    // Check if item is not present in cart
     if (!itemToDelete) {
       return res.status(400).json({
         status: 400,
@@ -40,7 +41,7 @@ const deleteCartItems = async (req, res) => {
       });
     }
 
-    // If item is present then delete
+    // Delete item if present in cart
     await prisma.cart.delete({
       where: {
         userId_productId: {
@@ -50,7 +51,7 @@ const deleteCartItems = async (req, res) => {
       },
     });
 
-    // Fetch updated cart to return
+    // Fetch updated cart
     const cart = await prisma.cart.findMany({
       where: {
         userId: userId,
@@ -60,10 +61,21 @@ const deleteCartItems = async (req, res) => {
       },
     });
 
-    return res.status(200).json({
-      status: 200,
+    // Check if cart found after delete
+    if (cart) {
+      return res.status(200).json({
+        status: 200,
+        success: true,
+        message: "Item deleted from cart!",
+        cart: cart,
+      });
+    }
+
+    // Check if delete items is not successful
+    return res.status(400).json({
+      status: 400,
       success: true,
-      message: "Item deleted from cart!",
+      message: "Could not delete item from cart!",
       cart: cart,
     });
   } catch (error) {

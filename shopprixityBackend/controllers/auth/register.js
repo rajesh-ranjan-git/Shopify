@@ -14,7 +14,7 @@ const register = async (req, res) => {
     const validator = vine.compile(registerSchema);
     const payload = await validator.validate(body);
 
-    // Check if email already exists
+    // Check if user already exists
     const findUser = await prisma.users.findUnique({
       where: { email: payload.email },
     });
@@ -27,14 +27,16 @@ const register = async (req, res) => {
       });
     }
 
-    // Encrypt password
+    // Encrypt password if user does not exist
     const salt = bcrypt.genSaltSync(10);
     payload.password = bcrypt.hashSync(payload.password, salt);
 
+    // Register user
     const user = await prisma.users.create({
       data: payload,
     });
 
+    // Check if user is registered successfully
     if (user) {
       const payloadData = {
         id: user.id,
@@ -60,6 +62,7 @@ const register = async (req, res) => {
         });
     }
 
+    // Check if user is not registered
     return res.status(400).json({
       errors: {
         status: 400,
@@ -68,6 +71,7 @@ const register = async (req, res) => {
       },
     });
   } catch (error) {
+    // Check for validation error
     if (error instanceof errors.E_VALIDATION_ERROR) {
       return res.status(400).json({
         status: 400,
@@ -76,6 +80,7 @@ const register = async (req, res) => {
         errors: error.messages,
       });
     } else {
+      // Check for other errors
       return res.status(500).json({
         status: 500,
         success: false,

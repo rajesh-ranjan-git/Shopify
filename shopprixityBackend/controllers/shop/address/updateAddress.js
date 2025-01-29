@@ -30,8 +30,8 @@ const updateAddress = async (req, res) => {
       },
     });
 
+    // Check if address does not exist
     if (!existingAddress) {
-      // If address does not exist
       return res.status(400).json({
         status: 400,
         success: false,
@@ -39,7 +39,7 @@ const updateAddress = async (req, res) => {
       });
     }
 
-    // If address present then update
+    // Update address if present
     const updatedAddress = await prisma.address.update({
       where: {
         id: addressId,
@@ -53,6 +53,7 @@ const updateAddress = async (req, res) => {
       },
     });
 
+    // Check if update address is not successful
     if (!updatedAddress) {
       return res.status(500).json({
         status: 500,
@@ -61,6 +62,7 @@ const updateAddress = async (req, res) => {
       });
     }
 
+    // Check if update address is successful
     return res.status(200).json({
       status: 200,
       success: true,

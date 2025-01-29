@@ -40,8 +40,8 @@ const updateCartItems = async (req, res) => {
       },
     });
 
+    // Check if item is not present in cart
     if (!existingCartItem) {
-      // If item is not present in cart
       return res.status(400).json({
         status: 400,
         success: true,
@@ -49,7 +49,7 @@ const updateCartItems = async (req, res) => {
       });
     }
 
-    // If item present in cart then update the quantity
+    // Update quantity if item is present in cart
     await prisma.cart.update({
       where: {
         userId_productId: {

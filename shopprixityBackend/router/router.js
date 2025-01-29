@@ -7,6 +7,7 @@ import addressRouter from "./shop/addressRouter.js";
 import orderRouter from "./shop/orderRouter.js";
 import adminOrderRouter from "./admin/orderRouter.js";
 
+// Router instance
 const router = Router();
 
 // Auth routes

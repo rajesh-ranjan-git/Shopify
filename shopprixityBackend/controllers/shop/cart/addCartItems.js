@@ -30,7 +30,7 @@ const addCartItems = async (req, res) => {
       });
     }
 
-    // Check if item already exists
+    // Check if cart exists
     const existingCartItem = await prisma.cart.findUnique({
       where: {
         userId_productId: {
@@ -42,8 +42,8 @@ const addCartItems = async (req, res) => {
 
     let cart;
 
+    // If no cart items then create cart and add items
     if (!existingCartItem) {
-      // If no cart items then create cart and add items
       cart = await prisma.cart.create({
         data: {
           userId: userId,
@@ -73,10 +73,20 @@ const addCartItems = async (req, res) => {
       },
     });
 
+    // Check if cart item is updated
+    if (cart) {
+      return res.status(200).json({
+        status: 200,
+        success: true,
+        message: "Cart Items updated!",
+      });
+    }
+
+    // Check if cart item is not updated
     return res.status(200).json({
       status: 200,
       success: true,
-      message: "Cart Items updated!",
+      message: "Could not update cart items!",
     });
   } catch (error) {
     // Check for errors

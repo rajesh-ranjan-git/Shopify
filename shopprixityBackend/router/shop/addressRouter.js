@@ -6,6 +6,7 @@ import deleteAddress from "../../controllers/shop/address/deleteAddress.js";
 
 const addressRouter = express.Router();
 
+// Shop Address Routes
 addressRouter.get("/fetchAddress/:userId", fetchAddress);
 addressRouter.post("/addAddress", addAddress);
 addressRouter.put("/updateAddress/:userId/:addressId", updateAddress);

@@ -8,12 +8,14 @@ import fetchAllProducts from "../../controllers/admin/product/fetchAllProducts.j
 
 const adminProductsRouter = express.Router();
 
+// Upload image to cloudinary
 adminProductsRouter.post(
   "/uploadImage",
   uploadImage.single("myFile"),
   productImageUpload
 );
 
+// Admin Product routes
 adminProductsRouter.get("/fetchAllProducts", fetchAllProducts);
 adminProductsRouter.post("/addProduct", addProduct);
 adminProductsRouter.put("/editProduct/:id", editProduct);

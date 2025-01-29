@@ -14,13 +14,14 @@ const fetchAddress = async (req, res) => {
       });
     }
 
-    // Check if address is present
+    // Find addressList
     const addressList = await prisma.address.findMany({
       where: {
         userId: userId,
       },
     });
 
+    // Check if addressList is present
     if (addressList && addressList.length > 0) {
       return res.status(200).json({
         status: 200,

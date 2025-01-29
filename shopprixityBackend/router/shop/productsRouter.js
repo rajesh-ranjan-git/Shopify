@@ -5,6 +5,7 @@ import searchShopProducts from "../../controllers/shop/product/searchShopProduct
 
 const shopProductsRouter = express.Router();
 
+// Shop Product Routes
 shopProductsRouter.get("/fetchShopProducts", fetchShopProducts);
 shopProductsRouter.get("/fetchShopProductDetails/:id", fetchShopProductDetails);
 shopProductsRouter.get(

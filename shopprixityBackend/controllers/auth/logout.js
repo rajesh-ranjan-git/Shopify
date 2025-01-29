@@ -1,7 +1,7 @@
 // Logout user
 
 const logout = async (req, res) => {
-  // Remove cookie
+  // Remove cookie to logout
   return res
     .clearCookie("token")
     .status(200)

@@ -1,16 +1,18 @@
 import prisma from "../../../db/db.config.js";
 
-// Add items to cart
+// Fetch order details for admin
 const fetchOrderDetails = async (req, res) => {
   try {
     const { orderId } = req.params;
 
+    // Find order with orderId
     const order = await prisma.orders.findUnique({
       where: {
         id: orderId,
       },
     });
 
+    // Check if order is not found with orderId
     if (!order) {
       return res.status(400).json({
         status: 400,
@@ -19,6 +21,7 @@ const fetchOrderDetails = async (req, res) => {
       });
     }
 
+    // Check if order is not found with orderId
     return res.status(200).json({
       status: 200,
       success: true,

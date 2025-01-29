@@ -12,10 +12,12 @@ const editProduct = async (req, res) => {
     const validator = vine.compile(productSchema);
     const payload = await validator.validate(body);
 
+    // Find product to edit
     const findProduct = await prisma.products.findMany({
       where: { id: id },
     });
 
+    // Check if product is not present
     if (!findProduct) {
       return res.status(404).json({
         errors: {
@@ -26,6 +28,7 @@ const editProduct = async (req, res) => {
       });
     }
 
+    // Update values locally if the product is present
     findProduct.title = payload.title || findProduct.title;
     findProduct.description = payload.description || findProduct.description;
     findProduct.category = payload.category || findProduct.category;
@@ -40,6 +43,7 @@ const editProduct = async (req, res) => {
         : 0;
     findProduct.image = payload.image || findProduct.image;
 
+    // Push the updated product changes to db
     const product = await prisma.products.update({
       where: {
         id: id,
@@ -56,6 +60,7 @@ const editProduct = async (req, res) => {
       },
     });
 
+    // Check if product is updated
     if (product) {
       return res.status(200).json({
         status: 200,
@@ -64,7 +69,7 @@ const editProduct = async (req, res) => {
         product: product,
       });
     }
-
+    // Check if product is not updated
     return res.status(400).json({
       errors: {
         status: 400,
@@ -73,6 +78,7 @@ const editProduct = async (req, res) => {
       },
     });
   } catch (error) {
+    // Check for validation error
     if (error instanceof errors.E_VALIDATION_ERROR) {
       return res.status(400).json({
         status: 400,
@@ -81,6 +87,7 @@ const editProduct = async (req, res) => {
         errors: error.messages,
       });
     } else {
+      // Check for other errors
       return res.status(500).json({
         status: 500,
         success: false,

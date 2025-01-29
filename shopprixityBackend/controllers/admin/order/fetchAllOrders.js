@@ -5,6 +5,7 @@ const fetchAllOrders = async (req, res) => {
   try {
     const orders = await prisma.orders.findMany({});
 
+    // Check if no orders
     if (!orders.length) {
       return res.status(400).json({
         status: 400,
@@ -13,6 +14,7 @@ const fetchAllOrders = async (req, res) => {
       });
     }
 
+    // Check if orders found
     return res.status(200).json({
       status: 200,
       success: true,

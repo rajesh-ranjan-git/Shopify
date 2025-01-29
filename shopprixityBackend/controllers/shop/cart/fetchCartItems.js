@@ -33,7 +33,7 @@ const fetchCartItems = async (req, res) => {
       });
     }
 
-    // Check if not items in cart
+    // Check if no items in cart
     return res.status(404).json({
       status: 404,
       success: false,

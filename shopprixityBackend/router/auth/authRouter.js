@@ -7,6 +7,7 @@ import logout from "../../controllers/auth/logout.js";
 
 const authRouter = Router();
 
+// Auth router
 authRouter.get("/checkAuth", authMiddleware, checkAuth);
 authRouter.post("/register", register);
 authRouter.post("/login", login);

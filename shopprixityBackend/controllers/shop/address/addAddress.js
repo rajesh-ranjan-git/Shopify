@@ -45,6 +45,7 @@ const addAddress = async (req, res) => {
       });
     }
 
+    // Add address
     const newAddress = await prisma.address.create({
       data: {
         userId: userId,
@@ -56,10 +57,21 @@ const addAddress = async (req, res) => {
       },
     });
 
+    // Check if address is added
+    if (newAddress) {
+      return res.status(201).json({
+        status: 201,
+        success: true,
+        message: "Address added successfully!",
+        address: newAddress,
+      });
+    }
+
+    // Check if address is not added
     return res.status(201).json({
       status: 201,
       success: true,
-      message: "Address added successfully!",
+      message: "Could not add address!",
       address: newAddress,
     });
   } catch (error) {

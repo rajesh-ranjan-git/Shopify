@@ -1,6 +1,6 @@
 import prisma from "../../../db/db.config.js";
 
-// Add items to cart
+// Capture payment after order creation
 const capturePayment = async (req, res) => {
   try {
     const { paymentId, payerId, orderId } = req.body;
@@ -9,6 +9,7 @@ const capturePayment = async (req, res) => {
     console.log("payerId : ", payerId);
     console.log("orderId : ", orderId);
 
+    // Find order with orderId
     let order = await prisma.orders.findUnique({
       where: {
         id: orderId,

@@ -7,14 +7,29 @@ const productImageUpload = async (req, res) => {
     const url = "data:" + req.file.mimetype + ";base64," + base64;
     const result = await imageUploadHelper(url);
 
-    return res.json({
-      success: true,
-      result: result,
+    // Check if image is uploaded
+    if (result) {
+      return res.status(200).json({
+        status: 200,
+        success: true,
+        message: "Image uploaded successfully!",
+        result: result,
+      });
+    }
+
+    // Check if image is not uploaded
+    return res.status(400).json({
+      status: 400,
+      success: false,
+      message: "Error occurred while uploading image!",
+      error: error,
     });
   } catch (error) {
-    return res.json({
+    // Check for errors
+    return res.status(500).json({
+      status: 500,
       success: false,
-      message: "Error occurred while uploading image.",
+      message: "Something went wrong!",
       error: error,
     });
   }
