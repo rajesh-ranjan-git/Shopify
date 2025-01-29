@@ -18,6 +18,7 @@ const capturePayment = async (req, res) => {
 
     console.log("order : ", order);
 
+    // If order not found
     if (!order) {
       return res.status(400).json({
         status: 400,
@@ -26,12 +27,14 @@ const capturePayment = async (req, res) => {
       });
     }
 
+    // Delete cart if order found
     // const cart = await prisma.cart.delete({
     //   where: {
     //     id: order.cartId,
     //   },
     // });
 
+    // Update order locally if found
     order.paymentStatus = "paid";
     order.orderStatus = "confirmed";
     order.paymentId = paymentId;

@@ -1,10 +1,11 @@
 import prisma from "../../../db/db.config.js";
 
-// Add items to cart
+// Fetch order details
 const fetchOrderDetails = async (req, res) => {
   try {
     const { orderId } = req.params;
 
+    // Fetch order with orderId
     const order = await prisma.orders.findUnique({
       where: {
         id: orderId,
@@ -14,6 +15,7 @@ const fetchOrderDetails = async (req, res) => {
       },
     });
 
+    // Check if order not found
     if (!order) {
       return res.status(400).json({
         status: 400,
@@ -24,6 +26,7 @@ const fetchOrderDetails = async (req, res) => {
 
     console.log("order : ", order);
 
+    // Check if order found
     return res.status(200).json({
       status: 200,
       success: true,

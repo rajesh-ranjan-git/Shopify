@@ -3,6 +3,7 @@ import { CustomErrorReporter } from "../CustomErrorReporter.js";
 
 vine.errorReporter = () => new CustomErrorReporter();
 
+// Validation schema for admin product
 const productSchema = vine.object({
   title: vine.string().minLength(2).maxLength(191),
   description: vine.string().minLength(2),

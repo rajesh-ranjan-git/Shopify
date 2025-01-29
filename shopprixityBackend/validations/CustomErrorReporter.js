@@ -1,5 +1,6 @@
 import { errors } from "@vinejs/vine";
 
+// Custom vine error
 export class CustomErrorReporter {
   /**
    * A flag to know if one or more errors have been

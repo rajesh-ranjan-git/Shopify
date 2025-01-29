@@ -1,7 +1,7 @@
 import prisma from "../../../db/db.config.js";
 import paypal from "../../../helpers/paypal.js";
 
-// Add items to cart
+// Create order
 const createOrder = async (req, res) => {
   try {
     const {
@@ -28,6 +28,7 @@ const createOrder = async (req, res) => {
     console.log("paymentStatus : ", paymentStatus);
     console.log("paymentMethod : ", paymentMethod);
 
+    // Create payment JSON for paypal
     const createPaymentJSON = {
       intent: "sale",
       payer: {
@@ -59,7 +60,9 @@ const createOrder = async (req, res) => {
 
     console.log("createPaymentJSON : ", createPaymentJSON);
 
+    // Create paypal payment
     paypal.payment.create(createPaymentJSON, async (error, paymentInfo) => {
+      // Check if error occurred during paypal payment process
       if (error) {
         console.log("paypal error : ", error);
         return res.status(500).json({
@@ -68,6 +71,7 @@ const createOrder = async (req, res) => {
           message: "Something went wrong while creating paypal payment!",
         });
       } else {
+        // Add shipping address if no error while paypal payment process
         const newShippingAddress = await prisma.shippingAddress.create({
           data: {
             address: shippingAddress.address,
@@ -80,6 +84,7 @@ const createOrder = async (req, res) => {
 
         console.log("newShippingAddress : ", newShippingAddress);
 
+        // Create new order
         const newOrder = await prisma.orders.create({
           data: {
             userId: userId,
@@ -96,6 +101,7 @@ const createOrder = async (req, res) => {
 
         console.log("newOrder : ", newOrder);
 
+        // Add order items
         const newOrderItems = orderItems.map(async (item) => {
           item = await prisma.orderItems.create({
             data: {
@@ -110,6 +116,7 @@ const createOrder = async (req, res) => {
 
         console.log("newOrderItems : ", newOrderItems);
 
+        // Get approval URL from paypal
         const approvalURL = paymentInfo.links.find(
           (link) => link.rel === "approval_url"
         ).href;

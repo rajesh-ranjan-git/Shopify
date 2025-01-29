@@ -37,11 +37,13 @@ const fetchShopProducts = async (req, res) => {
         break;
     }
 
+    // Find filtered products
     const products = await prisma.products.findMany({
       where: filters,
       orderBy,
     });
 
+    // Check if filtered products found
     if (products) {
       return res.status(200).json({
         status: 200,
@@ -51,6 +53,7 @@ const fetchShopProducts = async (req, res) => {
       });
     }
 
+    // Check if filtered products not found
     return res.status(400).json({
       errors: {
         status: 400,
@@ -59,6 +62,7 @@ const fetchShopProducts = async (req, res) => {
       },
     });
   } catch (error) {
+    // Check for errors
     return res.status(500).json({
       status: 500,
       success: false,

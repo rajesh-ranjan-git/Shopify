@@ -1,16 +1,18 @@
 import prisma from "../../../db/db.config.js";
 
-// Add items to cart
+// Fetch all orders by user
 const fetchAllOrdersByUser = async (req, res) => {
   try {
     const { userId } = req.params;
 
+    // Fetch all orders by user
     const orders = await prisma.orders.findMany({
       where: {
         userId: userId,
       },
     });
 
+    // Check if no orders by user
     if (!orders.length) {
       return res.status(400).json({
         status: 400,
@@ -19,6 +21,7 @@ const fetchAllOrdersByUser = async (req, res) => {
       });
     }
 
+    // Check if orders found by user
     return res.status(200).json({
       status: 200,
       success: true,
