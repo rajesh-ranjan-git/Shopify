@@ -75,7 +75,7 @@ const Search = () => {
       }, 1000);
     } else {
       setSearchParams(new URLSearchParams(`?searchKeyword=${searchKeyword}`));
-      dispatch(resetSearchShopProducts());
+      // dispatch(resetSearchShopProducts());
     }
   }, [searchKeyword]);
 

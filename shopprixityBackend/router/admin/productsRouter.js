@@ -1,10 +1,10 @@
 import express from "express";
 import { uploadImage } from "../../helpers/cloudinary.js";
-import productImageUpload from "../../controllers/admin/productImageUpload.js";
-import addProduct from "../../controllers/admin/addProduct.js";
-import editProduct from "../../controllers/admin/editProduct.js";
-import deleteProduct from "../../controllers/admin/deleteProduct.js";
-import fetchAllProducts from "../../controllers/admin/fetchAllProducts.js";
+import productImageUpload from "../../controllers/admin/product/productImageUpload.js";
+import addProduct from "../../controllers/admin/product/addProduct.js";
+import editProduct from "../../controllers/admin/product/editProduct.js";
+import deleteProduct from "../../controllers/admin/product/deleteProduct.js";
+import fetchAllProducts from "../../controllers/admin/product/fetchAllProducts.js";
 
 const adminProductsRouter = express.Router();
 

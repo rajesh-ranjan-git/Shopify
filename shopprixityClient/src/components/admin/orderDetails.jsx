@@ -5,7 +5,7 @@ import { Separator } from "@/components/ui/separator";
 import CommonForm from "@/components/common/form";
 import { Badge } from "@/components/ui/badge";
 import { useDispatch } from "react-redux";
-import updateOrderStatusService from "@/services/admin/order/updateOrderStatus";
+import updateOrderStatusService from "@/services/admin/order/updateOrderStatusService";
 import fetchAdminOrderDetailsService from "@/services/admin/order/fetchAdminOrderDetailsService";
 import fetchAllOrdersService from "@/services/admin/order/fetchAllOrdersService";
 import { useToast } from "@/hooks/use-toast";

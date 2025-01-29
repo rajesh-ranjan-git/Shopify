@@ -7,7 +7,7 @@ const searchShopProductsService = createAsyncThunk(
   async (searchKeyword) => {
     try {
       const searchShopProductsResponse = await axios.get(
-        `${searchShopProductsServiceApi}?${searchKeyword}`
+        `${searchShopProductsServiceApi}/${searchKeyword}`
       );
 
       console.log("searchShopProductsResponse : ", searchShopProductsResponse);

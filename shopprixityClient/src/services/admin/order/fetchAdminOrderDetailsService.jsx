@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchAdminOrderDetailsServiceApi } from "../../apiUrls";
 
 const fetchAdminOrderDetailsService = createAsyncThunk(
-  "/order/orderDetails",
+  "/order/fetchOrderDetails",
   async (orderId) => {
     try {
       const fetchAdminOrderDetailsResponse = await axios.get(

@@ -77,7 +77,10 @@ const ShopProductDetails = ({
               <Button
                 className="w-full"
                 onClick={() =>
-                  handleAddToCart(product?.id, product?.totalStock)
+                  handleAddToCart(
+                    productDetails?.id,
+                    productDetails?.totalStock
+                  )
                 }
               >
                 Add to cart

@@ -46,6 +46,7 @@ const ShopProductsSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(searchShopProductsService.fulfilled, (state, action) => {
+        console.log("action.payload : ", action.payload);
         state.searchShopProducts = action.payload.products;
         state.isLoading = false;
       })

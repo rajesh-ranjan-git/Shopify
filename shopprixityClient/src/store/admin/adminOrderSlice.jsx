@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import fetchAllOrdersService from "@/services/admin/order/fetchAllOrdersService";
 import fetchAdminOrderDetailsService from "@/services/admin/order/fetchAdminOrderDetailsService";
-import updateOrderStatusService from "@/services/admin/order/updateOrderStatus";
+import updateOrderStatusService from "@/services/admin/order/updateOrderStatusService";
 
 const initialState = {
   isLoading: false,
@@ -10,7 +10,7 @@ const initialState = {
 };
 
 const AdminOrderSlice = createSlice({
-  name: "shopOrder",
+  name: "adminOrder",
   initialState,
   reducers: {
     resetOrderDetails: (state) => {
@@ -33,7 +33,7 @@ const AdminOrderSlice = createSlice({
       .addCase(fetchAdminOrderDetailsService.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(fetchAdminOrderDetailsService.fulfilled, (state) => {
+      .addCase(fetchAdminOrderDetailsService.fulfilled, (state, action) => {
         state.isLoading = false;
         state.orderDetails = action.payload.data;
       })
