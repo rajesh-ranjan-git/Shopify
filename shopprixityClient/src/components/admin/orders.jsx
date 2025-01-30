@@ -20,7 +20,7 @@ import { Badge } from "@/components/ui/badge";
 const AdminOrders = () => {
   const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
   const dispatch = useDispatch();
-  const { orderList, orderDetails } = useSelector(
+  const { ordersList, orderDetails } = useSelector(
     (state) => state.adminOrderReducer
   );
 
@@ -39,6 +39,8 @@ const AdminOrders = () => {
     }
   }, [orderDetails]);
 
+  console.log("orderDetails from AdminOrders", orderDetails);
+
   return (
     <Card>
       <CardHeader>All Orders</CardHeader>
@@ -56,10 +58,10 @@ const AdminOrders = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {orderList && orderList.length > 0
-              ? orderList.map((orderItem) => (
-                  <TableRow>
-                    <TableCell>{orderItem?.orderNumber}</TableCell>
+            {ordersList && ordersList.length > 0
+              ? ordersList.map((orderItem) => (
+                  <TableRow key={orderItem.id}>
+                    <TableCell>{orderItem?.id}</TableCell>
                     <TableCell>{orderItem?.orderDate.split("T")[0]}</TableCell>
                     <TableCell>
                       <Badge
@@ -80,7 +82,7 @@ const AdminOrders = () => {
                         open={openDetailsDialog}
                         onOpenChange={() => {
                           setOpenDetailsDialog(false);
-                          dispatch(resetOrderDetails());
+                          // dispatch(resetOrderDetails());
                         }}
                       >
                         <Button

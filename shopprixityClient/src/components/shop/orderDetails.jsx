@@ -1,6 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { DialogContent } from "@/components/ui/dialog";
+import {
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
@@ -10,6 +14,8 @@ const ShopOrderDetails = ({ orderDetails }) => {
 
   return (
     <DialogContent className="sm:max-w-[600px]">
+      <DialogTitle className="hidden"></DialogTitle>
+      <DialogDescription className="hidden"></DialogDescription>
       <div className="gap-6 grid">
         <div className="gap-2 grid">
           <div className="flex justify-between items-center mt-6">
@@ -56,7 +62,10 @@ const ShopOrderDetails = ({ orderDetails }) => {
             <ul className="gap-3 grid">
               {orderDetails?.orderItems && orderDetails?.orderItems?.length > 0
                 ? orderDetails.orderItems.map((item) => (
-                    <li className="flex justify-between item-center">
+                    <li
+                      className="flex justify-between item-center"
+                      key={item?.title}
+                    >
                       <span>Title : {item?.title}</span>
                       <span>Price : ₹{item?.price}</span>
                       <span>Quantity : {item?.quantity}</span>

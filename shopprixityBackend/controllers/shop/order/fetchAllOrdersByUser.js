@@ -12,6 +12,8 @@ const fetchAllOrdersByUser = async (req, res) => {
       },
     });
 
+    console.log("orders from fetchAllOrdersByUser: ", orders);
+
     // Check if no orders by user
     if (!orders.length) {
       return res.status(400).json({

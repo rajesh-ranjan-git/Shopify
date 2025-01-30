@@ -10,6 +10,10 @@ const fetchOrderDetails = async (req, res) => {
       where: {
         id: orderId,
       },
+      include: {
+        orderItems: true,
+        shippingAddress: true,
+      },
     });
 
     // Check if order is not found with orderId

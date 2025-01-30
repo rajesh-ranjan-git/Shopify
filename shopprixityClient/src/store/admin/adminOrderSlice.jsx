@@ -24,7 +24,7 @@ const AdminOrderSlice = createSlice({
       })
       .addCase(fetchAllOrdersService.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.ordersList = action.payload.data;
+        state.ordersList = action?.payload?.orders;
       })
       .addCase(fetchAllOrdersService.rejected, (state) => {
         state.isLoading = false;
@@ -35,7 +35,8 @@ const AdminOrderSlice = createSlice({
       })
       .addCase(fetchAdminOrderDetailsService.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.orderDetails = action.payload.data;
+        console.log("action?.payload from AdminOrderSlice : ", action?.payload);
+        state.orderDetails = action?.payload?.order;
       })
       .addCase(fetchAdminOrderDetailsService.rejected, (state) => {
         state.isLoading = false;

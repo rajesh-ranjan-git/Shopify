@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { DialogContent } from "@/components/ui/dialog";
+import {
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import CommonForm from "@/components/common/form";
@@ -41,11 +45,13 @@ const AdminOrderDetails = ({ orderDetails }) => {
 
   return (
     <DialogContent className="sm:max-w-[600px]">
+      <DialogTitle className="hidden"></DialogTitle>
+      <DialogDescription className="hidden"></DialogDescription>
       <div className="gap-6 grid">
         <div className="gap-2 grid">
           <div className="flex justify-between items-center mt-6">
             <p className="font-medium">Order Id</p>
-            <Label>{orderDetails?.orderNumber}</Label>
+            <Label>{orderDetails?.id}</Label>
           </div>
           <div className="flex justify-between items-center mt-2">
             <p className="font-medium">Date</p>
@@ -87,7 +93,10 @@ const AdminOrderDetails = ({ orderDetails }) => {
             <ul className="gap-3 grid">
               {orderDetails?.orderItems && orderDetails?.orderItems?.length > 0
                 ? orderDetails.orderItems.map((item) => (
-                    <li className="flex justify-between item-center">
+                    <li
+                      className="flex justify-between item-center"
+                      key={item?.title}
+                    >
                       <span>Title : {item?.title}</span>
                       <span>Price : ₹{item?.price}</span>
                       <span>Quantity : {item?.quantity}</span>
