@@ -55,7 +55,6 @@ const OrderSlice = createSlice({
       })
       .addCase(fetchOrderDetailsService.fulfilled, (state, action) => {
         state.isLoading = false;
-        console.log("action?.payload from ShopOrderSlice : ", action?.payload);
         state.orderDetails = action?.payload?.order;
       })
       .addCase(fetchOrderDetailsService.rejected, (state) => {

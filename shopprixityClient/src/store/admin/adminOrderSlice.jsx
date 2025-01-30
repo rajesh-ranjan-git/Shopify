@@ -35,7 +35,6 @@ const AdminOrderSlice = createSlice({
       })
       .addCase(fetchAdminOrderDetailsService.fulfilled, (state, action) => {
         state.isLoading = false;
-        console.log("action?.payload from AdminOrderSlice : ", action?.payload);
         state.orderDetails = action?.payload?.order;
       })
       .addCase(fetchAdminOrderDetailsService.rejected, (state) => {

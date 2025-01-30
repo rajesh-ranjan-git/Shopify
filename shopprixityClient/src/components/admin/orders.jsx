@@ -39,8 +39,6 @@ const AdminOrders = () => {
     }
   }, [orderDetails]);
 
-  console.log("orderDetails from AdminOrders", orderDetails);
-
   return (
     <Card>
       <CardHeader>All Orders</CardHeader>
