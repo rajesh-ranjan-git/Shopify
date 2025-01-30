@@ -16,8 +16,6 @@ const fetchOrderDetails = async (req, res) => {
       },
     });
 
-    console.log("order from fetchOrderDetails : ", order);
-
     // Check if order not found
     if (!order) {
       return res.status(400).json({
@@ -26,8 +24,6 @@ const fetchOrderDetails = async (req, res) => {
         message: "Order not found!",
       });
     }
-
-    console.log("order : ", order);
 
     // Check if order found
     return res.status(200).json({

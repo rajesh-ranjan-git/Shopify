@@ -5,18 +5,12 @@ const capturePayment = async (req, res) => {
   try {
     const { paymentId, payerId, orderId } = req.body;
 
-    console.log("paymentId : ", paymentId);
-    console.log("payerId : ", payerId);
-    console.log("orderId : ", orderId);
-
     // Find order with orderId
     let order = await prisma.orders.findUnique({
       where: {
         id: orderId,
       },
     });
-
-    console.log("order : ", order);
 
     // If order not found
     if (!order) {
@@ -39,8 +33,6 @@ const capturePayment = async (req, res) => {
     order.orderStatus = "confirmed";
     order.paymentId = paymentId;
     order.payerId = payerId;
-
-    console.log("order : ", order);
 
     for (let item of order.orderItems) {
       let product = await prisma.products.findUnique(item.productId);
@@ -76,8 +68,6 @@ const capturePayment = async (req, res) => {
         payerId: order.payerId,
       },
     });
-
-    console.log("order : ", order);
 
     return res.status(200).json({
       status: 200,

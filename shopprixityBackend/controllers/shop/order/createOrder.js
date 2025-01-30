@@ -17,17 +17,6 @@ const createOrder = async (req, res) => {
       paymentMethod,
     } = req.body;
 
-    console.log("userId : ", userId);
-    console.log("cartId : ", cartId);
-    console.log("orderItems : ", orderItems);
-    console.log("shippingAddress : ", shippingAddress);
-    console.log("totalAmount : ", totalAmount);
-    console.log("orderStatus : ", orderStatus);
-    console.log("payerId : ", payerId);
-    console.log("paymentId : ", paymentId);
-    console.log("paymentStatus : ", paymentStatus);
-    console.log("paymentMethod : ", paymentMethod);
-
     // Create payment JSON for paypal
     const createPaymentJSON = {
       intent: "sale",
@@ -58,13 +47,10 @@ const createOrder = async (req, res) => {
       ],
     };
 
-    console.log("createPaymentJSON : ", createPaymentJSON);
-
     // Create paypal payment
     paypal.payment.create(createPaymentJSON, async (error, paymentInfo) => {
       // Check if error occurred during paypal payment process
       if (error) {
-        console.log("paypal error : ", error);
         return res.status(500).json({
           status: 500,
           success: false,
@@ -82,8 +68,6 @@ const createOrder = async (req, res) => {
           },
         });
 
-        console.log("newShippingAddress : ", newShippingAddress);
-
         // Create new order
         const newOrder = await prisma.orders.create({
           data: {
@@ -99,8 +83,6 @@ const createOrder = async (req, res) => {
           },
         });
 
-        console.log("newOrder : ", newOrder);
-
         // Add order items
         const newOrderItems = orderItems.map(async (item) => {
           item = await prisma.orderItems.create({
@@ -115,14 +97,10 @@ const createOrder = async (req, res) => {
           });
         });
 
-        console.log("newOrderItems : ", newOrderItems);
-
         // Get approval URL from paypal
         const approvalURL = paymentInfo.links.find(
           (link) => link.rel === "approval_url"
         ).href;
-
-        console.log("approvalURL : ", approvalURL);
 
         return res.status(201).json({
           success: true,
