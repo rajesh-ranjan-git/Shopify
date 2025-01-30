@@ -77,6 +77,8 @@ const capturePayment = async (req, res) => {
       },
     });
 
+    console.log("order : ", order);
+
     return res.status(200).json({
       status: 200,
       success: true,

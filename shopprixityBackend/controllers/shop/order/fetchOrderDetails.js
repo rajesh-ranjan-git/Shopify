@@ -12,8 +12,11 @@ const fetchOrderDetails = async (req, res) => {
       },
       include: {
         orderItems: true,
+        shippingAddress: true,
       },
     });
+
+    console.log("order from fetchOrderDetails : ", order);
 
     // Check if order not found
     if (!order) {

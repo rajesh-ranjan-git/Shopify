@@ -5,7 +5,6 @@ import { createOrderApi } from "../../apiUrls";
 const createOrderService = createAsyncThunk(
   "/order/createOrder",
   async (orderData) => {
-    console.log("orderData : ", orderData);
     try {
       const createOrderResponse = await axios.post(createOrderApi, orderData, {
         withCredentials: true,

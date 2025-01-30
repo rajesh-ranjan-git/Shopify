@@ -93,6 +93,7 @@ model OrderItems {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   orderId   String   @db.ObjectId
   productId String   @db.ObjectId
+  title     String
   quantity  Int
   price     Float
   image     String

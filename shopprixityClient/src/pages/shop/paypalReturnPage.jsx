@@ -24,6 +24,7 @@ const PaypalReturnPage = () => {
           orderId: currentOrderId,
         })
       ).then((data) => {
+        console.log("data?.payload : ", data?.payload);
         if (data?.payload?.success) {
           sessionStorage.removeItem("currentOrderId");
           window.location.href = "/shop/paymentSuccess";

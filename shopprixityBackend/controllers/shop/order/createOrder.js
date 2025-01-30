@@ -107,8 +107,9 @@ const createOrder = async (req, res) => {
             data: {
               orderId: newOrder.id,
               productId: item.productId,
+              title: item.title,
               quantity: item.quantity,
-              price: item.quantity,
+              price: item.price,
               image: item.image,
             },
           });
