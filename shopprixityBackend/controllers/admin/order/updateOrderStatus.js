@@ -6,6 +6,8 @@ const updateOrderStatus = async (req, res) => {
     const { orderId } = req.params;
     const { orderStatus } = req.body;
 
+    console.log("orderStatus : ", orderStatus);
+
     // Find order with orderID
     const order = await prisma.orders.findUnique({
       where: {
@@ -22,14 +24,18 @@ const updateOrderStatus = async (req, res) => {
       });
     }
 
+    console.log("order from updateOrderStatus : ", order);
+
+    order.orderStatus = orderStatus;
+
+    console.log("order from updateOrderStatus : ", order);
+
     // Update order status
     const updatedOrder = await prisma.orders.update({
       where: {
         id: orderId,
       },
-      data: {
-        orderStatus: orderStatus,
-      },
+      data: { orderStatus: orderStatus },
     });
 
     // Check if order is updated

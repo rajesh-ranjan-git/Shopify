@@ -29,7 +29,7 @@ const AdminOrderDetails = ({ orderDetails }) => {
     dispatch(
       updateOrderStatusService({
         orderId: orderDetails?.id,
-        orderStatus: status,
+        status,
       })
     ).then((data) => {
       if (data?.payload?.success) {
