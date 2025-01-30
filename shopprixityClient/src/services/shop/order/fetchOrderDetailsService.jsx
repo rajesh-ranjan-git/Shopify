@@ -14,7 +14,6 @@ const fetchOrderDetailsService = createAsyncThunk(
       );
       return fetchOrderDetailsResponse?.data;
     } catch (error) {
-      console.log("error : ", error);
       return error.response.data;
     }
   }

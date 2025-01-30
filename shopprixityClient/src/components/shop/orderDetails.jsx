@@ -8,8 +8,6 @@ import { Badge } from "@/components/ui/badge";
 const ShopOrderDetails = ({ orderDetails }) => {
   const { user } = useSelector((state) => state.authReducer);
 
-  console.log("orderDetails : ", orderDetails);
-
   return (
     <DialogContent className="sm:max-w-[600px]">
       <div className="gap-6 grid">

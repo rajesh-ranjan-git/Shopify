@@ -14,10 +14,8 @@ const updateOrderStatusService = createAsyncThunk(
         }
       );
 
-      console.log("updateOrderStatusResponse : ", updateOrderStatusResponse);
       return updateOrderStatusResponse?.data;
     } catch (error) {
-      console.log("error : ", error);
       return error.response.data;
     }
   }

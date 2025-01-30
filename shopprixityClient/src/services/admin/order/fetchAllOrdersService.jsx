@@ -8,10 +8,8 @@ const fetchAllOrdersService = createAsyncThunk("/order/allOrders", async () => {
       withCredentials: true,
     });
 
-    console.log("fetchAllOrdersResponse : ", fetchAllOrdersResponse);
     return fetchAllOrdersResponse?.data;
   } catch (error) {
-    console.log("error : ", error);
     return error.response.data;
   }
 });

@@ -10,10 +10,8 @@ const createOrderService = createAsyncThunk(
         withCredentials: true,
       });
 
-      console.log("createOrderResponse : ", createOrderResponse);
       return createOrderResponse?.data;
     } catch (error) {
-      console.log("error : ", error);
       return error.response.data;
     }
   }

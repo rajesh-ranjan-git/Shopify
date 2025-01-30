@@ -45,8 +45,6 @@ const ShopCheckout = () => {
       return;
     }
 
-    console.log("cartItems : ", cartItems);
-
     const orderData = {
       userId: user?.id,
       cartId: cartItems?.id,
@@ -70,7 +68,6 @@ const ShopCheckout = () => {
     };
 
     dispatch(createOrderService(orderData)).then((data) => {
-      console.log("data : ", data);
       if (data?.payload?.success) {
         setIsPaymentStarted(true);
       } else {
@@ -82,9 +79,6 @@ const ShopCheckout = () => {
   if (approvalURL) {
     window.location.href = approvalURL;
   }
-
-  console.log("cartItems : ", cartItems);
-  console.log("isPaymentStarted : ", isPaymentStarted);
 
   return (
     <div className="flex flex-col">

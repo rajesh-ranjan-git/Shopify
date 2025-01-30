@@ -24,7 +24,6 @@ const PaypalReturnPage = () => {
           orderId: currentOrderId,
         })
       ).then((data) => {
-        console.log("data?.payload : ", data?.payload);
         if (data?.payload?.success) {
           sessionStorage.removeItem("currentOrderId");
           window.location.href = "/shop/paymentSuccess";
@@ -32,10 +31,6 @@ const PaypalReturnPage = () => {
       });
     }
   }, [paymentId, payerId, dispatch]);
-
-  console.log("paymentId : ", paymentId);
-  console.log("payerId : ", payerId);
-  console.log("dispatch : ", dispatch);
 
   return (
     <Card>

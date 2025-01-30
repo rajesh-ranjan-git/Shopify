@@ -26,7 +26,6 @@ const ShopOrders = () => {
   );
 
   const handleOrderDetails = (orderId) => {
-    console.log("orderId : ", orderId);
     dispatch(fetchOrderDetailsService(orderId));
     setOpenDetailsDialog(true);
   };

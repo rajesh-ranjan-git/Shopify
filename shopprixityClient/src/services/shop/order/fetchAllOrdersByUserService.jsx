@@ -13,13 +13,8 @@ const fetchAllOrdersByUserService = createAsyncThunk(
         }
       );
 
-      console.log(
-        "fetchAllOrdersByUserResponse : ",
-        fetchAllOrdersByUserResponse
-      );
       return fetchAllOrdersByUserResponse?.data;
     } catch (error) {
-      console.log("error : ", error);
       return error.response.data;
     }
   }

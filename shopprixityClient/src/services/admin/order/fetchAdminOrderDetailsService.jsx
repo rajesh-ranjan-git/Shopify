@@ -12,14 +12,8 @@ const fetchAdminOrderDetailsService = createAsyncThunk(
           withCredentials: true,
         }
       );
-
-      console.log(
-        "fetchAdminOrderDetailsResponse : ",
-        fetchAdminOrderDetailsResponse
-      );
       return fetchAdminOrderDetailsResponse?.data;
     } catch (error) {
-      console.log("error : ", error);
       return error.response.data;
     }
   }

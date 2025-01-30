@@ -14,10 +14,8 @@ const capturePaymentService = createAsyncThunk(
         }
       );
 
-      console.log("capturePaymentResponse : ", capturePaymentResponse);
       return capturePaymentResponse?.data;
     } catch (error) {
-      console.log("error : ", error);
       return error.response.data;
     }
   }
