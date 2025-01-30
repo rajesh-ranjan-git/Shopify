@@ -16,6 +16,7 @@ import fetchAdminOrderDetailsService from "@/services/admin/order/fetchAdminOrde
 import fetchAllOrdersService from "@/services/admin/order/fetchAllOrdersService";
 import { resetOrderDetails } from "@/store/admin/adminOrderSlice";
 import { Badge } from "@/components/ui/badge";
+import { Label } from "@/components/ui/label";
 
 const AdminOrders = () => {
   const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
@@ -62,17 +63,20 @@ const AdminOrders = () => {
                     <TableCell>{orderItem?.id}</TableCell>
                     <TableCell>{orderItem?.orderDate.split("T")[0]}</TableCell>
                     <TableCell>
-                      <Badge
-                        className={`${
-                          orderDetails?.orderStatus === "confirmed"
-                            ? "bg-green-500"
-                            : orderDetails?.orderStatus === "rejected"
-                            ? "bg-red-600"
-                            : "bg-black"
-                        } px-3 py-1`}
-                      >
-                        {orderItem?.orderStatus}
-                      </Badge>
+                      <Label>
+                        <Badge
+                          className={`${
+                            orderItem?.orderStatus === "confirmed" ||
+                            "delivered"
+                              ? "bg-green-500"
+                              : orderItem?.orderStatus === "rejected"
+                              ? "bg-red-600"
+                              : "bg-black"
+                          } px-3 py-1`}
+                        >
+                          {orderItem?.orderStatus}
+                        </Badge>
+                      </Label>
                     </TableCell>
                     <TableCell>₹{orderItem?.totalAmount}</TableCell>
                     <TableCell>

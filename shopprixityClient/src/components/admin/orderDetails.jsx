@@ -62,7 +62,7 @@ const AdminOrderDetails = ({ orderDetails }) => {
             <Label>
               <Badge
                 className={`${
-                  orderDetails?.orderStatus === "confirmed"
+                  orderDetails?.orderStatus === "confirmed" || "delivered"
                     ? "bg-green-500"
                     : orderDetails?.orderStatus === "rejected"
                     ? "bg-red-600"
@@ -119,7 +119,8 @@ const AdminOrderDetails = ({ orderDetails }) => {
                   { id: "inProcess", label: "In Process" },
                   { id: "inShipping", label: "In Shipping" },
                   { id: "rejected", label: "Rejected" },
-                  { id: "pending", label: "pending" },
+                  { id: "pending", label: "Pending" },
+                  { id: "confirmed", label: "Confirmed" },
                   { id: "delivered", label: "Delivered" },
                 ],
               },
