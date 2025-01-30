@@ -14,9 +14,6 @@ const fetchAllOrders = async (req, res) => {
       });
     }
 
-    console.log("orders from fetchAllOrders : ", orders);
-    console.log("orders.orderItems from fetchAllOrders : ", orders.orderItems);
-
     // Check if orders found
     return res.status(200).json({
       status: 200,
