@@ -1,15 +1,15 @@
 import React from "react";
+import { Star } from "lucide-react";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Button } from "../ui/button";
-import { Separator } from "../ui/separator";
-import { Avatar, AvatarFallback } from "../ui/avatar";
-import { Star } from "lucide-react";
-import { Input } from "../ui/input";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Input } from "@/components/ui/input";
 
 const ShopProductDetails = ({
   openShopProductDetails,

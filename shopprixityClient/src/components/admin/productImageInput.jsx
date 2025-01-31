@@ -4,8 +4,8 @@ import { File, UploadCloud, X } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { adminProductImageUploadApi } from "@/services/apiUrls";
 import { Skeleton } from "@/components/ui/skeleton";
+import { adminProductImageUploadApi } from "@/services/apiUrls";
 
 const ProductImageInput = ({
   productImage,

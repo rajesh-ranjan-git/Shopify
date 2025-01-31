@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useToast } from "@/hooks/use-toast";
-import CommonForm from "@/components/common/form";
 import { registerFormControls } from "@/config/config";
+import CommonForm from "@/components/common/form";
 import registerUserService from "@/services/auth/registerUserService";
 
 const initialState = {

@@ -1,4 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import ShopCartContents from "./cartContents";
 import {
   SheetContent,
   SheetDescription,
@@ -6,8 +8,6 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import ShopCartContents from "./cartContents";
-import { useNavigate } from "react-router-dom";
 
 const ShopCartWrapper = ({ cartItems, setOpenCart, setOpenMobileNav }) => {
   const navigate = useNavigate();

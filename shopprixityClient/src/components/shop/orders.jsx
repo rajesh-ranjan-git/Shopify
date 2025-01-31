@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import ShopOrderDetails from "./orderDetails";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
   Table,
@@ -10,13 +12,11 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Dialog } from "@/components/ui/dialog";
-import ShopOrderDetails from "./orderDetails";
-import { useDispatch, useSelector } from "react-redux";
-import fetchAllOrdersByUserService from "@/services/shop/order/fetchAllOrdersByUserService";
 import { Badge } from "@/components/ui/badge";
+import { Label } from "@/components/ui/label";
+import fetchAllOrdersByUserService from "@/services/shop/order/fetchAllOrdersByUserService";
 import fetchOrderDetailsService from "@/services/shop/order/fetchOrderDetailsService";
 import { resetOrderDetails } from "@/store/shop/orderSlice";
-import { Label } from "@/components/ui/label";
 
 const ShopOrders = () => {
   const [openDetailsDialog, setOpenDetailsDialog] = useState(false);

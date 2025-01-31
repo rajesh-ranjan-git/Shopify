@@ -5,16 +5,16 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import bannerOne from "@/assets/banner-1.webp";
 import bannerTwo from "@/assets/banner-2.webp";
 import bannerThree from "@/assets/banner-3.webp";
-import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 import { brands, categories } from "@/config/config";
-import { Card, CardContent } from "@/components/ui/card";
 import ShopProductCard from "@/components/shop/productCard";
+import ShopProductDetails from "@/components/shop/productDetails";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import fetchShopProductsService from "@/services/shop/products/fetchShopProductsService";
 import fetchShopProductDetailsService from "@/services/shop/products/fetchShopProductDetailsService";
 import addToShopCartService from "@/services/shop/cart/addToShopCartService";
 import fetchShopCartService from "@/services/shop/cart/fetchShopCartService";
-import { useToast } from "@/hooks/use-toast";
-import ShopProductDetails from "@/components/shop/productDetails";
 
 const ShopHome = () => {
   const [currentSlide, setCurrentSlide] = useState(0);

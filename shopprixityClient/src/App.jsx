@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
-import { Toaster } from "./components/ui/toaster";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import checkAuthService from "./services/auth/checkAuthService";
+import { Toaster } from "@/components/ui/toaster";
+import checkAuthService from "@/services/auth/checkAuthService";
 
 function App() {
   const dispatch = useDispatch();

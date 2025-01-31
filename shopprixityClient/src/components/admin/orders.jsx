@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import AdminOrderDetails from "./orderDetails";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
   Table,
@@ -10,13 +12,11 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Dialog } from "@/components/ui/dialog";
-import AdminOrderDetails from "./orderDetails";
-import { useDispatch, useSelector } from "react-redux";
+import { Badge } from "@/components/ui/badge";
+import { Label } from "@/components/ui/label";
 import fetchAdminOrderDetailsService from "@/services/admin/order/fetchAdminOrderDetailsService";
 import fetchAllOrdersService from "@/services/admin/order/fetchAllOrdersService";
 import { resetOrderDetails } from "@/store/admin/adminOrderSlice";
-import { Badge } from "@/components/ui/badge";
-import { Label } from "@/components/ui/label";
 
 const AdminOrders = () => {
   const [openDetailsDialog, setOpenDetailsDialog] = useState(false);

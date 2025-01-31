@@ -1,14 +1,14 @@
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useSearchParams } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
 import ShopProductCard from "@/components/shop/productCard";
 import ShopProductDetails from "@/components/shop/productDetails";
 import { Input } from "@/components/ui/input";
-import { useToast } from "@/hooks/use-toast";
 import addToShopCartService from "@/services/shop/cart/addToShopCartService";
 import fetchShopCartService from "@/services/shop/cart/fetchShopCartService";
 import fetchShopProductDetailsService from "@/services/shop/products/fetchShopProductDetailsService";
 import searchShopProductsService from "@/services/shop/products/searchShopProductsService";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useSearchParams } from "react-router-dom";
 
 const Search = () => {
   const [searchKeyword, setSearchKeyword] = useState("");

@@ -1,8 +1,8 @@
-import { Card, CardHeader, CardTitle } from "@/components/ui/card";
-import capturePaymentService from "@/services/shop/order/capturePaymentService";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import capturePaymentService from "@/services/shop/order/capturePaymentService";
 
 const PaypalReturnPage = () => {
   const dispatch = useDispatch();

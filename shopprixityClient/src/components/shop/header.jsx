@@ -7,6 +7,8 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { shopHeaderMenuItems } from "@/config/config";
+import ShopCartWrapper from "./cartWrapper";
 import {
   Sheet,
   SheetContent,
@@ -23,12 +25,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { shopHeaderMenuItems } from "@/config/config";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import logoutUserService from "@/services/auth/logoutUserService";
-import ShopCartWrapper from "./cartWrapper";
-import fetchShopCartService from "@/services/shop/cart/fetchShopCartService";
 import { Label } from "@/components/ui/label";
+import logoutUserService from "@/services/auth/logoutUserService";
+import fetchShopCartService from "@/services/shop/cart/fetchShopCartService";
 
 const MenuItems = ({ setOpenMobileNav }) => {
   const navigate = useNavigate();

@@ -1,9 +1,9 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Minus, Plus, Trash } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import deleteShopCartService from "@/services/shop/cart/deleteShopCartService";
-import { useToast } from "@/hooks/use-toast";
 import updateShopCartService from "@/services/shop/cart/updateShopCartService";
 
 const ShopCartContents = ({ cartItem }) => {

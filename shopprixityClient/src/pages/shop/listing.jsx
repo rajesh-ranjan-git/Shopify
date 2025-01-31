@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { ArrowUpDown } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { sortOptions } from "@/config/config";
+import ShopProductCard from "@/components/shop/productCard";
+import ShopProductDetails from "@/components/shop/productDetails";
 import ShopFilter from "@/components/shop/filter";
 import {
   DropdownMenu,
@@ -10,15 +15,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { ArrowUpDown } from "lucide-react";
-import { sortOptions } from "@/config/config";
-import ShopProductCard from "@/components/shop/productCard";
-import ShopProductDetails from "@/components/shop/productDetails";
 import fetchShopProductsService from "@/services/shop/products/fetchShopProductsService";
 import fetchShopProductDetailsService from "@/services/shop/products/fetchShopProductDetailsService";
 import addToShopCartService from "@/services/shop/cart/addToShopCartService";
 import fetchShopCartService from "@/services/shop/cart/fetchShopCartService";
-import { useToast } from "@/hooks/use-toast";
 
 const ShopListing = () => {
   const dispatch = useDispatch();

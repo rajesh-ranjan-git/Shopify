@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import checkoutImage from "@/assets/account.jpg";
-import Address from "@/components/shop/address";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import checkoutImage from "@/assets/account.jpg";
+import { useToast } from "@/hooks/use-toast";
+import Address from "@/components/shop/address";
 import ShopCartContents from "@/components/shop/cartContents";
 import { Button } from "@/components/ui/button";
 import createOrderService from "@/services/shop/order/createOrderService";
-import { useToast } from "@/hooks/use-toast";
 
 const ShopCheckout = () => {
   const [currentSelectedAddress, setCurrentSelectedAddress] = useState(null);

@@ -1,8 +1,8 @@
 import React from "react";
+import { brandOptionsMap, categoryOptionsMap } from "@/config/config";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { brandOptionsMap, categoryOptionsMap } from "@/config/config";
 
 const ShopProductCard = ({
   product,

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import CommonForm from "../common/form";
-import { addressFormControls } from "@/config/config";
 import { useDispatch, useSelector } from "react-redux";
+import { useToast } from "@/hooks/use-toast";
+import AddressCard from "./addressCard";
+import CommonForm from "@/components/common/form";
+import { addressFormControls } from "@/config/config";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import addAddressService from "@/services/shop/address/addAddressService";
 import fetchAddressService from "@/services/shop/address/fetchAddressService";
-import AddressCard from "./addressCard";
 import deleteAddressService from "@/services/shop/address/deleteAddressService";
-import { useToast } from "@/hooks/use-toast";
 import updateAddressService from "@/services/shop/address/updateAddressService";
 
 const initialAddressFormData = {
