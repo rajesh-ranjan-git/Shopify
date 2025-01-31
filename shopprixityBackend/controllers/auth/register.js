@@ -1,8 +1,8 @@
 import vine, { errors } from "@vinejs/vine";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { registerSchema } from "../../validations/auth/authValidations.js";
 import prisma from "../../db/db.config.js";
+import { registerSchema } from "../../validations/auth/authValidations.js";
 
 // Register user
 
