@@ -7,7 +7,7 @@ const fetchProductReviewsService = createAsyncThunk(
   async ({ productId }) => {
     try {
       const fetchProductReviewsResponse = await axios.get(
-        `${fetchProductReviewsServiceApi}?${productId}`
+        `${fetchProductReviewsServiceApi}/${productId}`
       );
 
       return fetchProductReviewsResponse?.data;

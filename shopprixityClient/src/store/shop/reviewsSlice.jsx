@@ -16,7 +16,6 @@ const ReviewsSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchProductReviewsService.fulfilled, (state, action) => {
-        console.log("action?.payload : ", action?.payload);
         state.reviews = action?.payload?.reviews;
         state.isLoading = false;
       })

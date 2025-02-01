@@ -15,6 +15,9 @@ import { Label } from "@/components/ui/label";
 import ProductRating from "@/components/common/productRating";
 import addProductReviewService from "@/services/shop/reviews/addProductReviewService";
 import fetchShopProductsService from "@/services/shop/products/fetchShopProductsService";
+import { useToast } from "@/hooks/use-toast";
+import fetchProductReviewsService from "@/services/shop/reviews/fetchProductReviewsService";
+import fetchShopProductDetailsService from "@/services/shop/products/fetchShopProductDetailsService";
 
 const ShopProductDetails = ({
   openShopProductDetails,
@@ -26,8 +29,11 @@ const ShopProductDetails = ({
   const [productRating, setProductRating] = useState(0);
 
   const { user } = useSelector((state) => state.authReducer);
+  const { reviews } = useSelector((state) => state.reviewsReducer);
 
   const dispatch = useDispatch();
+
+  const { toast } = useToast();
 
   const handleProductRating = (getProductRating) => {
     setProductRating(getProductRating);
@@ -43,7 +49,20 @@ const ShopProductDetails = ({
         reviewValue: productRating,
       })
     ).then((data) => {
-      console.log(data);
+      if (data?.payload?.success) {
+        dispatch(fetchProductReviewsService({ productId: productDetails?.id }));
+        dispatch(fetchShopProductDetailsService(productDetails?.id));
+        toast({
+          title: "Review added successfully!",
+        });
+      } else {
+        setProductRating(0);
+        setReviewMessage("");
+        toast({
+          title: data?.payload?.message,
+          variant: "destructive",
+        });
+      }
     });
   };
 
@@ -53,6 +72,12 @@ const ShopProductDetails = ({
       setReviewMessage("");
     }
   }, [openShopProductDetails]);
+
+  useEffect(() => {
+    if (productDetails !== null) {
+      dispatch(fetchProductReviewsService({ productId: productDetails?.id }));
+    }
+  }, [productDetails]);
 
   return (
     <Dialog
@@ -97,13 +122,14 @@ const ShopProductDetails = ({
           </div>
           <div className="flex items-center gap-2 mt-2">
             <div className="flex items-center gap-0.5">
-              <Star className="w-5 h-5 fill-primary" />
-              <Star className="w-5 h-5 fill-primary" />
-              <Star className="w-5 h-5 fill-primary" />
-              <Star className="w-5 h-5 fill-primary" />
-              <Star className="w-5 h-5 fill-primary" />
+              <ProductRating
+                productRating={productDetails?.rating}
+                handleProductRating={handleProductRating}
+              />
             </div>
-            <span className="text-muted-foreground">(4.5)</span>
+            <span className="text-muted-foreground">
+              {productDetails?.rating}
+            </span>
           </div>
           <div className="mt-5 mb-5">
             {productDetails?.totalStock === 0 ? (
@@ -128,64 +154,33 @@ const ShopProductDetails = ({
           <div className="max-h-[300px] overflow-auto">
             <h2 className="mb-4 font-bold text-xl">Reviews</h2>
             <div className="gap-6 grid">
-              <div className="flex gap-4">
-                <Avatar className="border w-10 h-10">
-                  <AvatarFallback>RR</AvatarFallback>
-                </Avatar>
-                <div className="gap-1 grid">
-                  <div className="flex items-center gap-2">
-                    <h3 className="font-bold">Rajesh Ranjan</h3>
+              {reviews && reviews.length ? (
+                reviews.map((reviewItem) => (
+                  <div className="flex gap-4" key={reviewItem?.id}>
+                    <Avatar className="border w-10 h-10">
+                      <AvatarFallback>
+                        {reviewItem?.userName[0].toUpperCase()}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="gap-1 grid">
+                      <div className="flex items-center gap-2">
+                        <h3 className="font-bold">{reviewItem?.userName}</h3>
+                      </div>
+                      <div className="flex items-center gap-0.5">
+                        <ProductRating
+                          productRating={reviewItem?.reviewValue}
+                          handleProductRating={handleProductRating}
+                        />
+                      </div>
+                      <p className="text-muted-foreground">
+                        {reviewItem?.reviewMessage}
+                      </p>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-0.5">
-                    <Star className="w-5 h-5 fill-primary" />
-                    <Star className="w-5 h-5 fill-primary" />
-                    <Star className="w-5 h-5 fill-primary" />
-                    <Star className="w-5 h-5 fill-primary" />
-                    <Star className="w-5 h-5 fill-primary" />
-                  </div>
-                  <p className="text-muted-foreground">This is Shopprixity!</p>
-                </div>
-              </div>
-            </div>
-            <div className="gap-6 grid">
-              <div className="flex gap-4">
-                <Avatar className="border w-10 h-10">
-                  <AvatarFallback>RR</AvatarFallback>
-                </Avatar>
-                <div className="gap-1 grid">
-                  <div className="flex items-center gap-2">
-                    <h3 className="font-bold">Rajesh Ranjan</h3>
-                  </div>
-                  <div className="flex items-center gap-0.5">
-                    <Star className="w-5 h-5 fill-primary" />
-                    <Star className="w-5 h-5 fill-primary" />
-                    <Star className="w-5 h-5 fill-primary" />
-                    <Star className="w-5 h-5 fill-primary" />
-                    <Star className="w-5 h-5 fill-primary" />
-                  </div>
-                  <p className="text-muted-foreground">This is Shopprixity!</p>
-                </div>
-              </div>
-            </div>
-            <div className="gap-6 grid">
-              <div className="flex gap-4">
-                <Avatar className="border w-10 h-10">
-                  <AvatarFallback>RR</AvatarFallback>
-                </Avatar>
-                <div className="gap-1 grid">
-                  <div className="flex items-center gap-2">
-                    <h3 className="font-bold">Rajesh Ranjan</h3>
-                  </div>
-                  <div className="flex items-center gap-0.5">
-                    <Star className="w-5 h-5 fill-primary" />
-                    <Star className="w-5 h-5 fill-primary" />
-                    <Star className="w-5 h-5 fill-primary" />
-                    <Star className="w-5 h-5 fill-primary" />
-                    <Star className="w-5 h-5 fill-primary" />
-                  </div>
-                  <p className="text-muted-foreground">This is Shopprixity!</p>
-                </div>
-              </div>
+                ))
+              ) : (
+                <div>No reviews yet</div>
+              )}
             </div>
             <div className="flex flex-col gap-6 mt-10">
               <Label>Write a review</Label>

@@ -6,12 +6,6 @@ const addProductReview = async (req, res) => {
     const { productId, userId, userName, reviewMessage, reviewValue } =
       req.body;
 
-    console.log("productId : ", productId);
-    console.log("userId : ", userId);
-    console.log("userName : ", userName);
-    console.log("reviewMessage : ", reviewMessage);
-    console.log("reviewValue : ", reviewValue);
-
     // Find orders by user
     const ordersByUser = await prisma.orders.findMany({
       where: {
@@ -140,13 +134,12 @@ const addProductReview = async (req, res) => {
     // Check if the review got added successfully
     return res.status(201).json({
       status: 201,
-      success: false,
+      success: true,
       message: "Review added successfully!",
       productReview: newReview,
     });
   } catch (error) {
     // Check for errors
-    console.log("error : ", error);
     return res.status(500).json({
       status: 500,
       success: false,
