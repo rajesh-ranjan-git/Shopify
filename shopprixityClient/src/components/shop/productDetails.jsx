@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Star } from "lucide-react";
 import {
   Dialog,
@@ -17,6 +18,10 @@ const ShopProductDetails = ({
   productDetails,
   handleAddToCart,
 }) => {
+  const { productReview } = useSelector((state) => state.reviewsReducer);
+
+  console.log("productReview : ", productReview);
+
   return (
     <Dialog
       open={openShopProductDetails}

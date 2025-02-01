@@ -21,7 +21,7 @@ const addProductReview = async (req, res) => {
       return res.status(404).json({
         status: 404,
         success: false,
-        message: "Please order this product to submit review!",
+        message: "Please purchase this product to submit review!",
       });
     }
 
@@ -46,7 +46,7 @@ const addProductReview = async (req, res) => {
       return res.status(404).json({
         status: 404,
         success: false,
-        message: "Please order this product to submit review!",
+        message: "Please purchase this product to submit review!",
       });
     }
 
@@ -89,12 +89,14 @@ const addProductReview = async (req, res) => {
       });
     }
 
+    // Find all the reviews for this product
     const totalReviews = await prisma.productReviews.findMany({
       where: {
         productId: productId,
       },
     });
 
+    // Check if there are any reviews for this product
     if (!totalReviews) {
       return res.status(400).json({
         status: 400,
@@ -103,10 +105,14 @@ const addProductReview = async (req, res) => {
       });
     }
 
+    // Find average review for this product
     const avgReview =
-      totalReviews.reduce((sum, curr) => (sum += curr.reviewValue), 0) /
-      totalReviews.length;
+      totalReviews.reduce(
+        (sum, reviewItem) => sum + reviewItem.reviewValue,
+        0
+      ) / totalReviews.length;
 
+    // Update the rating for the product after adding the review
     const product = await prisma.products.update({
       where: {
         id: productId,
@@ -116,6 +122,7 @@ const addProductReview = async (req, res) => {
       },
     });
 
+    // Check if product rating updated
     if (!product) {
       return res.status(400).json({
         status: 400,
@@ -124,10 +131,12 @@ const addProductReview = async (req, res) => {
       });
     }
 
+    // Check if the review got added successfully
     return res.status(201).json({
       status: 201,
       success: false,
       message: "Review added successfully!",
+      productReview: newReview,
     });
   } catch (error) {
     // Check for errors

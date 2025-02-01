@@ -5,7 +5,7 @@ import addProductReview from "../../controllers/shop/reviews/addProductReview.js
 const reviewsRouter = express.Router();
 
 // Reviews Routes
-reviewsRouter.get("/fetchReview/:productId", fetchProductReviews);
-reviewsRouter.post("/addReview", addProductReview);
+reviewsRouter.get("/fetchProductReviews/:productId", fetchProductReviews);
+reviewsRouter.post("/addProductReview", addProductReview);
 
 export default reviewsRouter;

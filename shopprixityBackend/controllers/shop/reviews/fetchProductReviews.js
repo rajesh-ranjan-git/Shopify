@@ -5,12 +5,14 @@ const fetchProductReviews = async (req, res) => {
   try {
     const { productId } = req.params;
 
+    // Find all the reviews for this product
     const reviews = await prisma.productReviews.findMany({
       where: {
         productId: productId,
       },
     });
 
+    // Check if no review exists for this product
     if (!reviews) {
       return res.status(400).json({
         status: 400,
@@ -19,6 +21,7 @@ const fetchProductReviews = async (req, res) => {
       });
     }
 
+    // Check if the review exists
     return res.status(200).json({
       status: 200,
       success: true,
