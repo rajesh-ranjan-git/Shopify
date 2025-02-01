@@ -56,7 +56,12 @@ const ShopCartContents = ({ cartItem }) => {
     ).then((data) => {
       if (data?.payload?.success) {
         toast({
-          title: "Cart items updated!",
+          title: data?.payload?.message,
+        });
+      } else {
+        toast({
+          title: data?.payload?.message,
+          variant: "destructive",
         });
       }
     });
@@ -71,7 +76,12 @@ const ShopCartContents = ({ cartItem }) => {
     ).then((data) => {
       if (data?.payload?.success) {
         toast({
-          title: "Item deleted from cart!",
+          title: data?.payload?.message,
+        });
+      } else {
+        toast({
+          title: data?.payload?.message,
+          variant: "destructive",
         });
       }
     });

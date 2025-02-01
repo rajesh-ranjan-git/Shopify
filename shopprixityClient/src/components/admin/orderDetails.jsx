@@ -37,9 +37,13 @@ const AdminOrderDetails = ({ orderDetails }) => {
         dispatch(fetchAllOrdersService());
         setFormData(initialFormData);
         toast({
-          title: "Order status updated successfully!",
+          title: data?.payload?.message,
         });
       }
+      toast({
+        title: data?.payload?.message,
+        variant: "destructive",
+      });
     });
   };
 

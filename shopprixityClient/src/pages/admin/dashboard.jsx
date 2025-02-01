@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import ProductImageInput from "@/components/admin/productImageInput";
 import addSliderImageService from "@/services/common/addSliderImageService";
 import fetchSliderImagesService from "@/services/common/fetchSliderImagesService";
-import { useToast } from "@/hooks/use-toast";
 
 const AdminDashboard = () => {
   const [productImage, setProductImage] = useState(null);
@@ -24,10 +24,15 @@ const AdminDashboard = () => {
       if (data?.payload.success) {
         dispatch(fetchSliderImagesService());
         toast({
-          title: "Slider image added successfully!",
+          title: data?.payload?.message,
         });
         setUploadedProductImageUrl("");
         setProductImage(null);
+      } else {
+        toast({
+          title: data?.payload?.message,
+          variant: "destructive",
+        });
       }
     });
   };

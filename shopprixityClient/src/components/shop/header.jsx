@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { shopHeaderMenuItems } from "@/config/config";
+import { toast } from "@/hooks/use-toast";
 import ShopCartWrapper from "./cartWrapper";
 import {
   Sheet,
@@ -27,9 +28,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Label } from "@/components/ui/label";
+import { Badge } from "@/components/ui/badge";
 import logoutUserService from "@/services/auth/logoutUserService";
 import fetchShopCartService from "@/services/shop/cart/fetchShopCartService";
-import { Badge } from "../ui/badge";
 
 const MenuItems = ({ setOpenMobileNav }) => {
   const navigate = useNavigate();
@@ -82,8 +83,20 @@ const HeaderRightContent = ({ setOpenMobileNav }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleLogout = () => {
-    dispatch(logoutUserService());
+  const handleLogoutUser = () => {
+    dispatch(logoutUserService()).then((data) => {
+      if (data?.payload?.success) {
+        navigate("/auth/login");
+        toast({
+          title: data?.payload?.message,
+        });
+      } else {
+        toast({
+          title: data?.payload?.message,
+          variant: "destructive",
+        });
+      }
+    });
   };
 
   useEffect(() => {
@@ -139,7 +152,7 @@ const HeaderRightContent = ({ setOpenMobileNav }) => {
             <UserRound className="mr-2 w-4 h-4" />
             <span>Account</span>
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => handleLogout()}>
+          <DropdownMenuItem onClick={() => handleLogoutUser()}>
             <LogOut className="mr-2 w-4 h-4" />
             <span>Logout</span>
           </DropdownMenuItem>

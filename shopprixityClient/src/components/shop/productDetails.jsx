@@ -14,7 +14,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import ProductRating from "@/components/common/productRating";
 import addProductReviewService from "@/services/shop/reviews/addProductReviewService";
-import fetchShopProductsService from "@/services/shop/products/fetchShopProductsService";
 import { useToast } from "@/hooks/use-toast";
 import fetchProductReviewsService from "@/services/shop/reviews/fetchProductReviewsService";
 import fetchShopProductDetailsService from "@/services/shop/products/fetchShopProductDetailsService";
@@ -53,7 +52,7 @@ const ShopProductDetails = ({
         dispatch(fetchProductReviewsService({ productId: productDetails?.id }));
         dispatch(fetchShopProductDetailsService(productDetails?.id));
         toast({
-          title: "Review added successfully!",
+          title: data?.payload?.message,
         });
       } else {
         toast({

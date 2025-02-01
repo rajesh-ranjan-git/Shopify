@@ -56,7 +56,12 @@ const AdminProducts = () => {
             setProductImage(null);
             setFormData(initialFormData);
             toast({
-              title: "Product edited successfully!",
+              title: data?.payload?.message,
+            });
+          } else {
+            toast({
+              title: data?.payload?.message,
+              variant: "destructive",
             });
           }
         }
@@ -71,7 +76,12 @@ const AdminProducts = () => {
           setProductImage(null);
           setFormData(initialFormData);
           toast({
-            title: "Product added successfully!",
+            title: data?.payload?.message,
+          });
+        } else {
+          toast({
+            title: data?.payload?.message,
+            variant: "destructive",
           });
         }
       });
@@ -83,7 +93,12 @@ const AdminProducts = () => {
       if (data?.payload?.success) {
         dispatch(fetchAllProductsService());
         toast({
-          title: "Product deleted successfully!",
+          title: data?.payload?.message,
+        });
+      } else {
+        toast({
+          title: data?.payload?.message,
+          variant: "destructive",
         });
       }
     });

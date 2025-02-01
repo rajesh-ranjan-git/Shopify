@@ -13,13 +13,13 @@ const AdminHeader = ({ openSidebar, setOpenSidebar }) => {
   const handleLogoutUser = () => {
     dispatch(logoutUserService()).then((data) => {
       if (data?.payload?.success) {
-        toast({
-          title: "Logged out successfully!",
-        });
         navigate("/auth/login");
+        toast({
+          title: data?.payload?.message,
+        });
       } else {
         toast({
-          title: "Error while logging out!",
+          title: data?.payload?.message,
           variant: "destructive",
         });
       }

@@ -1,5 +1,5 @@
-import AdminOrders from "@/components/admin/orders";
 import React from "react";
+import AdminOrders from "@/components/admin/orders";
 
 const AdminOrdersPage = () => {
   return (

@@ -78,7 +78,12 @@ const ShopHome = () => {
       if (data?.payload?.success) {
         dispatch(fetchShopCartService(user?.id));
         toast({
-          title: "Item added to cart!",
+          title: data?.payload?.message,
+        });
+      } else {
+        toast({
+          title: data?.payload?.message,
+          variant: "destructive",
         });
       }
     });

@@ -43,7 +43,12 @@ const Address = ({ setCurrentSelectedAddress, currentSelectAddressId }) => {
               setCurrentUpdateAddressId(null);
               setFormData(initialAddressFormData);
               toast({
-                title: "Address updated successfully!",
+                title: data?.payload?.message,
+              });
+            } else {
+              toast({
+                title: data?.payload?.message,
+                variant: "destructive",
               });
             }
           })
@@ -53,7 +58,12 @@ const Address = ({ setCurrentSelectedAddress, currentSelectAddressId }) => {
                 dispatch(fetchAddressService(user?.id));
                 setFormData(initialAddressFormData);
                 toast({
-                  title: "Address added successfully!",
+                  title: data?.payload?.message,
+                });
+              } else {
+                toast({
+                  title: data?.payload?.message,
+                  variant: "destructive",
                 });
               }
             }
@@ -74,7 +84,12 @@ const Address = ({ setCurrentSelectedAddress, currentSelectAddressId }) => {
       if (data?.payload?.success) {
         dispatch(fetchAddressService(user?.id));
         toast({
-          title: "Address deleted successfully!",
+          title: data?.payload?.message,
+        });
+      } else {
+        toast({
+          title: data?.payload?.message,
+          variant: "destructive",
         });
       }
     });

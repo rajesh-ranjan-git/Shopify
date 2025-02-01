@@ -57,7 +57,12 @@ const Search = () => {
       if (data?.payload?.success) {
         dispatch(fetchShopCartService(user?.id));
         toast({
-          title: "Item added to cart!",
+          title: data?.payload?.message,
+        });
+      } else {
+        toast({
+          title: data?.payload?.message,
+          variant: "destructive",
         });
       }
     });
@@ -75,7 +80,6 @@ const Search = () => {
       }, 1000);
     } else {
       setSearchParams(new URLSearchParams(`?searchKeyword=${searchKeyword}`));
-      // dispatch(resetSearchShopProducts());
     }
   }, [searchKeyword]);
 
