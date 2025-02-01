@@ -15,7 +15,7 @@ const capturePayment = async (req, res) => {
     // If order not found
     if (!order) {
       return res.status(400).json({
-        status: 400,
+        status: 404,
         success: false,
         message: "Order not found!",
       });
@@ -34,8 +34,18 @@ const capturePayment = async (req, res) => {
     order.paymentId = paymentId;
     order.payerId = payerId;
 
-    for (let item of order.orderItems) {
-      let product = await prisma.products.findUnique(item.productId);
+    let orderItems = await prisma.orderItems.findMany({
+      where: {
+        orderId: order?.id,
+      },
+    });
+
+    for (let item of orderItems) {
+      let product = await prisma.products.findUnique({
+        where: {
+          id: item.productId,
+        },
+      });
 
       if (!product) {
         return res.status(404).json({
@@ -59,7 +69,7 @@ const capturePayment = async (req, res) => {
 
     order = await prisma.orders.update({
       where: {
-        orderId: orderId,
+        id: orderId,
       },
       data: {
         paymentStatus: order.paymentStatus,
@@ -68,6 +78,8 @@ const capturePayment = async (req, res) => {
         payerId: order.payerId,
       },
     });
+
+    console.log("updated order from capturePayment : ", order);
 
     return res.status(200).json({
       status: 200,

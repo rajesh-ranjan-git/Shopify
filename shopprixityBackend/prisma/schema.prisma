@@ -73,6 +73,7 @@ model Address {
 model Orders {
   id              String   @id @default(auto()) @map("_id") @db.ObjectId
   userId          String   @db.ObjectId
+  cartId          String?
   totalAmount     Int
   orderStatus     String
   payerId         String
