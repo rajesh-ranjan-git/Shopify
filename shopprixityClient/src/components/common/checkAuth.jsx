@@ -11,6 +11,18 @@ const CheckAuth = ({ children }) => {
 
   if (isLoading) return <Skeleton className="w-screen h-screen" />;
 
+  if (location.pathname === "/") {
+    if (!isAuthenticated) {
+      return <Navigate to={"/auth/login"} />;
+    } else {
+      if (user?.role === "admin") {
+        return <Navigate to={"/admin/dashboard"} />;
+      } else if (user?.role === "user") {
+        return <Navigate to={"/shop/home"} />;
+      }
+    }
+  }
+
   if (
     !isAuthenticated &&
     !(
