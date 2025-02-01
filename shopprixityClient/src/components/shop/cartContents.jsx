@@ -9,24 +9,25 @@ import updateShopCartService from "@/services/shop/cart/updateShopCartService";
 const ShopCartContents = ({ cartItem }) => {
   const { user } = useSelector((state) => state.authReducer);
   const { cartItems } = useSelector((state) => state.shopCartReducer);
-  const { productList } = useSelector((state) => state.shopProductsReducer);
+  const { shopProductList } = useSelector((state) => state.shopProductsReducer);
   const dispatch = useDispatch();
   const { toast } = useToast();
 
   const handleUpdateCartItems = (getCartItem, typeOfAction) => {
     if (typeOfAction === "increment") {
-      let getCurrentCartItems = cartItems.items || [];
+      let getCurrentCartItems = cartItems || [];
 
       if (getCurrentCartItems.length > 0) {
         const indexOfCurrentCartItem = getCurrentCartItems.findIndex(
           (item) => item.productId === getCartItem?.productId
         );
 
-        const getCurrentProductIndex = productList.findIndex(
+        const getCurrentProductIndex = shopProductList.findIndex(
           (product) => product?.id === getCartItem?.productId
         );
 
-        const getTotalStock = productList[getCurrentProductIndex].totalStock;
+        const getTotalStock =
+          shopProductList[getCurrentProductIndex].totalStock;
 
         if (indexOfCurrentCartItem > -1) {
           const getQuantity =

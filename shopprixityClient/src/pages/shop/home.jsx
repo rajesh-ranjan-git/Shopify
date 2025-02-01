@@ -21,6 +21,7 @@ const ShopHome = () => {
   const [openShopProductDetails, setOpenShopProductDetails] = useState(false);
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.authReducer);
+  const { cartItems } = useSelector((state) => state.shopCartReducer);
   const { shopProductList, shopProductDetails } = useSelector(
     (state) => state.shopProductsReducer
   );
@@ -46,7 +47,28 @@ const ShopHome = () => {
     setOpenShopProductDetails(true);
   };
 
-  const handleAddToCart = (getCurrentProductId) => {
+  const handleAddToCart = (getCurrentProductId, getTotalStock) => {
+    let getCartItems = cartItems || [];
+
+    if (getCartItems.length > 0) {
+      const indexOfCurrentItem = getCartItems.findIndex(
+        (item) => item.productId === getCurrentProductId
+      );
+
+      if (indexOfCurrentItem > -1) {
+        const getQuantity = getCartItems[indexOfCurrentItem].quantity;
+
+        if (getQuantity + 1 > getTotalStock) {
+          toast({
+            title: `Only ${getQuantity} items can be added for this product!`,
+            variant: "destructive",
+          });
+
+          return;
+        }
+      }
+    }
+
     dispatch(
       addToShopCartService({
         userId: user?.id,

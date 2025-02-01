@@ -27,7 +27,7 @@ const Search = () => {
   };
 
   const handleAddToCart = (getCurrentProductId, getTotalStock) => {
-    let getCartItems = cartItems.items || [];
+    let getCartItems = cartItems || [];
 
     if (getCartItems.length > 0) {
       const indexOfCurrentItem = getCartItems.findIndex(
