@@ -22,11 +22,11 @@ const capturePayment = async (req, res) => {
     }
 
     // Delete cart if order found
-    // const cart = await prisma.cart.delete({
-    //   where: {
-    //     id: order.cartId,
-    //   },
-    // });
+    await prisma.cart.deleteMany({
+      where: {
+        userId: order.userId,
+      },
+    });
 
     // Update order locally if found
     order.paymentStatus = "paid";
@@ -78,8 +78,6 @@ const capturePayment = async (req, res) => {
         payerId: order.payerId,
       },
     });
-
-    console.log("updated order from capturePayment : ", order);
 
     return res.status(200).json({
       status: 200,
