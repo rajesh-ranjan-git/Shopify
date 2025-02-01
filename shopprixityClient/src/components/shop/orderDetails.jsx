@@ -31,7 +31,8 @@ const ShopOrderDetails = ({ orderDetails }) => {
             <Label>
               <Badge
                 className={`${
-                  orderDetails?.orderStatus === "confirmed" || "delivered"
+                  orderDetails?.orderStatus === "confirmed" ||
+                  orderDetails?.orderStatus === "delivered"
                     ? "bg-green-500"
                     : orderDetails?.orderStatus === "rejected"
                     ? "bg-red-600"

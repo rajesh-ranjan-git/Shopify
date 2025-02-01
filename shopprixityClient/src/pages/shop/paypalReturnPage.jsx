@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import capturePaymentService from "@/services/shop/order/capturePaymentService";
 
 const PaypalReturnPage = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
@@ -27,7 +26,7 @@ const PaypalReturnPage = () => {
       ).then((data) => {
         if (data?.payload?.success) {
           sessionStorage.removeItem("currentOrderId");
-          navigate("/shop/paymentSuccess");
+          window.location.href = "/shop/paymentSuccess";
         }
       });
     }

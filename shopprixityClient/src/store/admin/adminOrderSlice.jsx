@@ -43,15 +43,13 @@ const AdminOrderSlice = createSlice({
       })
       .addCase(updateOrderStatusService.pending, (state) => {
         state.isLoading = false;
-        state.orderDetails = null;
       })
-      .addCase(updateOrderStatusService.fulfilled, (state) => {
+      .addCase(updateOrderStatusService.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.orderDetails = null;
+        state.orderDetails = action?.payload?.order;
       })
       .addCase(updateOrderStatusService.rejected, (state) => {
         state.isLoading = false;
-        state.orderDetails = null;
       });
   },
 });

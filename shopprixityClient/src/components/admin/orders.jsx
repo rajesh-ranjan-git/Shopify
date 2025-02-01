@@ -67,7 +67,7 @@ const AdminOrders = () => {
                         <Badge
                           className={`${
                             orderItem?.orderStatus === "confirmed" ||
-                            "delivered"
+                            orderItem?.orderStatus === "delivered"
                               ? "bg-green-500"
                               : orderItem?.orderStatus === "rejected"
                               ? "bg-red-600"
@@ -84,7 +84,7 @@ const AdminOrders = () => {
                         open={openDetailsDialog}
                         onOpenChange={() => {
                           setOpenDetailsDialog(false);
-                          // dispatch(resetOrderDetails());
+                          dispatch(resetOrderDetails());
                         }}
                       >
                         <Button

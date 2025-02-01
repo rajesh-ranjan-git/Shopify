@@ -68,7 +68,7 @@ const ShopOrders = () => {
                         <Badge
                           className={`${
                             orderItem?.orderStatus === "confirmed" ||
-                            "delivered"
+                            orderItem?.orderStatus === "delivered"
                               ? "bg-green-500"
                               : orderItem?.orderStatus === "rejected"
                               ? "bg-red-600"
