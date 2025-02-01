@@ -17,6 +17,8 @@ import fetchSliderImagesService from "@/services/common/fetchSliderImagesService
 const ShopHome = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [openShopProductDetails, setOpenShopProductDetails] = useState(false);
+  const [pauseSlider, setPauseSlider] = useState(false);
+
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.authReducer);
   const { cartItems } = useSelector((state) => state.shopCartReducer);
@@ -82,6 +84,18 @@ const ShopHome = () => {
     });
   };
 
+  const handleSliderRight = () => {
+    setCurrentSlide((prevSlide) => (prevSlide + 1) % sliderImages.length);
+    setPauseSlider(true);
+  };
+
+  const handleSliderLeft = () => {
+    setCurrentSlide(
+      (prevSlide) => (prevSlide - 1 + sliderImages.length) % sliderImages.length
+    );
+    setPauseSlider(true);
+  };
+
   useEffect(() => {
     dispatch(
       fetchShopProductsService({
@@ -93,12 +107,22 @@ const ShopHome = () => {
   }, [dispatch]);
 
   useEffect(() => {
+    if (pauseSlider) {
+      setTimeout(() => {
+        setPauseSlider(false);
+      }, 5000);
+    }
+  }, [pauseSlider]);
+
+  useEffect(() => {
+    if (pauseSlider) return;
+
     const timer = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % sliderImages.length);
     }, [2000]);
 
     return () => clearInterval(timer);
-  }, [sliderImages]);
+  }, [sliderImages, pauseSlider]);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -118,12 +142,7 @@ const ShopHome = () => {
           variant="outline"
           size="icon"
           className="top-1/2 left-4 absolute bg-white/80 rounded-full transform -translate-y-1/2"
-          onClick={() =>
-            setCurrentSlide(
-              (prevSlide) =>
-                (prevSlide - 1 + sliderImages.length) % sliderImages.length
-            )
-          }
+          onClick={() => handleSliderLeft()}
         >
           <ChevronLeft className="w-4 h-4" />
         </Button>
@@ -131,11 +150,7 @@ const ShopHome = () => {
           variant="outline"
           size="icon"
           className="top-1/2 right-4 absolute bg-white/80 rounded-full transform -translate-y-1/2"
-          onClick={() =>
-            setCurrentSlide(
-              (prevSlide) => (prevSlide + 1) % sliderImages.length
-            )
-          }
+          onClick={() => handleSliderRight()}
         >
           <ChevronRight className="w-4 h-4" />
         </Button>
