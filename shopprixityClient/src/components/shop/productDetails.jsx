@@ -56,13 +56,14 @@ const ShopProductDetails = ({
           title: "Review added successfully!",
         });
       } else {
-        setProductRating(0);
-        setReviewMessage("");
         toast({
           title: data?.payload?.message,
           variant: "destructive",
         });
       }
+
+      setProductRating(0);
+      setReviewMessage("");
     });
   };
 

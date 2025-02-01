@@ -6,6 +6,12 @@ const addProductReview = async (req, res) => {
     const { productId, userId, userName, reviewMessage, reviewValue } =
       req.body;
 
+    console.log("productId : ", productId);
+    console.log("userId : ", userId);
+    console.log("userName : ", userName);
+    console.log("reviewMessage : ", reviewMessage);
+    console.log("reviewValue : ", reviewValue);
+
     // Find orders by user
     const ordersByUser = await prisma.orders.findMany({
       where: {
@@ -15,6 +21,8 @@ const addProductReview = async (req, res) => {
         },
       },
     });
+
+    console.log("ordersByUser : ", ordersByUser);
 
     // Check if user has any existing successful order
     if (!ordersByUser && ordersByUser.length === 0) {
@@ -28,14 +36,17 @@ const addProductReview = async (req, res) => {
     // Find order with product if user has successful orders
     let ordersByUserWithProduct = null;
     for (const order of ordersByUser) {
+      console.log("order : ", order);
       ordersByUserWithProduct = await prisma.orderItems.findFirst({
         where: {
           AND: {
-            orderId: order.orderId,
+            orderId: order.id,
             productId: productId,
           },
         },
       });
+
+      console.log("ordersByUserWithProduct : ", ordersByUserWithProduct);
 
       // Check if user has ordered this product
       if (ordersByUserWithProduct) {
@@ -60,6 +71,8 @@ const addProductReview = async (req, res) => {
       },
     });
 
+    console.log("existingReview : ", existingReview);
+
     // Check if user has already reviewed this product
     if (existingReview) {
       return res.status(400).json({
@@ -79,6 +92,8 @@ const addProductReview = async (req, res) => {
         reviewValue: reviewValue,
       },
     });
+
+    console.log("newReview : ", newReview);
 
     // Check if review added successfully or not
     if (!newReview) {
@@ -140,6 +155,7 @@ const addProductReview = async (req, res) => {
     });
   } catch (error) {
     // Check for errors
+    console.log("error : ", error);
     return res.status(500).json({
       status: 500,
       success: false,
