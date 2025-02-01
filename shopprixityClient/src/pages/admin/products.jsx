@@ -55,6 +55,7 @@ const AdminProducts = () => {
             setOpenCreateProductsDialog(false);
             setProductImage(null);
             setFormData(initialFormData);
+            setCurrentEditedId(null);
             toast({
               title: data?.payload?.message,
             });
