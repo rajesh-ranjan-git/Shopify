@@ -29,6 +29,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Label } from "@/components/ui/label";
 import logoutUserService from "@/services/auth/logoutUserService";
 import fetchShopCartService from "@/services/shop/cart/fetchShopCartService";
+import { Badge } from "../ui/badge";
 
 const MenuItems = ({ setOpenMobileNav }) => {
   const navigate = useNavigate();
@@ -75,6 +76,7 @@ const MenuItems = ({ setOpenMobileNav }) => {
 
 const HeaderRightContent = ({ setOpenMobileNav }) => {
   const [openCart, setOpenCart] = useState(false);
+  const [cartItemsCount, setCartItemsCount] = useState(0);
   const { user } = useSelector((state) => state.authReducer);
   const { cartItems } = useSelector((state) => state.shopCartReducer);
   const navigate = useNavigate();
@@ -88,11 +90,26 @@ const HeaderRightContent = ({ setOpenMobileNav }) => {
     dispatch(fetchShopCartService(user?.id));
   }, [dispatch]);
 
+  useEffect(() => {
+    if (cartItems) {
+      const cartCount = cartItems.reduce((sum, curr) => sum + curr.quantity, 0);
+      setCartItemsCount(cartCount);
+    }
+  }, [cartItems]);
+
   return (
     <div className="flex lg:flex-row flex-col lg:items-center gap-4">
       <Sheet open={openCart} onOpenChange={setOpenCart}>
-        <Button variant="outline" size="icon" onClick={() => setOpenCart(true)}>
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={() => setOpenCart(true)}
+          className="relative"
+        >
           <ShoppingCart className="w-6 h-6" />
+          <Badge className="top-[-0.6rem] right-[-0.8rem] absolute rounded-full">
+            {cartItemsCount}
+          </Badge>
           <span className="sr-only">Cart</span>
         </Button>
         <ShopCartWrapper

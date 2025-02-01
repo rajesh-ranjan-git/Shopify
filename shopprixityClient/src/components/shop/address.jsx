@@ -18,7 +18,7 @@ const initialAddressFormData = {
   notes: "",
 };
 
-const Address = ({ setCurrentSelectedAddress }) => {
+const Address = ({ setCurrentSelectedAddress, currentSelectAddressId }) => {
   const [currentUpdateAddressId, setCurrentUpdateAddressId] = useState(null);
   const [formData, setFormData] = useState(initialAddressFormData);
   const { user } = useSelector((state) => state.authReducer);
@@ -106,6 +106,7 @@ const Address = ({ setCurrentSelectedAddress }) => {
               handleDeleteAddress={handleDeleteAddress}
               handleUpdateAddress={handleUpdateAddress}
               setCurrentSelectedAddress={setCurrentSelectedAddress}
+              currentSelectAddressId={currentSelectAddressId}
             />
           ))
         ) : (

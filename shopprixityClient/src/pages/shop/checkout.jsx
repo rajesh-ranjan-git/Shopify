@@ -96,7 +96,10 @@ const ShopCheckout = () => {
       </div>
       <div className="gap-3 grid grid-cols-1 sm:grid-cols-2 mt-5 p-5">
         <div>
-          <Address setCurrentSelectedAddress={setCurrentSelectedAddress} />
+          <Address
+            currentSelectAddressId={currentSelectedAddress?.id}
+            setCurrentSelectedAddress={setCurrentSelectedAddress}
+          />
         </div>
         <div className="flex flex-col gap-4">
           {cartItems && cartItems.length > 0 ? (

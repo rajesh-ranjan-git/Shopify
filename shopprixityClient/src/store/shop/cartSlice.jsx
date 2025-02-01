@@ -29,12 +29,10 @@ const ShopCartSlice = createSlice({
       .addCase(addToShopCartService.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(addToShopCartService.fulfilled, (state, action) => {
-        state.cartItems = action?.payload?.cart;
+      .addCase(addToShopCartService.fulfilled, (state) => {
         state.isLoading = false;
       })
       .addCase(addToShopCartService.rejected, (state) => {
-        state.cartItems = [];
         state.isLoading = false;
       })
       .addCase(updateShopCartService.pending, (state) => {
