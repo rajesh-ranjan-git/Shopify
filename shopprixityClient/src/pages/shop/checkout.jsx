@@ -48,7 +48,6 @@ const ShopCheckout = () => {
 
     const orderData = {
       userId: user?.id,
-      cartId: cartItems?.id,
       orderItems: cartItems.map((item) => ({
         title: item.product.title,
         productId: item.productId,

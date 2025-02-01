@@ -6,7 +6,6 @@ const createOrder = async (req, res) => {
   try {
     const {
       userId,
-      cartId,
       orderItems,
       shippingAddress,
       totalAmount,
@@ -72,7 +71,6 @@ const createOrder = async (req, res) => {
         const newOrder = await prisma.orders.create({
           data: {
             userId: userId,
-            cartId: cartId,
             totalAmount: totalAmount,
             orderStatus: orderStatus,
             payerId: payerId,

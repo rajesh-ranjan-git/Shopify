@@ -6,46 +6,62 @@ const addProductReview = async (req, res) => {
     const { productId, userId, userName, reviewMessage, reviewValue } =
       req.body;
 
-    // Find for orders by user
+    // Find orders by user
     const ordersByUser = await prisma.orders.findMany({
       where: {
-        userId: userId,
+        AND: {
+          userId: userId,
+          NOT: { orderStatus: "rejected" || "pending" },
+        },
       },
-      select: id,
     });
 
-    // Find orders with product
-    const orderItemsByUserWithProduct = await prisma.orderItems.findMany({
-      where: {
-        productId: productId,
-      },
-      select: orderId,
-    });
-
-    // Check if user has ordered the product
-    const orderWithProduct = ordersByUser.reduce(
-      (prev, curr) => (prev = orderItemsByUserWithProduct.includes(curr)),
-      false
-    );
-
-    // Check if user has not ordered the product
-    if (!orderWithProduct) {
-      return res.status(400).json({
-        status: 400,
+    // Check if user has any existing successful order
+    if (!ordersByUser && ordersByUser.length === 0) {
+      return res.status(404).json({
+        status: 404,
         success: false,
-        message: "Item not purchased before!",
+        message: "Please order this product to submit review!",
       });
     }
 
-    // Find review bu user for product
-    const checkExistingReview = await prisma.productReviews.findFirst({
+    // Find order with product if user has successful orders
+    let ordersByUserWithProduct = null;
+    for (const order of ordersByUser) {
+      ordersByUserWithProduct = await prisma.orderItems.findFirst({
+        where: {
+          AND: {
+            orderId: order.orderId,
+            productId: productId,
+          },
+        },
+      });
+
+      // Check if user has ordered this product
+      if (ordersByUserWithProduct) {
+        break;
+      }
+
+      // Check if user has not ordered this product
+      return res.status(404).json({
+        status: 404,
+        success: false,
+        message: "Please order this product to submit review!",
+      });
+    }
+
+    // Find existing review for this product by user
+    const existingReview = await prisma.productReviews.findFirst({
       where: {
-        productId: productId,
+        AND: {
+          userId: userId,
+          productId: productId,
+        },
       },
     });
 
-    // Check if user has reviewed order
-    if (checkExistingReview) {
+    // Check if user has already reviewed this product
+    if (existingReview) {
       return res.status(400).json({
         status: 400,
         success: false,
@@ -53,7 +69,7 @@ const addProductReview = async (req, res) => {
       });
     }
 
-    // Add new review by user for the product
+    // Add new review
     const newReview = await prisma.productReviews.create({
       data: {
         productId: productId,
@@ -64,27 +80,58 @@ const addProductReview = async (req, res) => {
       },
     });
 
-    // Find review by user for the product
-    const reviews = await prisma.productReviews.find({
+    // Check if review added successfully or not
+    if (!newReview) {
+      return res.status(400).json({
+        status: 400,
+        success: false,
+        message: "Unable to add review!",
+      });
+    }
+
+    const totalReviews = await prisma.productReviews.findMany({
       where: {
         productId: productId,
       },
     });
 
-    // Find average review for product
-    const avgReview =
-      reviews.reduce((sum, reviewItem) => sum + reviewItem.reviewValue, 0) /
-      reviews.length;
+    if (!totalReviews) {
+      return res.status(400).json({
+        status: 400,
+        success: false,
+        message: "Unable to get total reviews!",
+      });
+    }
 
-    return res.status(200).json({
-      status: 200,
-      success: true,
+    const avgReview =
+      totalReviews.reduce((sum, curr) => (sum += curr.reviewValue), 0) /
+      totalReviews.length;
+
+    const product = await prisma.products.update({
+      where: {
+        id: productId,
+      },
+      data: {
+        rating: avgReview,
+      },
+    });
+
+    if (!product) {
+      return res.status(400).json({
+        status: 400,
+        success: false,
+        message: "Unable to update product review!",
+      });
+    }
+
+    return res.status(201).json({
+      status: 201,
+      success: false,
       message: "Review added successfully!",
-      reviews: reviews,
-      avgReview: avgReview,
     });
   } catch (error) {
     // Check for errors
+    console.log("error : ", error);
     return res.status(500).json({
       status: 500,
       success: false,
