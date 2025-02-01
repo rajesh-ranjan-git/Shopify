@@ -138,10 +138,6 @@ const ShopListing = () => {
     }
   }, [dispatch, sort, filters]);
 
-  // useEffect(() => {
-  //   if (shopProductDetails !== null) setOpenShopProductDetails(true);
-  // }, [shopProductDetails]);
-
   return (
     <div className="gap-6 grid grid-cols-1 md:grid-cols-[200px_1fr] p-4 md:p-6">
       <ShopFilter filters={filters} handleFilters={handleFilters} />

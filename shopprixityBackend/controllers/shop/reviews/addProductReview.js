@@ -6,6 +6,12 @@ const addProductReview = async (req, res) => {
     const { productId, userId, userName, reviewMessage, reviewValue } =
       req.body;
 
+    console.log("productId : ", productId);
+    console.log("userId : ", userId);
+    console.log("userName : ", userName);
+    console.log("reviewMessage : ", reviewMessage);
+    console.log("reviewValue : ", reviewValue);
+
     // Find orders by user
     const ordersByUser = await prisma.orders.findMany({
       where: {

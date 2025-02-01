@@ -1,5 +1,5 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Star } from "lucide-react";
 import {
   Dialog,
@@ -11,6 +11,10 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import ProductRating from "@/components/common/productRating";
+import addProductReviewService from "@/services/shop/reviews/addProductReviewService";
+import fetchShopProductsService from "@/services/shop/products/fetchShopProductsService";
 
 const ShopProductDetails = ({
   openShopProductDetails,
@@ -18,9 +22,37 @@ const ShopProductDetails = ({
   productDetails,
   handleAddToCart,
 }) => {
-  const { productReview } = useSelector((state) => state.reviewsReducer);
+  const [reviewMessage, setReviewMessage] = useState("");
+  const [productRating, setProductRating] = useState(0);
 
-  console.log("productReview : ", productReview);
+  const { user } = useSelector((state) => state.authReducer);
+
+  const dispatch = useDispatch();
+
+  const handleProductRating = (getProductRating) => {
+    setProductRating(getProductRating);
+  };
+
+  const handleAddProductReview = () => {
+    dispatch(
+      addProductReviewService({
+        productId: productDetails?.id,
+        userId: user?.id,
+        userName: user?.name,
+        reviewMessage: reviewMessage,
+        reviewValue: productRating,
+      })
+    ).then((data) => {
+      console.log(data);
+    });
+  };
+
+  useEffect(() => {
+    if (openShopProductDetails === false) {
+      setProductRating(0);
+      setReviewMessage("");
+    }
+  }, [openShopProductDetails]);
 
   return (
     <Dialog
@@ -155,9 +187,26 @@ const ShopProductDetails = ({
                 </div>
               </div>
             </div>
-            <div className="flex gap-6 mt-6">
-              <Input placeholder="Write a review..." />
-              <Button>Submit</Button>
+            <div className="flex flex-col gap-6 mt-10">
+              <Label>Write a review</Label>
+              <div className="flex gap-1">
+                <ProductRating
+                  productRating={productRating}
+                  handleProductRating={handleProductRating}
+                />
+              </div>
+              <Input
+                name="reviewMessage"
+                value={reviewMessage}
+                placeholder="Write a review..."
+                onChange={(e) => setReviewMessage(e.target.value)}
+              />
+              <Button
+                disabled={reviewMessage.trim() === ""}
+                onClick={handleAddProductReview}
+              >
+                Submit
+              </Button>
             </div>
           </div>
         </div>

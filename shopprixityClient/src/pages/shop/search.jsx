@@ -79,10 +79,6 @@ const Search = () => {
     }
   }, [searchKeyword]);
 
-  //   useEffect(() => {
-  //     if (shopProductDetails !== null) setOpenShopProductDetails(true);
-  //   }, [shopProductDetails]);
-
   return (
     <div className="mx-auto px-4 md:px-6 py-8 container">
       <div className="flex justify-center mb-8">

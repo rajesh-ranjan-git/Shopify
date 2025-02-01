@@ -4,7 +4,6 @@ import fetchProductReviewsService from "@/services/shop/reviews/fetchProductRevi
 const initialState = {
   isLoading: false,
   reviews: [],
-  productReview: null,
 };
 
 const ReviewsSlice = createSlice({
@@ -23,18 +22,6 @@ const ReviewsSlice = createSlice({
       })
       .addCase(fetchProductReviewsService.rejected, (state) => {
         state.reviews = [];
-        state.isLoading = false;
-      })
-      .addCase(fetchProductReviewsService.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(fetchProductReviewsService.fulfilled, (state, action) => {
-        console.log("action?.payload : ", action?.payload);
-        state.productReview = action?.payload?.productReview;
-        state.isLoading = false;
-      })
-      .addCase(fetchProductReviewsService.rejected, (state) => {
-        state.productReview = null;
         state.isLoading = false;
       });
   },
