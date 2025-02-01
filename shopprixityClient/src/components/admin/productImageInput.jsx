@@ -15,6 +15,7 @@ const ProductImageInput = ({
   productImageUploading,
   setProductImageUploading,
   isEditMode,
+  isSliderImageUpload = false,
 }) => {
   const productImageInputRef = useRef(null);
 
@@ -62,10 +63,10 @@ const ProductImageInput = ({
   }, [productImage]);
 
   return (
-    <div className="mx-auto mt-4 w-full max-w-md">
-      <Label className="block mb-2 font-semibold text-lg">
-        Upload Product Image
-      </Label>
+    <div
+      className={`mt-4 w-full ${isSliderImageUpload ? "" : "mx-auto max-w-md"}`}
+    >
+      <Label className="block mb-2 font-semibold text-lg">Upload Image</Label>
       <div
         className={`${
           isEditMode ? "opacity-60 cursor-not-allowed" : "cursor-pointer"
@@ -74,7 +75,7 @@ const ProductImageInput = ({
         onDrop={(e) => handleDrop(e)}
       >
         <Input
-          id="productImage"
+          id="image"
           type="file"
           className="hidden"
           disabled={isEditMode}
@@ -83,7 +84,7 @@ const ProductImageInput = ({
         />
         {!productImage ? (
           <Label
-            htmlFor="productImage"
+            htmlFor="image"
             className={`${
               isEditMode ? "cursor-not-allowed" : "cursor-pointer"
             } flex flex-col justify-center items-center h-32`}

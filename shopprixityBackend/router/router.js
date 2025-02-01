@@ -7,6 +7,7 @@ import addressRouter from "./shop/addressRouter.js";
 import orderRouter from "./shop/orderRouter.js";
 import adminOrderRouter from "./admin/orderRouter.js";
 import reviewsRouter from "./shop/reviewsRouter.js";
+import featuresRouter from "./common/featuresRouter.js";
 
 // Router instance
 const router = Router();
@@ -34,5 +35,8 @@ router.use("/admin/order", adminOrderRouter);
 
 // Review routes
 router.use("/shop/review", reviewsRouter);
+
+// Features routes
+router.use("/features", featuresRouter);
 
 export default router;

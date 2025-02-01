@@ -7,6 +7,7 @@ import addressReducer from "./shop/addressSlice";
 import orderReducer from "./shop/orderSlice";
 import adminOrderReducer from "./admin/adminOrderSlice";
 import reviewsReducer from "./shop/reviewsSlice";
+import featuresReducer from "./common/featuresSlice";
 
 const store = configureStore({
   reducer: {
@@ -23,6 +24,8 @@ const store = configureStore({
     adminOrderReducer: adminOrderReducer,
 
     reviewsReducer: reviewsReducer,
+
+    featuresReducer: featuresReducer,
   },
 });
 

@@ -45,3 +45,7 @@ export const updateOrderStatusServiceApi = `${baseApiUrl}/admin/order/updateOrde
 // Shop Review APIs
 export const fetchProductReviewsServiceApi = `${baseApiUrl}/shop/review/fetchProductReviews`;
 export const addProductReviewServiceApi = `${baseApiUrl}/shop/review/addProductReview`;
+
+// Features APIs
+export const fetchSliderImagesServiceApi = `${baseApiUrl}/features/fetchSliderImages`;
+export const addSliderImageServiceApi = `${baseApiUrl}/features/addSliderImage`;
