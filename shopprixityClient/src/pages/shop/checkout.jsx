@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import checkoutImage from "@/assets/account.jpg";
 import { useToast } from "@/hooks/use-toast";
@@ -6,6 +6,7 @@ import Address from "@/components/shop/address";
 import ShopCartContents from "@/components/shop/cartContents";
 import { Button } from "@/components/ui/button";
 import createOrderService from "@/services/shop/order/createOrderService";
+import fetchShopCartService from "@/services/shop/cart/fetchShopCartService";
 
 const ShopCheckout = () => {
   const [currentSelectedAddress, setCurrentSelectedAddress] = useState(null);
@@ -80,6 +81,12 @@ const ShopCheckout = () => {
     window.location.href = approvalURL;
   }
 
+  useEffect(() => {
+    if (!cartItems) {
+      dispatch(fetchShopCartService(user?.id));
+    }
+  }, [cartItems, user]);
+
   return (
     <div className="flex flex-col">
       <div className="relative w-full h-[300px] overflow-hidden">
@@ -89,7 +96,9 @@ const ShopCheckout = () => {
         />
       </div>
       <div className="gap-3 grid grid-cols-1 sm:grid-cols-2 mt-5 p-5">
-        <Address setCurrentSelectedAddress={setCurrentSelectedAddress} />
+        <div>
+          <Address setCurrentSelectedAddress={setCurrentSelectedAddress} />
+        </div>
         <div className="flex flex-col gap-4">
           {cartItems && cartItems.length > 0 ? (
             cartItems.map((cartItem) => (
