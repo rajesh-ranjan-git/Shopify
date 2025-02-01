@@ -33,9 +33,9 @@ const PaypalReturnPage = () => {
   }, [paymentId, payerId, dispatch]);
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Processing order...</CardTitle>
+    <Card className="p-10">
+      <CardHeader className="p-0">
+        <CardTitle classMane="text-4xl">Processing Payment...</CardTitle>
       </CardHeader>
     </Card>
   );
