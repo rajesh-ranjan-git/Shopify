@@ -22,9 +22,12 @@ const AdminDashboard = () => {
       addSliderImageService({ sliderImage: uploadedProductImageUrl })
     ).then((data) => {
       if (data?.payload.success) {
+        dispatch(fetchSliderImagesService());
         toast({
           title: "Slider image added successfully!",
         });
+        setUploadedProductImageUrl("");
+        setProductImage(null);
       }
     });
   };
@@ -32,8 +35,6 @@ const AdminDashboard = () => {
   useEffect(() => {
     dispatch(fetchSliderImagesService());
   }, [dispatch]);
-
-  console.log("sliderImages : ", sliderImages);
 
   return (
     <div>
@@ -51,6 +52,18 @@ const AdminDashboard = () => {
       <Button className="mt-5 w-full" onClick={handleUploadSliderImage}>
         Upload Slider Image
       </Button>
+
+      <div className="flex flex-col mt-5 w-full">
+        {sliderImages && sliderImages.length > 0
+          ? sliderImages.map((slide) => (
+              <img
+                src={slide?.sliderImage}
+                key={slide?.id}
+                className="my-2 rounded-lg w-full h-full object-cover"
+              />
+            ))
+          : null}
+      </div>
     </div>
   );
 };

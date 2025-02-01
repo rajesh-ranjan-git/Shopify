@@ -2,9 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import bannerOne from "@/assets/banner-1.webp";
-import bannerTwo from "@/assets/banner-2.webp";
-import bannerThree from "@/assets/banner-3.webp";
 import { useToast } from "@/hooks/use-toast";
 import { brands, categories } from "@/config/config";
 import ShopProductCard from "@/components/shop/productCard";
@@ -15,6 +12,7 @@ import fetchShopProductsService from "@/services/shop/products/fetchShopProducts
 import fetchShopProductDetailsService from "@/services/shop/products/fetchShopProductDetailsService";
 import addToShopCartService from "@/services/shop/cart/addToShopCartService";
 import fetchShopCartService from "@/services/shop/cart/fetchShopCartService";
+import fetchSliderImagesService from "@/services/common/fetchSliderImagesService";
 
 const ShopHome = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -22,12 +20,11 @@ const ShopHome = () => {
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.authReducer);
   const { cartItems } = useSelector((state) => state.shopCartReducer);
+  const { sliderImages } = useSelector((state) => state.featuresReducer);
   const { shopProductList, shopProductDetails } = useSelector(
     (state) => state.shopProductsReducer
   );
   const { toast } = useToast();
-
-  const slides = [bannerOne, bannerTwo, bannerThree];
 
   const dispatch = useDispatch();
 
@@ -92,35 +89,39 @@ const ShopHome = () => {
         sortParams: "price-lowtohigh",
       })
     );
+    dispatch(fetchSliderImagesService());
   }, [dispatch]);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % sliderImages.length);
     }, [2000]);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [sliderImages]);
 
   return (
     <div className="flex flex-col min-h-screen">
       <div className="relative w-full h-[600px]">
-        {slides.map((slide, index) => (
-          <img
-            src={slide}
-            key={index}
-            className={`${
-              index === currentSlide ? "opacity-100" : "opacity-0"
-            } top-0 left-0 absolute w-full h-full transition-opacity duration-1000 object-cover`}
-          />
-        ))}
+        {sliderImages && sliderImages.length > 0
+          ? sliderImages.map((slide, index) => (
+              <img
+                src={slide?.sliderImage}
+                key={index}
+                className={`${
+                  index === currentSlide ? "opacity-100" : "opacity-0"
+                } top-0 left-0 absolute w-full h-full transition-opacity duration-1000 object-cover`}
+              />
+            ))
+          : null}
         <Button
           variant="outline"
           size="icon"
           className="top-1/2 left-4 absolute bg-white/80 rounded-full transform -translate-y-1/2"
           onClick={() =>
             setCurrentSlide(
-              (prevSlide) => (prevSlide - 1 + slides.length) % slides.length
+              (prevSlide) =>
+                (prevSlide - 1 + sliderImages.length) % sliderImages.length
             )
           }
         >
@@ -131,7 +132,9 @@ const ShopHome = () => {
           size="icon"
           className="top-1/2 right-4 absolute bg-white/80 rounded-full transform -translate-y-1/2"
           onClick={() =>
-            setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length)
+            setCurrentSlide(
+              (prevSlide) => (prevSlide + 1) % sliderImages.length
+            )
           }
         >
           <ChevronRight className="w-4 h-4" />
