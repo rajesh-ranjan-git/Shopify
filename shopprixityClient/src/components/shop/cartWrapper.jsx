@@ -43,7 +43,7 @@ const ShopCartWrapper = ({ cartItems, setOpenCart, setOpenMobileNav }) => {
             <ShopCartContents cartItem={item} key={item?.id} />
           ))
         ) : (
-          <p className="text-2xl text-bold text-center">
+          <p className="font-extrabold text-2xl text-center">
             Nothing in your cart!
           </p>
         )}

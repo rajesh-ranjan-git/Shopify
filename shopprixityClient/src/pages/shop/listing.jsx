@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ArrowUpDown } from "lucide-react";
+import { LuArrowUpDown } from "react-icons/lu";
 import { useToast } from "@/hooks/use-toast";
 import { sortOptions } from "@/config/config";
 import ShopProductCard from "@/components/shop/productCard";
@@ -159,9 +160,9 @@ const ShopListing = () => {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="flex items-center gap-1"
+                  className="flex items-center gap-1 hover:bg-primary"
                 >
-                  <ArrowUpDown className="w-4 h-4" />
+                  <LuArrowUpDown className="w-4 h-4" />
                   <span>Sort By</span>
                 </Button>
               </DropdownMenuTrigger>
@@ -171,6 +172,7 @@ const ShopListing = () => {
                     <DropdownMenuRadioItem
                       value={sortItem.id}
                       key={sortItem.id}
+                      className="focus:bg-primary"
                     >
                       {sortItem.label}
                     </DropdownMenuRadioItem>

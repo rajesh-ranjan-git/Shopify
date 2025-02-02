@@ -108,7 +108,7 @@ const ShopCheckout = () => {
               <ShopCartContents cartItem={cartItem} key={cartItem?.id} />
             ))
           ) : (
-            <p className="text-2xl text-bold text-center">
+            <p className="font-extrabold text-2xl text-center">
               Nothing in your cart!
             </p>
           )}
