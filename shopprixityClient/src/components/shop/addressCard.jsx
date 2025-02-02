@@ -32,7 +32,12 @@ const AddressCard = ({
       </CardContent>
       <CardFooter className="flex justify-between p-3">
         <Button onClick={() => handleUpdateAddress(addressItem)}>Update</Button>
-        <Button onClick={() => handleDeleteAddress(addressItem)}>Delete</Button>
+        <Button
+          onClick={() => handleDeleteAddress(addressItem)}
+          className="bg-destructive hover:bg-destructive hover:opacity-80"
+        >
+          Delete
+        </Button>
       </CardFooter>
     </Card>
   );

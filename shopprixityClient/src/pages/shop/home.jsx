@@ -146,7 +146,7 @@ const ShopHome = () => {
         <Button
           variant="outline"
           size="icon"
-          className="top-1/2 left-4 absolute bg-white/80 rounded-full transform -translate-y-1/2"
+          className="top-1/2 left-4 absolute bg-white/80 hover:bg-primary rounded-full transform -translate-y-1/2"
           onClick={() => handleSliderLeft()}
         >
           <ChevronLeft className="w-4 h-4" />
@@ -154,7 +154,7 @@ const ShopHome = () => {
         <Button
           variant="outline"
           size="icon"
-          className="top-1/2 right-4 absolute bg-white/80 rounded-full transform -translate-y-1/2"
+          className="top-1/2 right-4 absolute bg-white/80 hover:bg-primary rounded-full transform -translate-y-1/2"
           onClick={() => handleSliderRight()}
         >
           <ChevronRight className="w-4 h-4" />

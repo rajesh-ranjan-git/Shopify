@@ -100,7 +100,7 @@ const ShopCartContents = ({ cartItem }) => {
           <Button
             variant="outline"
             size="icon"
-            className="rounded-full w-8 h-8"
+            className="hover:bg-primary rounded-full w-8 h-8"
             disabled={cartItem?.quantity <= 1}
             onClick={() => handleUpdateCartItems(cartItem, "decrement")}
           >
@@ -111,7 +111,7 @@ const ShopCartContents = ({ cartItem }) => {
           <Button
             variant="outline"
             size="icon"
-            className="rounded-full w-8 h-8"
+            className="hover:bg-primary rounded-full w-8 h-8"
             onClick={() => handleUpdateCartItems(cartItem, "increment")}
           >
             <Plus className="w-4 h-4" />
@@ -129,7 +129,7 @@ const ShopCartContents = ({ cartItem }) => {
           ).toFixed(2)}
         </p>
         <Trash
-          className="mt-1 cursor-pointer"
+          className="mt-1 text-destructive cursor-pointer fill-destructive"
           size={20}
           onClick={() => handleDeleteCartItem(cartItem)}
         />

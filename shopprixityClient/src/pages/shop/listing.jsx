@@ -180,7 +180,7 @@ const ShopListing = () => {
             </DropdownMenu>
           </div>
         </div>
-        <div className="gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-4">
           {shopProductList && shopProductList.length > 0
             ? shopProductList.map((product) => (
                 <ShopProductCard

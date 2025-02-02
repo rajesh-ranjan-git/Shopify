@@ -51,7 +51,7 @@ const ShopCartWrapper = ({ cartItems, setOpenCart, setOpenMobileNav }) => {
       </div>
       <SheetDescription></SheetDescription>
       <Button className="mt-6 w-full" onClick={() => handleCheckout()}>
-        Checkout
+        Proceed to checkout
       </Button>
     </SheetContent>
   );

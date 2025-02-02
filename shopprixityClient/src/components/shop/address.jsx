@@ -112,7 +112,7 @@ const Address = ({ setCurrentSelectedAddress, currentSelectAddressId }) => {
 
   return (
     <Card>
-      <div className="gap-2 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 grid-col-1 mb-5 p-3">
+      <div className="gap-2 grid lg:grid-cols-2 grid-col-1 mb-5 p-3">
         {addressList && addressList.length > 0 ? (
           addressList.map((addressItem) => (
             <AddressCard

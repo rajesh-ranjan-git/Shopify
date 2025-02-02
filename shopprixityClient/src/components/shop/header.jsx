@@ -148,11 +148,15 @@ const HeaderRightContent = ({ setOpenMobileNav }) => {
               navigate("/shop/account");
               setOpenMobileNav(false);
             }}
+            className="focus:bg-primary"
           >
             <UserRound className="mr-2 w-4 h-4" />
             <span>Account</span>
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => handleLogoutUser()}>
+          <DropdownMenuItem
+            onClick={() => handleLogoutUser()}
+            className="focus:bg-primary"
+          >
             <LogOut className="mr-2 w-4 h-4" />
             <span>Logout</span>
           </DropdownMenuItem>
@@ -174,7 +178,11 @@ const ShopHeader = () => {
         </Link>
         <Sheet open={openMobileNav} onOpenChange={setOpenMobileNav}>
           <SheetTrigger asChild>
-            <Button variant="outline" size="icon" className="lg:hidden">
+            <Button
+              variant="outline"
+              size="icon"
+              className="lg:hidden hover:bg-primary"
+            >
               <Menu className="w-6 h-6" />
               <span className="sr-only">Toggle header menu</span>
             </Button>
