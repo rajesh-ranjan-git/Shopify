@@ -12,8 +12,6 @@ const googleAuthFirebase = async () => {
     profileImage: user.photoURL,
   };
 
-  console.log("formData : ", formData);
-
   return formData;
 };
 

@@ -24,6 +24,7 @@ const googleAuthFirebase = async (req, res) => {
         id: findUser.id,
         name: findUser.name,
         email: findUser.email,
+        profileImage: findUser.profileImage,
         role: findUser.role,
       };
 
@@ -54,6 +55,7 @@ const googleAuthFirebase = async (req, res) => {
         id: user.id,
         name: user.name,
         email: user.email,
+        profileImage: user.profileImage,
         role: user.role,
       };
 

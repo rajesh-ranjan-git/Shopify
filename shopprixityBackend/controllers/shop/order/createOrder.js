@@ -110,7 +110,6 @@ const createOrder = async (req, res) => {
     });
   } catch (error) {
     // Check for errors
-    console.log("error : ", error);
     return res.status(500).json({
       status: 500,
       success: false,

@@ -29,7 +29,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -133,7 +133,7 @@ const HeaderRightContent = ({ setOpenMobileNav }) => {
               {cartItemsCount}
             </Badge>
           </Button>
-          <span className="md:hidden ml-4 font-medium text-md">Cart</span>
+          <span className="lg:hidden ml-4 font-medium text-md">Cart</span>
         </div>
         <ShopCartWrapper
           cartItems={cartItems && cartItems.length > 0 ? cartItems : []}
@@ -148,12 +148,15 @@ const HeaderRightContent = ({ setOpenMobileNav }) => {
             onClick={() => setOpenCart(true)}
           >
             <Avatar className="bg-primary cursor-pointer">
+              {user && user?.profileImage && user?.profileImage !== "" ? (
+                <AvatarImage src={user?.profileImage} />
+              ) : null}
               <AvatarFallback className="bg-primary font-extrabold text-white">
                 {user?.name[0].toUpperCase()}
                 {/* RR */}
               </AvatarFallback>
             </Avatar>
-            <span className="md:hidden ml-4 font-medium text-md">
+            <span className="lg:hidden ml-4 font-medium text-md">
               {user?.name}
             </span>
           </div>

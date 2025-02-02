@@ -14,17 +14,8 @@ const googleAuthFirebaseService = createAsyncThunk(
         }
       );
 
-      console.log(
-        "googleAuthFirebaseServiceResponse : ",
-        googleAuthFirebaseServiceResponse
-      );
-      console.log(
-        "googleAuthFirebaseServiceResponse.data : ",
-        googleAuthFirebaseServiceResponse.data
-      );
       return googleAuthFirebaseServiceResponse.data;
     } catch (error) {
-      console.log(error);
       return error.response.data;
     }
   }
