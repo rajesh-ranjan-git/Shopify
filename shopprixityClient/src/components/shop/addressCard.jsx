@@ -18,7 +18,9 @@ const AddressCard = ({
           : null
       }
       className={`${
-        currentSelectAddressId === addressItem.id ? "border-black" : ""
+        currentSelectAddressId === addressItem.id
+          ? "border-primary outline-double outline-primary"
+          : ""
       } cursor-pointer`}
     >
       <CardContent className="gap-4 grid p-4">

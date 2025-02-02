@@ -117,10 +117,10 @@ const HeaderRightContent = ({ setOpenMobileNav }) => {
           variant="outline"
           size="icon"
           onClick={() => setOpenCart(true)}
-          className="relative"
+          className="relative hover:bg-primary"
         >
           <ShoppingCart className="w-6 h-6" />
-          <Badge className="top-[-0.6rem] right-[-0.8rem] absolute rounded-full">
+          <Badge className="top-[-0.6rem] right-[-0.8rem] absolute bg-destructive rounded-full">
             {cartItemsCount}
           </Badge>
           <span className="sr-only">Cart</span>
@@ -133,8 +133,8 @@ const HeaderRightContent = ({ setOpenMobileNav }) => {
       </Sheet>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Avatar className="bg-black cursor-pointer">
-            <AvatarFallback className="bg-black font-extrabold text-white">
+          <Avatar className="bg-primary cursor-pointer">
+            <AvatarFallback className="bg-primary font-extrabold text-white">
               {user?.name[0].toUpperCase()}
               {/* RR */}
             </AvatarFallback>

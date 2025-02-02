@@ -64,7 +64,7 @@ const AdminDashboard = () => {
               <img
                 src={slide?.sliderImage}
                 key={slide?.id}
-                className="my-2 rounded-lg w-full h-full object-cover"
+                className="my-2 border rounded-lg w-full h-full object-cover"
               />
             ))
           : null}

@@ -67,9 +67,15 @@ const ShopOrderDetails = ({ orderDetails }) => {
                       className="flex justify-between item-center"
                       key={item?.title}
                     >
-                      <span>Title : {item?.title}</span>
-                      <span>Price : ₹{item?.price}</span>
-                      <span>Quantity : {item?.quantity}</span>
+                      <span>
+                        <b>Title :</b> {item?.title}
+                      </span>
+                      <span>
+                        <b>Price :</b> ₹{item?.price}
+                      </span>
+                      <span>
+                        <b>Quantity :</b> {item?.quantity}
+                      </span>
                     </li>
                   ))
                 : null}
@@ -80,12 +86,24 @@ const ShopOrderDetails = ({ orderDetails }) => {
           <div className="gap-2 grid">
             <div className="font-medium">Shipping Information</div>
             <div className="gap-0.5 grid text-muted-foreground">
-              <span>Name : {user.name}</span>
-              <span>Address : {orderDetails?.shippingAddress?.address}</span>
-              <span>City : {orderDetails?.shippingAddress?.city}</span>
-              <span>Pin Code : {orderDetails?.shippingAddress?.pincode}</span>
-              <span>Phone No. : {orderDetails?.shippingAddress?.phone}</span>
-              <span>Notes : {orderDetails?.shippingAddress?.notes}</span>
+              <span>
+                <b>Name :</b> {user.name}
+              </span>
+              <span>
+                <b>Address :</b> {orderDetails?.shippingAddress?.address}
+              </span>
+              <span>
+                <b>City :</b> {orderDetails?.shippingAddress?.city}
+              </span>
+              <span>
+                <b>Pin C</b>ode : {orderDetails?.shippingAddress?.pincode}
+              </span>
+              <span>
+                <b>Phone N</b>o. : {orderDetails?.shippingAddress?.phone}
+              </span>
+              <span>
+                <b>Notes :</b> {orderDetails?.shippingAddress?.notes}
+              </span>
             </div>
           </div>
         </div>

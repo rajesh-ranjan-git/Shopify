@@ -84,17 +84,17 @@ const ShopProductDetails = ({
       open={openShopProductDetails}
       onOpenChange={setOpenShopProductDetails}
     >
-      <DialogContent className="gap-8 grid grid-cols-2 sm:p-12 max-w-[80vw] lg:max-w-[70vw]">
-        <div className="relative rounded-lg overflow-hidden">
+      <DialogContent className="gap-8 grid md:grid-cols-2 p-8 rounded-lg max-w-[80vw] lg:max-w-[70vw] max-h-[90vh]">
+        <div className="relative rounded-lg min-h-[40vh] overflow-hidden">
           <img
             src={productDetails?.image}
             alt={productDetails?.image}
-            width={600}
-            height={600}
-            className="w-full aspect-square object-cover"
+            width={300}
+            height={300}
+            className="w-full h-full aspect-square object-cover"
           />
         </div>
-        <div className="">
+        <div className="p-2 md:p-0 md:overflow-hidden overflow-y-scroll">
           <DialogTitle>
             <div>
               <h1 className="font-extrabold text-3xl">
@@ -122,18 +122,16 @@ const ShopProductDetails = ({
           </div>
           <div className="flex items-center gap-2 mt-2">
             <div className="flex items-center gap-0.5">
-              <ProductRating
-                productRating={productDetails?.rating}
-                handleProductRating={handleProductRating}
-              />
+              <ProductRating productRating={productDetails?.rating} />
             </div>
-            <span className="text-muted-foreground">
+            <span className="text-muted-foreground text-xl">
+              <span className="font-semibold">Rating : </span>
               {productDetails?.rating}
             </span>
           </div>
           <div className="mt-5 mb-5">
             {productDetails?.totalStock === 0 ? (
-              <Button className="opacity-60 w-full cursor-not-allowed">
+              <Button className="bg-destructive opacity-60 w-full cursor-not-allowed">
                 Out of stock
               </Button>
             ) : (
@@ -151,35 +149,39 @@ const ShopProductDetails = ({
             )}
           </div>
           <Separator />
-          <div className="max-h-[300px] overflow-auto">
+          <div className="p-2 overflow-auto">
             <h2 className="mb-4 font-bold text-xl">Reviews</h2>
-            <div className="gap-6 grid">
+            <div className="gap-2 grid">
               {reviews && reviews.length ? (
                 reviews.map((reviewItem) => (
-                  <div className="flex gap-4" key={reviewItem?.id}>
-                    <Avatar className="border w-10 h-10">
+                  <div
+                    className="flex items-center gap-4 p-2 border rounded-lg"
+                    key={reviewItem?.id}
+                  >
+                    <Avatar className="border w-10 h-10 font-bold">
                       <AvatarFallback>
                         {reviewItem?.userName[0].toUpperCase()}
                       </AvatarFallback>
                     </Avatar>
-                    <div className="gap-1 grid">
+                    <div className="gap-1 grid w-full">
                       <div className="flex items-center gap-2">
                         <h3 className="font-bold">{reviewItem?.userName}</h3>
                       </div>
                       <div className="flex items-center gap-0.5">
                         <ProductRating
                           productRating={reviewItem?.reviewValue}
-                          handleProductRating={handleProductRating}
                         />
                       </div>
-                      <p className="text-muted-foreground">
+                      <p className="w-full font-semibold text-muted-foreground">
                         {reviewItem?.reviewMessage}
                       </p>
                     </div>
                   </div>
                 ))
               ) : (
-                <div>No reviews yet</div>
+                <div className="w-full font-semibold text-muted-foreground">
+                  No reviews yet
+                </div>
               )}
             </div>
             <div className="flex flex-col gap-6 mt-10">

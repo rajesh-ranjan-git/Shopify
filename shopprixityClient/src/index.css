@@ -10,6 +10,28 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ffe5b4;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(180deg, #ff4f79 0%, #d72638 99%);
+  box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5);
+  border-radius: 100px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #d72638;
+}
+
 @layer base {
   :root {
     --background: 30 100% 95%; /* Peach (#FFE5B4) */

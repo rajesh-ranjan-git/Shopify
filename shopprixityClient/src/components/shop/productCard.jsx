@@ -19,21 +19,23 @@ const ShopProductCard = ({
             className="rounded-t-lg w-full h-[300px] object-cover"
           />
           {product?.totalStock === 0 ? (
-            <Badge className="top-2 left-2 absolute bg-red-500 hover:bg-red-600">
+            <Badge className="top-2 left-2 absolute bg-destructive hover:bg-destructive">
               Out of stock
             </Badge>
           ) : product?.totalStock <= 10 ? (
-            <Badge className="top-2 left-2 absolute bg-red-500 hover:bg-red-600">
+            <Badge className="top-2 left-2 absolute hover:bg-destructive bg-ring">
               {`Only ${product?.totalStock} items left`}
             </Badge>
           ) : product?.salePrice > 0 ? (
-            <Badge className="top-2 left-2 absolute bg-red-500 hover:bg-red-600">
+            <Badge className="top-2 left-2 absolute bg-chart-3 hover:bg-destructive">
               Sale
             </Badge>
           ) : null}
         </div>
         <CardContent className="p-4">
-          <h2 className="mb-2 font-bold text-xl">{product?.title}</h2>
+          <h2 className="mb-2 font-bold text-card-foreground text-xl">
+            {product?.title}
+          </h2>
           <div className="flex justify-between items-center mb-2">
             <span className="text-muted-foreground text-sm">
               {categoryOptionsMap[product?.category]}
