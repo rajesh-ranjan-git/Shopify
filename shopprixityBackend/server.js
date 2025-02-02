@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 5000;
 // CORS - Cross Origin Resource Sharing
 server.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: process.env.CLIENT_BASE_URL,
     methods: ["GET", "POST", "DELETE", "PUT"],
     allowedHeaders: [
       "Content-Type",

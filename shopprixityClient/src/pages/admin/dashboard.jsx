@@ -31,7 +31,7 @@ const AdminDashboard = () => {
         setProductImage(null);
       } else {
         toast({
-          title: data?.payload?.message,
+          title: data?.payload?.message || "Something went wrong!",
           variant: "destructive",
         });
       }

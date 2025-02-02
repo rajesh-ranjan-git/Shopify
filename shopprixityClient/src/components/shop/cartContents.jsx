@@ -61,7 +61,7 @@ const ShopCartContents = ({ cartItem }) => {
         });
       } else {
         toast({
-          title: data?.payload?.message,
+          title: data?.payload?.message || "Something went wrong!",
           variant: "destructive",
         });
       }
@@ -81,7 +81,7 @@ const ShopCartContents = ({ cartItem }) => {
         });
       } else {
         toast({
-          title: data?.payload?.message,
+          title: data?.payload?.message || "Something went wrong!",
           variant: "destructive",
         });
       }

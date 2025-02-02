@@ -1,5 +1,5 @@
 export const backendPORT = 5000;
-export const baseApiUrl = `http://localhost:${backendPORT}/api`;
+export const baseApiUrl = import.meta.env.VITE_API_URL;
 
 // Auth APIs
 export const registerUserApi = `${baseApiUrl}/auth/register`;
