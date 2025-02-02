@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer base {
+  :root {
+    --background: 200 80% 95%; /* Light Sky Blue (#E3F2FD) */
+    --foreground: 240 100% 10%; /* Deep Navy (#0A192F) */
+    --card: 200 80% 95%; /* Light Sky Blue (#E3F2FD) */
+    --card-foreground: 240 100% 10%; /* Deep Navy (#0A192F) */
+    --popover: 200 80% 95%; /* Light Sky Blue (#E3F2FD) */
+    --popover-foreground: 240 100% 10%; /* Deep Navy (#0A192F) */
+    --primary: 220 90% 55%; /* Vivid Blue (#007BFF) */
+    --primary-foreground: 0 0% 100%; /* White (#FFFFFF) */
+    --secondary: 40 90% 55%; /* Vibrant Yellow (#FFD700) */
+    --secondary-foreground: 240 100% 10%; /* Deep Navy (#0A192F) */
+    --muted: 210 50% 85%; /* Soft Blue (#B3D4FC) */
+    --muted-foreground: 210 50% 40%; /* Medium Blue (#4A90E2) */
+    --accent: 340 80% 55%; /* Bright Pink (#FF4081) */
+    --accent-foreground: 0 0% 100%; /* White (#FFFFFF) */
+    --destructive: 0 80% 55%; /* Crimson Red (#D72638) */
+    --destructive-foreground: 0 0% 100%; /* White (#FFFFFF) */
+    --border: 210 50% 60%; /* Muted Blue (#6A8FC7) */
+    --input: 210 50% 60%; /* Muted Blue (#6A8FC7) */
+    --ring: 220 90% 55%; /* Vivid Blue (#007BFF) */
+    --chart-1: 220 90% 55%; /* Vivid Blue (#007BFF) */
+    --chart-2: 40 90% 55%; /* Vibrant Yellow (#FFD700) */
+    --chart-3: 160 80% 50%; /* Bright Green (#1FAA59) */
+    --chart-4: 340 80% 55%; /* Bright Pink (#FF4081) */
+    --chart-5: 280 75% 60%; /* Electric Purple (#7B1FA2) */
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 100% 10%; /* Deep Navy (#0A192F) */
+    --foreground: 200 80% 95%; /* Light Sky Blue (#E3F2FD) */
+    --card: 240 100% 12%; /* Slightly Brighter Navy (#0D1B2A) */
+    --card-foreground: 200 80% 95%; /* Light Sky Blue (#E3F2FD) */
+    --popover: 240 100% 12%; /* Slightly Brighter Navy (#0D1B2A) */
+    --popover-foreground: 200 80% 95%; /* Light Sky Blue (#E3F2FD) */
+    --primary: 220 90% 55%; /* Vivid Blue (#007BFF) */
+    --primary-foreground: 0 0% 100%; /* White (#FFFFFF) */
+    --secondary: 40 90% 55%; /* Vibrant Yellow (#FFD700) */
+    --secondary-foreground: 240 100% 10%; /* Deep Navy (#0A192F) */
+    --muted: 210 50% 40%; /* Medium Blue (#4A90E2) */
+    --muted-foreground: 210 50% 85%; /* Soft Blue (#B3D4FC) */
+    --accent: 340 80% 55%; /* Bright Pink (#FF4081) */
+    --accent-foreground: 0 0% 100%; /* White (#FFFFFF) */
+    --destructive: 0 80% 55%; /* Crimson Red (#D72638) */
+    --destructive-foreground: 0 0% 100%; /* White (#FFFFFF) */
+    --border: 210 50% 60%; /* Muted Blue (#6A8FC7) */
+    --input: 210 50% 60%; /* Muted Blue (#6A8FC7) */
+    --ring: 220 90% 55%; /* Vivid Blue (#007BFF) */
+    --chart-1: 220 90% 55%; /* Vivid Blue (#007BFF) */
+    --chart-2: 40 90% 55%; /* Vibrant Yellow (#FFD700) */
+    --chart-3: 160 80% 50%; /* Bright Green (#1FAA59) */
+    --chart-4: 340 80% 55%; /* Bright Pink (#FF4081) */
+    --chart-5: 280 75% 60%; /* Electric Purple (#7B1FA2) */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

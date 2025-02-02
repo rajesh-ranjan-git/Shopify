@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer base {
+  :root {
+    --background: 220 100% 97%; /* Soft Blue-Gray (#E3F2FD) */
+    --foreground: 220 100% 10%; /* Dark Blue-Black (#0A0F29) */
+    --card: 220 100% 98%; /* Soft White-Blue (#F8FAFC) */
+    --card-foreground: 220 100% 10%; /* Dark Blue-Black (#0A0F29) */
+    --popover: 220 100% 98%; /* Soft White-Blue (#F8FAFC) */
+    --popover-foreground: 220 100% 10%; /* Dark Blue-Black (#0A0F29) */
+    --primary: 220 100% 30%; /* Deep Navy Blue (#002147) */
+    --primary-foreground: 220 100% 90%; /* Light Sky Blue (#D0E3FF) */
+    --secondary: 220 100% 85%; /* Light Blue (#B0D0FF) */
+    --secondary-foreground: 220 100% 20%; /* Dark Blue (#0A2A55) */
+    --muted: 220 100% 85%; /* Light Blue (#B0D0FF) */
+    --muted-foreground: 220 100% 40%; /* Medium Blue (#506D9A) */
+    --accent: 220 100% 85%; /* Light Blue (#B0D0FF) */
+    --accent-foreground: 220 100% 20%; /* Dark Blue (#0A2A55) */
+    --destructive: 220 80% 50%; /* Cobalt Red-Blue (#B71C1C) */
+    --destructive-foreground: 220 100% 95%; /* Soft White (#F8FAFC) */
+    --border: 220 100% 80%; /* Soft Blue (#A0C4FF) */
+    --input: 220 100% 80%; /* Soft Blue (#A0C4FF) */
+    --ring: 220 100% 10%; /* Dark Blue-Black (#0A0F29) */
+    --chart-1: 220 70% 50%; /* Royal Blue (#4169E1) */
+    --chart-2: 220 60% 45%; /* Sky Blue (#007BFF) */
+    --chart-3: 220 50% 40%; /* Teal Blue (#17A2B8) */
+    --chart-4: 220 65% 60%; /* Soft Teal (#68C5DB) */
+    --chart-5: 220 75% 55%; /* Cyan Blue (#00A3E0) */
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 220 100% 10%; /* Deep Navy Blue (#002147) */
+    --foreground: 220 100% 90%; /* Light Sky Blue (#D0E3FF) */
+    --card: 220 100% 12%; /* Darker Navy Blue (#0A1A3A) */
+    --card-foreground: 220 100% 90%; /* Light Sky Blue (#D0E3FF) */
+    --popover: 220 100% 12%; /* Darker Navy Blue (#0A1A3A) */
+    --popover-foreground: 220 100% 90%; /* Light Sky Blue (#D0E3FF) */
+    --primary: 220 100% 80%; /* Soft Blue (#A0C4FF) */
+    --primary-foreground: 220 100% 20%; /* Dark Blue (#0A2A55) */
+    --secondary: 220 100% 25%; /* Dark Blue (#0A2A55) */
+    --secondary-foreground: 220 100% 90%; /* Light Blue (#D0E3FF) */
+    --muted: 220 100% 25%; /* Dark Blue (#0A2A55) */
+    --muted-foreground: 220 100% 65%; /* Medium Blue (#506D9A) */
+    --accent: 220 100% 25%; /* Dark Blue (#0A2A55) */
+    --accent-foreground: 220 100% 90%; /* Light Blue (#D0E3FF) */
+    --destructive: 220 80% 40%; /* Cobalt Red-Blue (#B71C1C) */
+    --destructive-foreground: 220 100% 95%; /* Soft White (#F8FAFC) */
+    --border: 220 100% 20%; /* Dark Navy (#0A1A3A) */
+    --input: 220 100% 20%; /* Dark Navy (#0A1A3A) */
+    --ring: 220 100% 85%; /* Soft Blue-Gray (#E3F2FD) */
+    --chart-1: 220 70% 50%; /* Royal Blue (#4169E1) */
+    --chart-2: 220 60% 45%; /* Sky Blue (#007BFF) */
+    --chart-3: 220 50% 40%; /* Teal Blue (#17A2B8) */
+    --chart-4: 220 65% 60%; /* Soft Teal (#68C5DB) */
+    --chart-5: 220 75% 55%; /* Cyan Blue (#00A3E0) */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

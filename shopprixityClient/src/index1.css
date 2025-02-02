@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer base {
+  :root {
+    --background: 240 20% 98%; /* Soft White (#F8F9FA) */
+    --foreground: 0 0% 13%; /* Charcoal Black (#222222) */
+    --card: 240 20% 98%; /* Soft White (#F8F9FA) */
+    --card-foreground: 0 0% 13%; /* Charcoal Black (#222222) */
+    --popover: 240 20% 98%; /* Soft White (#F8F9FA) */
+    --popover-foreground: 0 0% 13%; /* Charcoal Black (#222222) */
+    --primary: 220 100% 42%; /* Royal Blue (#0056D2) */
+    --primary-foreground: 40 100% 96%; /* Soft White (#F8F9FA) */
+    --secondary: 25 100% 67%; /* Sunset Orange (#FF6B35) */
+    --secondary-foreground: 0 0% 100%; /* White */
+    --muted: 0 0% 33%; /* Dark Gray (#555555) */
+    --muted-foreground: 0 0% 60%; /* Medium Gray (#888888) */
+    --accent: 45 100% 56%; /* Golden Yellow (#FFC107) */
+    --accent-foreground: 0 0% 13%; /* Charcoal Black (#222222) */
+    --destructive: 350 80% 50%; /* Crimson Red (#D72638) */
+    --destructive-foreground: 40 100% 96%; /* Soft White (#F8F9FA) */
+    --border: 0 0% 80%; /* Light Gray (#CCCCCC) */
+    --input: 0 0% 80%; /* Light Gray (#CCCCCC) */
+    --ring: 220 100% 42%; /* Royal Blue (#0056D2) */
+    --chart-1: 220 100% 42%; /* Royal Blue (#0056D2) */
+    --chart-2: 25 100% 67%; /* Sunset Orange (#FF6B35) */
+    --chart-3: 160 70% 45%; /* Emerald Green (#1FAA59) */
+    --chart-4: 45 100% 56%; /* Golden Yellow (#FFC107) */
+    --chart-5: 350 80% 50%; /* Crimson Red (#D72638) */
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 20%; /* Dark Gray (#333333) */
+    --foreground: 0 0% 96%; /* Soft White (#F8F9FA) */
+    --card: 0 0% 22%; /* Slightly Darker Gray (#2B2B2B) */
+    --card-foreground: 0 0% 96%; /* Soft White (#F8F9FA) */
+    --popover: 0 0% 22%; /* Slightly Darker Gray (#2B2B2B) */
+    --popover-foreground: 0 0% 96%; /* Soft White (#F8F9FA) */
+    --primary: 220 100% 42%; /* Royal Blue (#0056D2) */
+    --primary-foreground: 40 100% 96%; /* Soft White (#F8F9FA) */
+    --secondary: 25 100% 67%; /* Sunset Orange (#FF6B35) */
+    --secondary-foreground: 0 0% 100%; /* White */
+    --muted: 0 0% 33%; /* Dark Gray (#555555) */
+    --muted-foreground: 0 0% 60%; /* Medium Gray (#888888) */
+    --accent: 45 100% 56%; /* Golden Yellow (#FFC107) */
+    --accent-foreground: 0 0% 96%; /* Soft White (#F8F9FA) */
+    --destructive: 350 80% 50%; /* Crimson Red (#D72638) */
+    --destructive-foreground: 40 100% 96%; /* Soft White (#F8F9FA) */
+    --border: 0 0% 40%; /* Medium Gray (#666666) */
+    --input: 0 0% 40%; /* Medium Gray (#666666) */
+    --ring: 220 100% 42%; /* Royal Blue (#0056D2) */
+    --chart-1: 220 100% 42%; /* Royal Blue (#0056D2) */
+    --chart-2: 25 100% 67%; /* Sunset Orange (#FF6B35) */
+    --chart-3: 160 70% 45%; /* Emerald Green (#1FAA59) */
+    --chart-4: 45 100% 56%; /* Golden Yellow (#FFC107) */
+    --chart-5: 350 80% 50%; /* Crimson Red (#D72638) */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
