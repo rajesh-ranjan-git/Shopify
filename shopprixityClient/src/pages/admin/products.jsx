@@ -117,7 +117,8 @@ const AdminProducts = () => {
 
   return (
     <>
-      <div className="flex justify-end mb-5 w-full">
+      <div className="flex justify-between items-center p-4 w-full">
+        <h2 className="font-extrabold text-lg">All Products</h2>
         <Button onClick={() => setOpenCreateProductsDialog(true)}>
           Add New Product
         </Button>

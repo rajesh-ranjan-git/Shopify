@@ -1,14 +1,17 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { LogOut, Menu } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { toast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
+import { adminSidebarMenuItems } from "@/config/config";
 import logoutUserService from "@/services/auth/logoutUserService";
 
 const AdminHeader = ({ openSidebar, setOpenSidebar }) => {
+  const [headerTitle, setHeaderTitle] = useState("Admin Panel");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogoutUser = () => {
     dispatch(logoutUserService()).then((data) => {
@@ -26,8 +29,23 @@ const AdminHeader = ({ openSidebar, setOpenSidebar }) => {
     });
   };
 
+  useEffect(() => {
+    if (location.pathname.includes("dashboard")) {
+      setHeaderTitle("Dashboard");
+    } else if (location.pathname.includes("products")) {
+      setHeaderTitle("Products");
+    } else if (location.pathname.includes("orders")) {
+      setHeaderTitle("Orders");
+    } else {
+      setHeaderTitle("Admin Panel");
+    }
+  }, [location]);
+
   return (
     <header className="flex justify-between items-center bg-background px-4 py-3 border-b">
+      <div className="w-full">
+        <h2 className="font-extrabold text-2xl text-center">{headerTitle}</h2>
+      </div>
       <Button
         className="sm:block lg:hidden"
         onClick={() => setOpenSidebar(true)}

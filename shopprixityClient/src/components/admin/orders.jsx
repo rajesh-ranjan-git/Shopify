@@ -42,7 +42,9 @@ const AdminOrders = () => {
 
   return (
     <Card>
-      <CardHeader>All Orders</CardHeader>
+      <CardHeader>
+        <h2 className="font-extrabold text-lg">All Orders</h2>
+      </CardHeader>
       <CardContent>
         <Table>
           <TableHeader>

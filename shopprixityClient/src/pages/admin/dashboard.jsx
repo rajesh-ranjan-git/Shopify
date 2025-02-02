@@ -43,7 +43,7 @@ const AdminDashboard = () => {
 
   return (
     <div>
-      <h1>Upload Slider Image</h1>
+      <h2 className="font-extrabold text-lg">Upload Slider Image</h2>
       <ProductImageInput
         productImage={productImage}
         setProductImage={setProductImage}

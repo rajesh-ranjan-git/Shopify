@@ -45,7 +45,10 @@ const AdminProductCard = ({
           >
             Edit
           </Button>
-          <Button onClick={() => handleProductDelete(product?.id)}>
+          <Button
+            onClick={() => handleProductDelete(product?.id)}
+            className="bg-destructive hover:opacity-80"
+          >
             Delete
           </Button>
         </CardFooter>
