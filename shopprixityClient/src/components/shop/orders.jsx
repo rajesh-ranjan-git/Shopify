@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { MdErrorOutline } from "react-icons/md";
 import ShopOrderDetails from "./orderDetails";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
@@ -91,7 +92,8 @@ const ShopOrders = () => {
                         <Button
                           onClick={() => handleOrderDetails(orderItem?.id)}
                         >
-                          Details
+                          <span>Details</span>
+                          <MdErrorOutline />
                         </Button>
                         <ShopOrderDetails orderDetails={orderDetails} />
                       </Dialog>

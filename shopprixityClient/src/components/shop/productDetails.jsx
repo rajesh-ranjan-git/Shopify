@@ -86,14 +86,14 @@ const ShopProductDetails = ({
       open={openShopProductDetails}
       onOpenChange={setOpenShopProductDetails}
     >
-      <DialogContent className="gap-8 grid md:grid-cols-2 p-8 rounded-lg max-w-[80vw] lg:max-w-[70vw] max-h-[90vh]">
-        <div className="relative rounded-lg min-h-[40vh] overflow-hidden">
+      <DialogContent className="gap-8 grid md:grid-cols-2 p-8 rounded-lg max-w-[80vw] lg:max-w-[70vw] min-h-[40vh] max-h-[90vh]">
+        <div className="relative rounded-lg min-h-[40vh]">
           <img
             src={productDetails?.image}
             alt={productDetails?.image}
             width={300}
             height={300}
-            className="w-full h-full aspect-square object-cover"
+            className="rounded-lg w-[100%] h-[100%] aspect-square object-cover"
           />
         </div>
         <div className="p-2 md:p-0 md:overflow-hidden overflow-y-scroll">
@@ -102,7 +102,7 @@ const ShopProductDetails = ({
               <h1 className="font-extrabold text-3xl">
                 {productDetails?.title}
               </h1>
-              <p className="mt-4 mb-5 text-muted-foreground text02xl">
+              <p className="mt-4 mb-5 text-2xl text-muted-foreground">
                 {productDetails?.description}
               </p>
             </div>
