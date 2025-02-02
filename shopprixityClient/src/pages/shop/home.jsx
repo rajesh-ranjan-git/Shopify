@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { FaAnglesLeft, FaAnglesRight } from "react-icons/fa6";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { brands, categories } from "@/config/config";
@@ -124,7 +125,7 @@ const ShopHome = () => {
 
     const timer = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % sliderImages.length);
-    }, [2000]);
+    }, [3000]);
 
     return () => clearInterval(timer);
   }, [sliderImages, pauseSlider]);
@@ -149,7 +150,7 @@ const ShopHome = () => {
           className="top-1/2 left-4 absolute bg-white/80 hover:bg-primary rounded-full transform -translate-y-1/2"
           onClick={() => handleSliderLeft()}
         >
-          <ChevronLeft className="w-4 h-4" />
+          <FaAnglesLeft className="w-4 h-4" />
         </Button>
         <Button
           variant="outline"
@@ -157,7 +158,7 @@ const ShopHome = () => {
           className="top-1/2 right-4 absolute bg-white/80 hover:bg-primary rounded-full transform -translate-y-1/2"
           onClick={() => handleSliderRight()}
         >
-          <ChevronRight className="w-4 h-4" />
+          <FaAnglesRight className="w-4 h-4" />
         </Button>
       </div>
       <section className="bg-gray-50 py-12">

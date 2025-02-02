@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { House, LogOut, Menu, ShoppingCart, UserRound } from "lucide-react";
+import { IoMdLogOut } from "react-icons/io";
+import { RiMenu3Fill, RiShoppingCartFill } from "react-icons/ri";
+import { HiHomeModern } from "react-icons/hi2";
+import { MdAccountBalance } from "react-icons/md";
 import {
   Link,
   useLocation,
@@ -29,6 +33,7 @@ import {
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
 import logoutUserService from "@/services/auth/logoutUserService";
 import fetchShopCartService from "@/services/shop/cart/fetchShopCartService";
 
@@ -64,11 +69,12 @@ const MenuItems = ({ setOpenMobileNav }) => {
     <nav className="flex lg:flex-row flex-col lg:items-center gap-6 mb-3 lg:mb-0">
       {shopHeaderMenuItems.map((menuItem) => (
         <Label
-          className="font-medium text-sm cursor-pointer"
+          className="flex gap-1 item-center font-medium text-sm cursor-pointer"
           key={menuItem.id}
           onClick={() => handleNavigateToListing(menuItem)}
         >
-          {menuItem.label}
+          {menuItem.icon}
+          <span>{menuItem.label}</span>
         </Label>
       ))}
     </nav>
@@ -112,19 +118,24 @@ const HeaderRightContent = ({ setOpenMobileNav }) => {
 
   return (
     <div className="flex lg:flex-row flex-col lg:items-center gap-4">
+      <Separator className="md:hidden" />
       <Sheet open={openCart} onOpenChange={setOpenCart}>
-        <Button
-          variant="outline"
-          size="icon"
+        <div
+          className="w-full cursor-pointer"
           onClick={() => setOpenCart(true)}
-          className="relative hover:bg-primary"
         >
-          <ShoppingCart className="w-6 h-6" />
-          <Badge className="top-[-0.6rem] right-[-0.8rem] absolute bg-destructive rounded-full">
-            {cartItemsCount}
-          </Badge>
-          <span className="sr-only">Cart</span>
-        </Button>
+          <Button
+            variant="outline"
+            size="icon"
+            className="relative hover:bg-primary rounded-full"
+          >
+            <RiShoppingCartFill className="w-6 h-6" />
+            <Badge className="top-[-0.6rem] right-[-0.8rem] absolute hover:border-white bg-destructive px-1.5 rounded-full">
+              {cartItemsCount}
+            </Badge>
+          </Button>
+          <span className="md:hidden ml-4 font-medium text-md">Cart</span>
+        </div>
         <ShopCartWrapper
           cartItems={cartItems && cartItems.length > 0 ? cartItems : []}
           setOpenCart={setOpenCart}
@@ -133,14 +144,22 @@ const HeaderRightContent = ({ setOpenMobileNav }) => {
       </Sheet>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Avatar className="bg-primary cursor-pointer">
-            <AvatarFallback className="bg-primary font-extrabold text-white">
-              {user?.name[0].toUpperCase()}
-              {/* RR */}
-            </AvatarFallback>
-          </Avatar>
+          <div
+            className="flex items-center cursor-pointer"
+            onClick={() => setOpenCart(true)}
+          >
+            <Avatar className="bg-primary cursor-pointer">
+              <AvatarFallback className="bg-primary font-extrabold text-white">
+                {user?.name[0].toUpperCase()}
+                {/* RR */}
+              </AvatarFallback>
+            </Avatar>
+            <span className="md:hidden ml-4 font-medium text-md">
+              {user?.name}
+            </span>
+          </div>
         </DropdownMenuTrigger>
-        <DropdownMenuContent side="right" className="w-56">
+        <DropdownMenuContent className="min-w-56">
           <DropdownMenuLabel>Logged in as {user?.name}!</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem
@@ -150,14 +169,14 @@ const HeaderRightContent = ({ setOpenMobileNav }) => {
             }}
             className="focus:bg-primary"
           >
-            <UserRound className="mr-2 w-4 h-4" />
+            <MdAccountBalance className="mr-2 w-4 h-4" />
             <span>Account</span>
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() => handleLogoutUser()}
             className="focus:bg-primary"
           >
-            <LogOut className="mr-2 w-4 h-4" />
+            <IoMdLogOut className="mr-2 w-4 h-4" />
             <span>Logout</span>
           </DropdownMenuItem>
         </DropdownMenuContent>
@@ -173,7 +192,7 @@ const ShopHeader = () => {
     <header className="top-0 z-40 sticky bg-background border-b w-full">
       <div className="flex justify-between items-center px-4 md:px-6 h-16">
         <Link className="flex items-center gap-2" to="/shop/home">
-          <House className="w-6 h-6" />
+          <HiHomeModern className="w-6 h-6" />
           <span className="font-bold">Shopprixity</span>
         </Link>
         <Sheet open={openMobileNav} onOpenChange={setOpenMobileNav}>
@@ -183,7 +202,7 @@ const ShopHeader = () => {
               size="icon"
               className="lg:hidden hover:bg-primary"
             >
-              <Menu className="w-6 h-6" />
+              <RiMenu3Fill className="w-6 h-6" />
               <span className="sr-only">Toggle header menu</span>
             </Button>
           </SheetTrigger>

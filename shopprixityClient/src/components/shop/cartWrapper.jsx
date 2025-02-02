@@ -1,5 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { RiShoppingCartFill } from "react-icons/ri";
+import { MdShoppingCartCheckout, MdDelete } from "react-icons/md";
 import ShopCartContents from "./cartContents";
 import {
   SheetContent,
@@ -30,7 +32,10 @@ const ShopCartWrapper = ({ cartItems, setOpenCart, setOpenMobileNav }) => {
   return (
     <SheetContent className="sm:max-w-md">
       <SheetHeader>
-        <SheetTitle>Your Cart</SheetTitle>
+        <SheetTitle className="flex items-center">
+          <span>Your Cart</span>
+          <RiShoppingCartFill className="ml-2 w-6 h-6" />
+        </SheetTitle>
       </SheetHeader>
       <div className="space-y-4 mt-8">
         {cartItems && cartItems.length > 0 ? (
@@ -50,8 +55,12 @@ const ShopCartWrapper = ({ cartItems, setOpenCart, setOpenMobileNav }) => {
         </div>
       </div>
       <SheetDescription></SheetDescription>
-      <Button className="mt-6 w-full" onClick={() => handleCheckout()}>
-        Proceed to checkout
+      <Button
+        className="flex items-center mt-6 w-full"
+        onClick={() => handleCheckout()}
+      >
+        <span>Proceed to checkout</span>
+        <MdShoppingCartCheckout />
       </Button>
     </SheetContent>
   );

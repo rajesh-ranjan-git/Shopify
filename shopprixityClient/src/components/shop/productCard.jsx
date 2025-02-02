@@ -1,4 +1,6 @@
 import React from "react";
+import { BiSolidCartAdd } from "react-icons/bi";
+import { TbShoppingCartX } from "react-icons/tb";
 import { brandOptionsMap, categoryOptionsMap } from "@/config/config";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -63,14 +65,16 @@ const ShopProductCard = ({
       <CardFooter className="flex justify-between items-center">
         {product?.totalStock === 0 ? (
           <Button className="opacity-60 w-full cursor-not-allowed">
-            Out of stock
+            <span>Out of stock</span>
+            <TbShoppingCartX />
           </Button>
         ) : (
           <Button
             className="w-full"
             onClick={() => handleAddToCart(product?.id, product?.totalStock)}
           >
-            Add to cart
+            <span>Add to cart</span>
+            <BiSolidCartAdd />
           </Button>
         )}
       </CardFooter>

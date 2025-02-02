@@ -1,4 +1,5 @@
 import React from "react";
+import { MdDelete, MdUpdate } from "react-icons/md";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -31,12 +32,16 @@ const AddressCard = ({
         <Label>Additional Notes : {addressItem?.notes}</Label>
       </CardContent>
       <CardFooter className="flex justify-between p-3">
-        <Button onClick={() => handleUpdateAddress(addressItem)}>Update</Button>
+        <Button onClick={() => handleUpdateAddress(addressItem)}>
+          <span>Update</span>
+          <MdUpdate />
+        </Button>
         <Button
           onClick={() => handleDeleteAddress(addressItem)}
           className="bg-destructive hover:bg-destructive hover:opacity-80"
         >
-          Delete
+          <span>Delete</span>
+          <MdDelete />
         </Button>
       </CardFooter>
     </Card>

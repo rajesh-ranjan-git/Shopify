@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { LogOut, Menu } from "lucide-react";
+import { RiMenu2Fill } from "react-icons/ri";
 import { IoMdLogOut } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import { toast } from "@/hooks/use-toast";
@@ -49,7 +50,7 @@ const AdminHeader = ({ openSidebar, setOpenSidebar }) => {
         className="sm:block lg:hidden hover:bg-primary"
         onClick={() => setOpenSidebar(true)}
       >
-        <Menu />
+        <RiMenu2Fill />
         <span className="sr-only">Toggle Menu</span>
       </Button>
       <div className="w-full">

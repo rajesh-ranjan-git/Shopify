@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { ImPaypal } from "react-icons/im";
 import checkoutImage from "@/assets/account.jpg";
 import { useToast } from "@/hooks/use-toast";
 import Address from "@/components/shop/address";
@@ -119,7 +120,10 @@ const ShopCheckout = () => {
           </div>
           <div className="mt-4 w-full">
             <Button onClick={handleInitiatePaypalPayment} className="w-full">
-              {isPaymentStarted ? "Processing Payment..." : "Pay with Paypal"}
+              <span>
+                {isPaymentStarted ? "Processing Payment..." : "Pay with Paypal"}
+              </span>
+              <ImPaypal />
             </Button>
           </div>
         </div>

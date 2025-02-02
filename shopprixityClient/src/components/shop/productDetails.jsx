@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { BiSolidCartAdd } from "react-icons/bi";
+import { TbShoppingCartX } from "react-icons/tb";
 import { Star } from "lucide-react";
 import {
   Dialog,
@@ -132,7 +134,8 @@ const ShopProductDetails = ({
           <div className="mt-5 mb-5">
             {productDetails?.totalStock === 0 ? (
               <Button className="bg-destructive opacity-60 w-full cursor-not-allowed">
-                Out of stock
+                <span>Out of stock</span>
+                <TbShoppingCartX />
               </Button>
             ) : (
               <Button
@@ -144,7 +147,8 @@ const ShopProductDetails = ({
                   )
                 }
               >
-                Add to cart
+                <span>Add to cart</span>
+                <BiSolidCartAdd />
               </Button>
             )}
           </div>

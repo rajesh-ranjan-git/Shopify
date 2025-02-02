@@ -12,6 +12,14 @@ import {
 import { RiDashboard2Fill } from "react-icons/ri";
 import { FaShopify } from "react-icons/fa";
 import { HiMiniShoppingBag } from "react-icons/hi2";
+import { SiNike, SiAdidas, SiPuma, SiZara, SiHandm } from "react-icons/si";
+import { TbSquareRoundedLetterLFilled } from "react-icons/tb";
+import { DiYeoman } from "react-icons/di";
+import { GiFemaleLegs, GiRunningShoe } from "react-icons/gi";
+import { FaBaby } from "react-icons/fa6";
+import { LuWatch } from "react-icons/lu";
+import { FaHome } from "react-icons/fa";
+import { ImSearch } from "react-icons/im";
 
 export const registerFormControls = [
   {
@@ -62,20 +70,20 @@ export const loginFormControls = [
 ];
 
 export const categories = [
-  { id: "men", label: "Men", icon: Shirt },
-  { id: "women", label: "Women", icon: Cat },
-  { id: "kids", label: "Kids", icon: Baby },
-  { id: "accessories", label: "Accessories", icon: Watch },
-  { id: "footwear", label: "Footwear", icon: Footprints },
+  { id: "men", label: "Men", icon: DiYeoman },
+  { id: "women", label: "Women", icon: GiFemaleLegs },
+  { id: "kids", label: "Kids", icon: FaBaby },
+  { id: "accessories", label: "Accessories", icon: LuWatch },
+  { id: "footwear", label: "Footwear", icon: GiRunningShoe },
 ];
 
 export const brands = [
-  { id: "nike", label: "Nike", icon: Zap },
-  { id: "adidas", label: "Adidas", icon: Zap },
-  { id: "puma", label: "Puma", icon: Zap },
-  { id: "levi", label: "Levi's", icon: Zap },
-  { id: "zara", label: "Zara", icon: Zap },
-  { id: "h&m", label: "H&M", icon: Zap },
+  { id: "nike", label: "Nike", icon: SiNike },
+  { id: "adidas", label: "Adidas", icon: SiAdidas },
+  { id: "puma", label: "Puma", icon: SiPuma },
+  { id: "levi", label: "Levi's", icon: TbSquareRoundedLetterLFilled },
+  { id: "zara", label: "Zara", icon: SiZara },
+  { id: "h&m", label: "H&M", icon: SiHandm },
 ];
 
 export const adminSidebarMenuItems = [
@@ -155,41 +163,49 @@ export const shopHeaderMenuItems = [
     id: "home",
     label: "Home",
     path: "/shop/home",
+    icon: <FaHome size={18} />,
   },
   {
     id: "products",
     label: "Products",
     path: "/shop/listing",
+    icon: <FaShopify size={18} />,
   },
   {
     id: "men",
     label: "Men",
     path: "/shop/listing",
+    icon: <DiYeoman size={18} />,
   },
   {
     id: "women",
     label: "Women",
     path: "/shop/listing",
+    icon: <GiFemaleLegs size={18} />,
   },
   {
     id: "kids",
     label: "Kids",
     path: "/shop/listing",
+    icon: <FaBaby size={18} />,
   },
   {
     id: "footwear",
     label: "Footwear",
     path: "/shop/listing",
+    icon: <GiRunningShoe size={18} />,
   },
   {
     id: "accessories",
     label: "Accessories",
     path: "/shop/listing",
+    icon: <LuWatch size={18} />,
   },
   {
     id: "search",
     label: "Search",
     path: "/shop/search",
+    icon: <ImSearch size={18} />,
   },
 ];
 

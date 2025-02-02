@@ -1,6 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Minus, Plus, Trash } from "lucide-react";
+import { MdDelete } from "react-icons/md";
+import { FaPlus, FaMinus } from "react-icons/fa6";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import deleteShopCartService from "@/services/shop/cart/deleteShopCartService";
@@ -104,7 +106,7 @@ const ShopCartContents = ({ cartItem }) => {
             disabled={cartItem?.quantity <= 1}
             onClick={() => handleUpdateCartItems(cartItem, "decrement")}
           >
-            <Minus className="w-4 h-4" />
+            <FaMinus className="w-4 h-4" />
             <span className="sr-only">Decrease</span>
           </Button>
           <span className="font-semibold">{cartItem?.quantity}</span>
@@ -114,7 +116,7 @@ const ShopCartContents = ({ cartItem }) => {
             className="hover:bg-primary rounded-full w-8 h-8"
             onClick={() => handleUpdateCartItems(cartItem, "increment")}
           >
-            <Plus className="w-4 h-4" />
+            <FaPlus className="w-4 h-4" />
             <span className="sr-only">Increase</span>
           </Button>
         </div>
@@ -128,9 +130,9 @@ const ShopCartContents = ({ cartItem }) => {
               : cartItem?.product?.price) * cartItem?.quantity
           ).toFixed(2)}
         </p>
-        <Trash
+        <MdDelete
           className="mt-1 text-destructive cursor-pointer fill-destructive"
-          size={20}
+          size={25}
           onClick={() => handleDeleteCartItem(cartItem)}
         />
       </div>
