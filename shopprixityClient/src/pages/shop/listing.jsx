@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { ArrowUpDown } from "lucide-react";
 import { LuArrowUpDown } from "react-icons/lu";
 import { useToast } from "@/hooks/use-toast";
 import { sortOptions } from "@/config/config";

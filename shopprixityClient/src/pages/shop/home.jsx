@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FaAnglesLeft, FaAnglesRight } from "react-icons/fa6";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { brands, categories } from "@/config/config";
 import ShopProductCard from "@/components/shop/productCard";

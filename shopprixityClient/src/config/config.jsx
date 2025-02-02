@@ -1,14 +1,3 @@
-import {
-  Baby,
-  Cat,
-  Footprints,
-  LayoutDashboard,
-  PackageOpen,
-  Watch,
-  Shirt,
-  ShoppingBag,
-  Zap,
-} from "lucide-react";
 import { RiDashboard2Fill } from "react-icons/ri";
 import { FaShopify } from "react-icons/fa";
 import { HiMiniShoppingBag } from "react-icons/hi2";

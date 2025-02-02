@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import axios from "axios";
-import { File, UploadCloud, X } from "lucide-react";
+import { BsFillFileEarmarkImageFill } from "react-icons/bs";
 import { FiUploadCloud } from "react-icons/fi";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -98,7 +98,7 @@ const ProductImageInput = ({
         ) : (
           <div className="flex justify-between items-center">
             <div className="flex items-center">
-              <File className="mr-2 w-8 h-8 text-primary" />
+              <BsFillFileEarmarkImageFill className="mr-2 w-8 h-8 text-primary" />
             </div>
             <p className="font-medium text-sm">{productImage.name}</p>
             <Button

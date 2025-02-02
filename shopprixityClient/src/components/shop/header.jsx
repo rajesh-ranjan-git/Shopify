@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { House, LogOut, Menu, ShoppingCart, UserRound } from "lucide-react";
 import { IoMdLogOut } from "react-icons/io";
 import { RiMenu3Fill, RiShoppingCartFill } from "react-icons/ri";
 import { HiHomeModern } from "react-icons/hi2";

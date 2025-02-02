@@ -39,11 +39,12 @@ const AdminOrderDetails = ({ orderDetails }) => {
         toast({
           title: data?.payload?.message,
         });
+      } else {
+        toast({
+          title: data?.payload?.message,
+          variant: "destructive",
+        });
       }
-      toast({
-        title: data?.payload?.message,
-        variant: "destructive",
-      });
     });
   };
 

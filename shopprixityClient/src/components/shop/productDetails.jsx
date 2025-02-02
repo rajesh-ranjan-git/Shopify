@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BiSolidCartAdd } from "react-icons/bi";
 import { TbShoppingCartX } from "react-icons/tb";
-import { Star } from "lucide-react";
 import {
   Dialog,
   DialogContent,

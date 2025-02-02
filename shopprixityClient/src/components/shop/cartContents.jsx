@@ -1,6 +1,5 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Minus, Plus, Trash } from "lucide-react";
 import { MdDelete } from "react-icons/md";
 import { FaPlus, FaMinus } from "react-icons/fa6";
 import { useToast } from "@/hooks/use-toast";

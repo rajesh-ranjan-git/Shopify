@@ -1,10 +1,9 @@
 import React from "react";
-import { Button } from "@/components/ui/button";
-import { Star } from "lucide-react";
+import { FaRegStar } from "react-icons/fa";
 
 const ProductRating = ({ productRating, handleProductRating }) => {
   return [1, 2, 3, 4, 5].map((rating, index) => (
-    <Star
+    <FaRegStar
       key={index}
       className={`w-6 h-6 ${
         handleProductRating

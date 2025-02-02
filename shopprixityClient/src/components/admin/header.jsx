@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { LogOut, Menu } from "lucide-react";
 import { RiMenu2Fill } from "react-icons/ri";
 import { IoMdLogOut } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import { toast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
-import { adminSidebarMenuItems } from "@/config/config";
 import logoutUserService from "@/services/auth/logoutUserService";
 
 const AdminHeader = ({ openSidebar, setOpenSidebar }) => {
