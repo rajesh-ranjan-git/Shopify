@@ -7,7 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 const ShopAccount = () => {
   return (
     <div className="flex flex-col">
-      <div className="relative w-full h-[300px] overflow-hidden">
+      <div className="relative w-full h-[25vh] md:h-[40vh] overflow-hidden">
         <img
           src={accountImage}
           className="w-full h-full object-center object-cover"

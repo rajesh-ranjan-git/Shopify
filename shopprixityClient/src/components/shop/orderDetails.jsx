@@ -13,7 +13,7 @@ const ShopOrderDetails = ({ orderDetails }) => {
   const { user } = useSelector((state) => state.authReducer);
 
   return (
-    <DialogContent className="sm:max-w-[600px]">
+    <DialogContent className="rounded-lg sm:max-w-[600px]">
       <DialogTitle className="hidden"></DialogTitle>
       <DialogDescription className="hidden"></DialogDescription>
       <div className="gap-6 grid">

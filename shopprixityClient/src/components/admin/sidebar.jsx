@@ -29,7 +29,7 @@ const AdminSidebar = ({ openSidebar, setOpenSidebar }) => {
           </div>
         </SheetContent>
       </Sheet>
-      <aside className="lg:flex flex-col hidden bg-background p-6 border-r w-64">
+      <aside className="z-50 fixed lg:flex flex-col hidden bg-background p-6 border-r w-64 h-screen">
         <div
           className="flex gap-2 item-center cursor-pointer"
           onClick={() => navigate("/admin/dashboard")}

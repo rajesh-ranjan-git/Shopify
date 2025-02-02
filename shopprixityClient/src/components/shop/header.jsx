@@ -188,7 +188,7 @@ const ShopHeader = () => {
   const [openMobileNav, setOpenMobileNav] = useState(false);
 
   return (
-    <header className="top-0 z-40 sticky bg-background border-b w-full">
+    <header className="top-0 z-40 fixed bg-background border-b w-full">
       <div className="flex justify-between items-center px-4 md:px-6 h-16">
         <Link className="flex items-center gap-2" to="/shop/home">
           <HiHomeModern className="w-6 h-6" />

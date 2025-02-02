@@ -42,7 +42,7 @@ const AdminHeader = ({ openSidebar, setOpenSidebar }) => {
   }, [location]);
 
   return (
-    <header className="flex justify-between items-center bg-background px-4 py-3 border-b">
+    <header className="z-40 fixed flex justify-between items-center bg-background px-4 py-3 border-b w-full">
       <Button
         variant="outline"
         className="sm:block lg:hidden hover:bg-primary"

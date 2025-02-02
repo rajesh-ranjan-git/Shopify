@@ -131,7 +131,7 @@ const ShopHome = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <div className="relative w-full h-[600px]">
+      <div className="relative w-full h-[25vh] md:h-[60vh]">
         {sliderImages && sliderImages.length > 0
           ? sliderImages.map((slide, index) => (
               <img

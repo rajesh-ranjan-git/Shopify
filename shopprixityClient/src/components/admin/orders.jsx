@@ -46,7 +46,7 @@ const AdminOrders = () => {
       <CardHeader>
         <h2 className="font-extrabold text-lg">All Orders</h2>
       </CardHeader>
-      <CardContent>
+      <CardContent className="w-[90vw] md:w-full">
         <Table>
           <TableHeader>
             <TableRow>
