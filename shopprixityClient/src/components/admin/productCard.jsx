@@ -1,4 +1,6 @@
 import React from "react";
+import { CiEdit } from "react-icons/ci";
+import { MdDelete } from "react-icons/md";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -43,13 +45,15 @@ const AdminProductCard = ({
               setFormData(product);
             }}
           >
-            Edit
+            <span>Edit</span>
+            <CiEdit />
           </Button>
           <Button
             onClick={() => handleProductDelete(product?.id)}
             className="bg-destructive hover:opacity-80"
           >
-            Delete
+            <span>Delete</span>
+            <MdDelete />
           </Button>
         </CardFooter>
       </div>

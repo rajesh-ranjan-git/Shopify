@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import axios from "axios";
 import { File, UploadCloud, X } from "lucide-react";
+import { FiUploadCloud } from "react-icons/fi";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -89,7 +90,7 @@ const ProductImageInput = ({
               isEditMode ? "cursor-not-allowed" : "cursor-pointer"
             } flex flex-col justify-center items-center h-32`}
           >
-            <UploadCloud className="mb-2 w-10 h-10 text-muted-foreground" />
+            <FiUploadCloud className="mb-2 w-10 h-10 text-muted-foreground" />
             <span>Drag and Drop or click to upload product image.</span>
           </Label>
         ) : productImageUploading ? (

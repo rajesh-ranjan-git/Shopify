@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { FiUploadCloud } from "react-icons/fi";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import ProductImageInput from "@/components/admin/productImageInput";
@@ -54,8 +55,9 @@ const AdminDashboard = () => {
         isSliderImageUpload={true}
       />
 
-      <Button className="mt-5 w-full" onClick={handleUploadSliderImage}>
-        Upload Slider Image
+      <Button className="flex mt-5 w-full" onClick={handleUploadSliderImage}>
+        <FiUploadCloud />
+        <span>Upload Slider Image</span>
       </Button>
 
       <div className="flex flex-col mt-5 w-full">

@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { ChartNoAxesCombined } from "lucide-react";
+import { MdAdminPanelSettings } from "react-icons/md";
 import MenuItems from "./menuItems";
 import {
   Sheet,
@@ -20,8 +20,8 @@ const AdminSidebar = ({ openSidebar, setOpenSidebar }) => {
           <div className="flex flex-col h-full">
             <SheetHeader className="border-b">
               <SheetTitle className="flex gap-2 mt-5 mb-5">
-                <ChartNoAxesCombined size={30} />
-                <span className="font-extrabold text-xl">Admin Panel</span>
+                <MdAdminPanelSettings size={35} />
+                <span className="font-extrabold text-2xl">Admin Panel</span>
               </SheetTitle>
               <SheetDescription></SheetDescription>
             </SheetHeader>
@@ -34,8 +34,10 @@ const AdminSidebar = ({ openSidebar, setOpenSidebar }) => {
           className="flex gap-2 item-center cursor-pointer"
           onClick={() => navigate("/admin/dashboard")}
         >
-          <ChartNoAxesCombined size={30} />
-          <span className="font-extrabold text-xl">Admin Panel</span>
+          <MdAdminPanelSettings size={35} />
+          <span className="font-extrabold text-xl md:text-2xl">
+            Admin Panel
+          </span>
         </div>
         <MenuItems />
       </aside>

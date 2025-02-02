@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { LogOut, Menu } from "lucide-react";
+import { IoMdLogOut } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import { toast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
@@ -43,22 +44,23 @@ const AdminHeader = ({ openSidebar, setOpenSidebar }) => {
 
   return (
     <header className="flex justify-between items-center bg-background px-4 py-3 border-b">
-      <div className="w-full">
-        <h2 className="font-extrabold text-2xl text-center">{headerTitle}</h2>
-      </div>
       <Button
-        className="sm:block lg:hidden"
+        variant="outline"
+        className="sm:block lg:hidden hover:bg-primary"
         onClick={() => setOpenSidebar(true)}
       >
         <Menu />
         <span className="sr-only">Toggle Menu</span>
       </Button>
+      <div className="w-full">
+        <h2 className="font-extrabold text-2xl text-center">{headerTitle}</h2>
+      </div>
       <div className="flex flex-1 justify-end">
         <Button
           className="inline-flex items-center gap-2 shadow px-4 py-2 rounded-md font-medium text-sm"
           onClick={() => handleLogoutUser()}
         >
-          <LogOut />
+          <IoMdLogOut />
           <span>Logout</span>
         </Button>
       </div>

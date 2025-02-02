@@ -9,6 +9,9 @@ import {
   ShoppingBag,
   Zap,
 } from "lucide-react";
+import { RiDashboard2Fill } from "react-icons/ri";
+import { FaShopify } from "react-icons/fa";
+import { HiMiniShoppingBag } from "react-icons/hi2";
 
 export const registerFormControls = [
   {
@@ -80,19 +83,19 @@ export const adminSidebarMenuItems = [
     id: "dashboard",
     label: "Dashboard",
     path: "/admin/dashboard",
-    icon: <LayoutDashboard />,
+    icon: <RiDashboard2Fill size={25} />,
   },
   {
     id: "products",
     label: "Products",
     path: "/admin/products",
-    icon: <PackageOpen />,
+    icon: <FaShopify size={25} />,
   },
   {
     id: "orders",
     label: "Orders",
     path: "/admin/orders",
-    icon: <ShoppingBag />,
+    icon: <HiMiniShoppingBag size={25} />,
   },
 ];
 

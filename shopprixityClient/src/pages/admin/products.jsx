@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { IoIosAddCircleOutline } from "react-icons/io";
 import { useToast } from "@/hooks/use-toast";
 import { addProductFormElements } from "@/config/config";
 import AdminProductCard from "@/components/admin/productCard";
@@ -119,11 +120,15 @@ const AdminProducts = () => {
     <>
       <div className="flex justify-between items-center p-4 w-full">
         <h2 className="font-extrabold text-lg">All Products</h2>
-        <Button onClick={() => setOpenCreateProductsDialog(true)}>
-          Add New Product
+        <Button
+          onClick={() => setOpenCreateProductsDialog(true)}
+          className="flex"
+        >
+          <span>Add New Product</span>
+          <IoIosAddCircleOutline />
         </Button>
       </div>
-      <div className="gap-4 grid md:grid-cols-3 lg:grid-cols-4">
+      <div className="gap-4 grid md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
         {productList && productList.length > 0
           ? productList.map((product) => (
               <AdminProductCard
