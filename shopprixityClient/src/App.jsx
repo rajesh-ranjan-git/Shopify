@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Toaster } from "@/components/ui/toaster";
 import checkAuthService from "@/services/auth/checkAuthService";
