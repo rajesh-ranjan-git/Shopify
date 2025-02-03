@@ -1,6 +1,6 @@
 # Shopprixity
 
-Welcome to the Shopprixity! This platform is designed to provide users with an intuitive and robust online shopping experience. Whether you're a seller looking to set up an online store or a customer browsing for products, Shopprixity simplifies the entire e-commerce process.
+Welcome to the Shopprixity! This platform is designed to provide users with an intuitive and robust online shopping experience. It has admin section as well to manage and simply the entire shopping experience.
 
 ## Table of Contents
 
@@ -15,7 +15,7 @@ Welcome to the Shopprixity! This platform is designed to provide users with an i
 
 ## Project Overview
 
-Shopprixity is a comprehensive e-commerce platform that connects customers with online stores. It includes features like:
+Shopprixity is a comprehensive e-commerce platform that includes features like:
 
 - Product catalog management
 - Shopping cart and checkout process
@@ -109,7 +109,7 @@ To get started with Shopprixity locally, follow these steps:
 4. Proceed to Checkout: Enter your shipping details and payment information, then complete the purchase.
 5. Track Orders: View and manage your order history from your account dashboard.
 
-## Contributing
+<!-- ## Contributing
 
 We welcome contributions to improve the Shopprixity project! To get started:
 
@@ -119,7 +119,7 @@ We welcome contributions to improve the Shopprixity project! To get started:
 4. Push your branch to your forked repository.
 5. Open a pull request with a description of your changes.
 
-Please ensure that your code follows our coding standards and includes appropriate tests.
+Please ensure that your code follows our coding standards and includes appropriate tests. -->
 
 <!-- ## License
 
