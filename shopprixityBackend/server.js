@@ -39,10 +39,14 @@ server.use(express.urlencoded({ extended: false }));
 server.use("/api", router);
 
 // Server response
+// server.get("/", (req, res) => {
+//   return res.json({
+//     message: `Shoprixity server is running at http://localhost:${PORT}`,
+//   });
+// });
+
 server.get("/", (req, res) => {
-  return res.json({
-    message: `Shoprixity server is running at http://localhost:${PORT}`,
-  });
+  return res.send("Shoprixity server is running!");
 });
 
 // Listen to server
