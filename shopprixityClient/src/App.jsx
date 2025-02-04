@@ -9,7 +9,8 @@ function App() {
 
   // Check for auth validation on page load
   useEffect(() => {
-    dispatch(checkAuthService());
+    const token = JSON.parse(localStorage.getItem("token"));
+    dispatch(checkAuthService(token));
   }, [dispatch]);
 
   return (

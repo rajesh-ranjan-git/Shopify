@@ -39,6 +39,7 @@ const googleAuthFirebase = async (req, res) => {
         .json({
           status: 200,
           success: true,
+          token: token,
           message: "Logged in successfully!",
           user: findUser,
         });
@@ -71,6 +72,7 @@ const googleAuthFirebase = async (req, res) => {
         .json({
           status: 200,
           success: true,
+          token: token,
           message: "User created successfully!",
           user: user,
         });

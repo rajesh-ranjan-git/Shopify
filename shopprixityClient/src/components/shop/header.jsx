@@ -35,6 +35,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import logoutUserService from "@/services/auth/logoutUserService";
 import fetchShopCartService from "@/services/shop/cart/fetchShopCartService";
+import { resetTokenAndCredentials } from "@/store/auth/authSlice";
 
 const MenuItems = ({ setOpenMobileNav }) => {
   const navigate = useNavigate();
@@ -89,19 +90,23 @@ const HeaderRightContent = ({ setOpenMobileNav }) => {
   const dispatch = useDispatch();
 
   const handleLogoutUser = () => {
-    dispatch(logoutUserService()).then((data) => {
-      if (data?.payload?.success) {
-        navigate("/auth/login");
-        toast({
-          title: data?.payload?.message,
-        });
-      } else {
-        toast({
-          title: data?.payload?.message || "Something went wrong!",
-          variant: "destructive",
-        });
-      }
-    });
+    // dispatch(logoutUserService()).then((data) => {
+    //   if (data?.payload?.success) {
+    //     navigate("/auth/login");
+    //     toast({
+    //       title: data?.payload?.message,
+    //     });
+    //   } else {
+    //     toast({
+    //       title: data?.payload?.message || "Something went wrong!",
+    //       variant: "destructive",
+    //     });
+    //   }
+    // });
+
+    dispatch(resetTokenAndCredentials());
+    localStorage.clear();
+    navigate("/auth/login");
   };
 
   useEffect(() => {

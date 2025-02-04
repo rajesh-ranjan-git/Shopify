@@ -36,7 +36,7 @@ This project is designed to cater to both small businesses and large enterprises
 - **Product Catalog:** Create, update, and manage your product listings with ease.
 - **User Accounts:** Allow users to create accounts, track orders, and save preferences.
 - **Shopping Cart:** Users can add products to their cart and proceed to checkout.
-- **Payment Gateway Integration:** Process payments securely through third-party services (PayPal, Stripe, etc.).
+- **Payment Gateway Integration:** Process payments securely through third-party services (PayPal).
 - **Order Management:** Sellers can track and manage customer orders.
 - **Responsive Design:** Optimized for desktops, tablets, and mobile devices.
 - **Search and Filters:** Easy search functionality with advanced filtering options to help users find the products they need.
@@ -50,7 +50,8 @@ Shopprixity is built using the following technologies:
 - **Database:** MongoDB (for storing user and product data)
 - **ORM:** Prisma (for managing Database)
 - **Authentication:** JWT (JSON Web Tokens) for secure user authentication
-- **Payment Integration:** Stripe
+- **Firebase:** Google authentication for secure user authentication through Firebase
+- **Payment Integration:** Paypal
 <!-- - **Deployment:** Docker (for containerization), AWS (for cloud hosting) -->
 
 ## Installation Guide

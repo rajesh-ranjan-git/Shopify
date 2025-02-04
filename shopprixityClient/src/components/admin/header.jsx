@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { toast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import logoutUserService from "@/services/auth/logoutUserService";
+import { resetTokenAndCredentials } from "@/store/auth/authSlice";
 
 const AdminHeader = ({ openSidebar, setOpenSidebar }) => {
   const [headerTitle, setHeaderTitle] = useState("Admin Panel");
@@ -14,19 +15,23 @@ const AdminHeader = ({ openSidebar, setOpenSidebar }) => {
   const location = useLocation();
 
   const handleLogoutUser = () => {
-    dispatch(logoutUserService()).then((data) => {
-      if (data?.payload?.success) {
-        navigate("/auth/login");
-        toast({
-          title: data?.payload?.message,
-        });
-      } else {
-        toast({
-          title: data?.payload?.message || "Something went wrong!",
-          variant: "destructive",
-        });
-      }
-    });
+    // dispatch(logoutUserService()).then((data) => {
+    //   if (data?.payload?.success) {
+    //     navigate("/auth/login");
+    //     toast({
+    //       title: data?.payload?.message,
+    //     });
+    //   } else {
+    //     toast({
+    //       title: data?.payload?.message || "Something went wrong!",
+    //       variant: "destructive",
+    //     });
+    //   }
+    // });
+
+    dispatch(resetTokenAndCredentials());
+    localStorage.clear();
+    navigate("/auth/login");
   };
 
   useEffect(() => {
