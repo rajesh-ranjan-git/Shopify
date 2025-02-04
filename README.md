@@ -2,6 +2,12 @@
 
 Welcome to the Shopprixity! This platform is designed to provide users with an intuitive and robust online shopping experience. It has admin section as well to manage and simply the entire shopping experience.
 
+## Live URL : https://shopprixity.vercel.app/
+
+```bash
+   https://shopprixity.vercel.app/
+```
+
 ## Table of Contents
 
 - [Project Overview](#project-overview)
@@ -69,13 +75,13 @@ To get started with Shopprixity locally, follow these steps:
 2. For Backend
 
    ```bash
-   cd ShopprixityBackend
+   cd shopprixityBackend
    ```
 
 3. For Client
 
    ```bash
-   cd ShopprixityClient
+   cd shopprixityClient
    ```
 
 4. Install dependencies (for both Backed and Client):
@@ -84,7 +90,7 @@ To get started with Shopprixity locally, follow these steps:
    npm install
    ```
 
-5. Set up environment variables (for Backed only):
+5. Set up environment variables (for Backed):
    Create a .env file in the root directory and add the following:
 
    ```bash
@@ -92,14 +98,36 @@ To get started with Shopprixity locally, follow these steps:
    MONGODB_URI=<your-mongodb-uri>
    JWT_SECRET=<your-jwt-secret>
    STRIPE_API_KEY=<your-stripe-api-key>
+   CLOUDINARY_CLOUD_NAME=<your-cloudinary-cloud-name>
+   CLOUDINARY_API_KEY=<your-cloudinary-api-key>
+   CLOUDINARY_API_SECRET=<your-cloudinary-api-secret>
+   PAYPAL_API_CLIENT_ID=<your-paypal-api-client-id>
+   PAYPAL_API_SECRET=<your-paypal-api-secret>
+   CLIENT_BASE_URL=<your-client-base-url>
    ```
 
-6. Start the development server (for both Backed and Client):
+6. Set up environment variables (for Client):
+   Create a .env file in the root directory and add the following:
+
    ```bash
-   npm run dev
+   VITE_API_URL=<your-vite-url>
+   VITE_FIREBASE_API_KEY=<your-vite-firebase-api-key>
+   VITE_FIREBASE_AUTH_DOMAIN=<your-vite-firebase-auth-domain>
+   VITE_FIREBASE_PROJECT_ID=<your-vite-firebase-project-id>
+   VITE_FIREBASE_STORAGE_BUCKET=<your-vite-firebase-storage-bucket>
+   VITE_FIREBASE_MESSAGING_SENDER_ID=<your-vite-firebase-sender-id>
+   VITE_FIREBASE_APP_ID=<your-vite-firebase-api-id>
+   VITE_FIREBASE_MEASUREMENT_ID=<your-vite-firebase-measurement-id>
    ```
-7. The backend for Shopprixity should now be running at http://localhost:5000
-8. The client for Shopprixity should now be running at http://localhost:5173
+
+7. Start the development server (for both Backed and Client):
+
+```bash
+npm run dev
+```
+
+8. The backend for Shopprixity should now be running at http://localhost:5000
+9. The client for Shopprixity should now be running at http://localhost:5173
 
 ## Usage Instructions
 
