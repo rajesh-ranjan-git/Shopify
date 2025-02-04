@@ -46,7 +46,18 @@ server.use("/api", router);
 // });
 
 server.get("/", (req, res) => {
-  return res.send("Shoprixity server is running!");
+  return res.send(`
+    <div 
+      style=
+        "color:red;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        width:100%;
+        height:100%;
+      ">
+      <h1>Shoprixity server is running!</h1>
+    </div>`);
 });
 
 // Listen to server
