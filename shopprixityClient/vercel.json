@@ -1,4 +1,5 @@
 {
+    "name": "shopprixity",
     "builds": [
         {
             "src": "package.json",
