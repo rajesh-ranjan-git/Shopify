@@ -7,7 +7,7 @@ import AdminLayout from "@/components/admin/layout";
 import AdminDashboard from "@/pages/admin/dashboard";
 import AdminProducts from "@/pages/admin/products";
 import AdminOrders from "@/pages/admin/orders";
-import ShopLayout from "@/components/Shop/layout";
+import ShopLayout from "@/components/shop/layout";
 import Error from "@/pages/error/error";
 import ShopHome from "@/pages/shop/home";
 import ShopListing from "@/pages/shop/listing";
