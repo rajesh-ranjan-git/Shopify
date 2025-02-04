@@ -32,6 +32,9 @@ const AdminHeader = ({ openSidebar, setOpenSidebar }) => {
     dispatch(resetTokenAndCredentials());
     localStorage.clear();
     navigate("/auth/login");
+    toast({
+      title: "Logged out successfully!",
+    });
   };
 
   useEffect(() => {
