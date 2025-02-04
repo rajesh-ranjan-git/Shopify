@@ -138,6 +138,29 @@ npm run dev
 4. Proceed to Checkout: Enter your shipping details and payment information, then complete the purchase.
 5. Track Orders: View and manage your order history from your account dashboard.
 
+## Test credentials
+
+1. Admin
+
+```bash
+email : admin@admin.com
+password : admin123
+```
+
+2. User
+
+```bash
+email : test@test.com
+password : test123
+```
+
+3. Paypal Shopping test credentials
+
+```bash
+email : sb-hn42p37245379@personal.example.com
+password : P?2H/ub3
+```
+
 <!-- ## Contributing
 
 We welcome contributions to improve the Shopprixity project! To get started:
