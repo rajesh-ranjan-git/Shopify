@@ -53,7 +53,7 @@ const login = async (req, res) => {
       });
 
       return res
-        .cookie("token", token, { httpOnly: true, secure: false })
+        .cookie("token", token, { httpOnly: true, secure: true })
         .status(200)
         .json({
           status: 200,
