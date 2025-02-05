@@ -37,7 +37,7 @@ This project is designed to cater to both small businesses and large enterprises
 - **User Accounts:** Allow users to create accounts, track orders, and save preferences.
 - **Shopping Cart:** Users can add products to their cart and proceed to checkout.
 - **Payment Gateway Integration:** Process payments securely through third-party services (PayPal).
-- **Order Management:** Sellers can track and manage customer orders.
+- **Order Management:** Admins can track and manage customer orders.
 - **Responsive Design:** Optimized for desktops, tablets, and mobile devices.
 - **Search and Filters:** Easy search functionality with advanced filtering options to help users find the products they need.
 
