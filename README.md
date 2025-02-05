@@ -5,7 +5,7 @@ Welcome to the Shopprixity! This platform is designed to provide users with an i
 ## Live URL : https://shopprixity.vercel.app/
 
 ```bash
-   https://shopprixity.vercel.app/
+https://shopprixity.vercel.app/
 ```
 
 ## Table of Contents
